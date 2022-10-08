@@ -81,5 +81,17 @@ $(document).ready(function () {
     },
   })
 
+  const about = new Swiper('.about__slider', {
+    slidesPerView: 2,
+    allowTouchMove: false,
+    speed: 200,
+    spaceBetween: 32,
+    navigation: {
+      nextEl: '.about-next',
+      prevEl: '.about-prev',
+      disabledClass: 'navigation-disabled',
+    },
+  })
+
 
 });

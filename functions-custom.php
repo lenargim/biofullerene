@@ -30,6 +30,7 @@ function my_theme_enqueue_scripts() {
 		is_page_template( 'home.php' )
 		|| is_singular()
 		|| is_product()
+        || is_page_template( 'company.php' )
 	) {
 		wp_enqueue_style( 'swiper-styles', 'https://unpkg.com/swiper@8/swiper-bundle.min.css' );
 		wp_enqueue_script( 'swiper-lib', 'https://unpkg.com/swiper@8/swiper-bundle.min.js', array( 'jquery' ) );
@@ -194,6 +195,7 @@ add_action( 'init', function () {
 if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'post-thumbnails' );
 	add_image_size( 'research_thumbnail', 384, 240 );
+	add_image_size( 'about-slider', 592, 420 );
 }
 
 add_theme_support( 'woocommerce', array(

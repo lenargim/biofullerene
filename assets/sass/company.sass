@@ -1,0 +1,97 @@
+.company-page
+  &__banner
+    height: 630px
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center
+    &-desc p
+      margin-top: 24px
+      max-width: 320px
+      color: #fff
+      font: 500 18px/28px $mainFont
+  &__nav
+    display: flex
+    gap: 8px
+    border-bottom: 1px solid $gray50
+  &__link
+    padding: 24px 16px
+    color: $gray600
+    font-weight: 500
+    display: block
+    &.active
+      color: $accent700
+      position: relative
+      &::after
+        content: ''
+        left: 0
+        right: 0
+        height: 2px
+        bottom: -1px
+        background: $accent700
+        position: absolute
+  &__wrap
+    display: grid
+    grid-template-columns: 1fr 2fr
+    grid-gap: 30px
+.about
+  &__slider
+    &-img
+      border-radius: 12px
+      overflow: hidden
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 100%
+      aspect-ratio: 592/420
+      img
+        display: block
+        object-fit: contain
+    &-navigation
+      margin-top: 24px
+.mission
+  &__infograthic
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    gap: 32px
+    &-item
+      display: flex
+      flex-direction: column
+      gap: 16px
+    &-img
+      width: 72px
+      height: 72px
+    &-title
+      font: 500 18px/28px $mainFont
+  &__alert
+    margin: 48px 0
+    background: $warning25
+    border-radius: 12px
+    padding: 12px 20px
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    gap: 16px
+    font: 500 14px/20px $mainFont
+  &__desc
+    color: $gray500
+    font-size: 14px
+    max-width: 700px
+.block-team
+  margin-top: 120px
+  border-top: 1px solid $gray50
+  &__people
+    margin-top: 80px
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    grid-gap: 32px
+  &__img
+    width: 280px
+    height: 320px
+    border-radius: 12px
+    margin-bottom: 20px
+  &__name
+    font: 500 18px/28px $mainFont
+    margin-bottom: 4px
+  &__job
+    font: 500 14px/20px $mainFont
+    color: $gray400

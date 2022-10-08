@@ -235,9 +235,9 @@ get_template_part('template-parts/header/header'); ?>
               <?php if (get_field('advantages-title')): ?>
                 <div class="product-page__advantages-title"><?php the_field('advantages-title'); ?></div>
               <?php endif; ?>
-              <?php if (get_field('advantages')): ?>
+              <?php if (get_field('about-list', 278)): ?>
                 <ul class="product-page__advantages-list">
-                  <?php while (have_rows('advantages')): the_row() ?>
+                  <?php while (have_rows('about-list', 278)): the_row() ?>
                     <li class="product-page__advantages-item">
                       <svg>
                         <use xlink:href="<?php echo IMAGES_PATH ?>/sprite-mainpage.svg#sb"></use>
