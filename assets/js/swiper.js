@@ -66,4 +66,20 @@ $(document).ready(function () {
   });
 
 
+  const related = new Swiper('.single-post__slider', {
+    slidesPerView: 3,
+    allowTouchMove: false,
+    speed: 200,
+    spaceBetween: 32,
+    navigation: {
+      nextEl: '.related-next',
+      prevEl: '.related-prev',
+      disabledClass: 'navigation-disabled',
+    },
+    scrollbar: {
+      el: '.custom-scrollbar',
+    },
+  })
+
+
 });

@@ -28,7 +28,7 @@ function my_theme_enqueue_scripts() {
 
 	if (
 		is_page_template( 'home.php' )
-		//|| is_singular('services')
+		|| is_singular()
 		|| is_product()
 	) {
 		wp_enqueue_style( 'swiper-styles', 'https://unpkg.com/swiper@8/swiper-bundle.min.css' );
