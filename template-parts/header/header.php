@@ -5,6 +5,7 @@
 
 <header class="header <?php if ( is_page_template( 'home.php' ) ||
                                  is_page_template( 'research.php' ) ||
+                                 is_page_template( 'locations.php' ) ||
                                  is_page_template( 'company.php' ) ) {
 	echo 'transparent';
 } ?>">

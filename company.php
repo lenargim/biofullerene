@@ -30,7 +30,7 @@
             <a href="#mission" class="company-page__link">Mission and goals</a>
             <a href="#team" class="company-page__link">Team</a>
         </div>
-        <section class="block block-about" id="about">
+        <section class="block-about" id="about">
             <div class="company-page__wrap">
                 <h2 class="company-page__title">About us</h2>
                 <div class="company-page__content">

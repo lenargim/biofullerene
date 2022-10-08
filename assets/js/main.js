@@ -60,6 +60,26 @@ $(document).ready(function () {
     $('.modal').removeClass('active');
   })
 
+  $(document).on('click', '.company-page__link', function(e){
+    e.preventDefault();
+    var id = $(this).attr('href');
+    $('html,body').animate({scrollTop: $(id).offset().top - 80}, 500);
+  });
+
+  $('body').on('click', '.locations__tab:not(.active)', function (){
+    $('.locations__tab').removeClass('active');
+    $(this).addClass('active');
+    let index = $(this).index();
+    let activeBlock = $('.locations__section .locations__item').eq(index);
+    $('.locations__section .locations__item').removeClass('active');
+    activeBlock.addClass('active');
+    let src = activeBlock.find('.map').data('src');
+    activeBlock.find('.map').attr('src', src);
+  })
+
+  let src = $('.locations__item.active .map').data('src');
+  $('.locations__item.active .map').attr('src', src);
+
 });
 
 $(document).scroll(function () {
