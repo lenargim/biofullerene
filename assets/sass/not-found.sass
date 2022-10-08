@@ -1,0 +1,43 @@
+.not-found
+  height: 100vh
+  background: url("./assets/images/not-found-bg.jpg") center/cover no-repeat
+  display: flex
+  flex-direction: column
+  &__logo
+    margin: 32px auto
+    display: block
+    width: fit-content
+    svg
+      width: 150px
+      height: 20px
+      fill: #fff
+  &__top
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2)
+  &__bottom
+    margin: auto 0
+  &__text
+    margin: auto 0
+    color: #fff
+    width: 520px
+  &__title
+    font: 500 60px/68px $mainFont
+    margin-bottom: 44px
+    letter-spacing: -1.2px
+  &__desc
+    font: 400 18px/28px $mainFont
+    margin-bottom: 60px
+  &__back
+    width: 280px
+  .underline
+    position: relative
+    text-decoration: initial !important
+    &:before
+      content: ''
+      width: calc(100% + 20px)
+      aspect-ratio: 140/18
+      position: absolute
+      left: 50%
+      transform: translateX(-50%) rotate(180deg)
+      top: 75%
+      z-index: 1
+      background: url("./assets/images/svg/underline2.svg") center/cover no-repeat
