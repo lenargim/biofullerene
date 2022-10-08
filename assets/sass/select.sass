@@ -1,0 +1,80 @@
+.s-hidden
+  visibility: hidden
+  padding: 0
+  position: absolute
+
+.select
+  cursor: pointer
+  display: inline-block
+  font: 400 16px/24px $mainFont
+  color: $gray900
+  width: 100%
+  position: relative
+
+.styledSelect
+  position: relative
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  font: 500 16px/24px $mainFont
+  color: $accent700
+  z-index: 2
+  display: flex
+  align-items: center
+  justify-content: flex-start
+  gap: 8px
+
+
+.styledSelect:after
+  content: ""
+  width: 0
+  height: 0
+  border: $accent700
+  border-width: 0 2px 2px 0
+  display: inline-block
+  padding: 3px
+  transform: rotate(45deg)
+  transition: all 0.2s ease
+  flex-shrink: 0
+  border-style: solid
+
+.styledSelect:active,
+.styledSelect.active
+  &:after
+    transform: rotate(-135deg)
+
+.options
+  display: none
+  position: absolute
+  top: calc(100% + 4px)
+  right: 0
+  left: -16px
+  z-index: 999
+  padding: 4px
+  list-style: none
+  background: #fff
+  box-shadow: 0 4px 8px -2px rgba(13, 18, 30, 0.08), 0px 2px 4px -2px rgba(13, 18, 30, 0.08)
+  border: 1px solid $gray50
+  border-radius: 8px
+  width: 200px
+
+.options li
+  display: block
+  margin: 0 0
+  padding: 10px 12px
+  width: 100%
+  border-radius: 4px
+  &.checked
+    position: relative
+    &::after
+      content: ''
+      width: 16px
+      height: 16px
+      position: absolute
+      right: 12px
+      top: 14px
+      background: url("./assets/images/svg/check.svg") center/contain no-repeat
+
+.options li:hover
+  background-color: $gray25

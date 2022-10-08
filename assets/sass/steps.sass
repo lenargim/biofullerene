@@ -1,0 +1,38 @@
+.steps
+  &__wrap
+    display: flex
+    align-items: flex-start
+    gap: 30px
+  &__text
+    width: 50%
+    padding-right: calc(1/12*100%)
+    flex-shrink: 0
+  &__content
+    width: 50%
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 34px 44px
+    padding: 0 59px
+    &-item
+      position: relative
+      &:nth-of-type(2n)
+        top: 40px
+    &-img
+      width: 220px
+      height: 140px
+      border-radius: 12px
+      margin-bottom: 12px
+  &__main
+    span[style*="text-decoration: underline;"]
+      position: relative
+      text-decoration: none !important
+      &:before
+        content: ''
+        width: calc(100% + 40px)
+        aspect-ratio: 140/18
+        position: absolute
+        left: 50%
+        transform: translateX(-50%)
+        top: 66%
+        z-index: -1
+        background: url("./assets/images/svg/underline2.svg") center/cover no-repeat

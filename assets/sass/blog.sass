@@ -1,0 +1,67 @@
+.blog
+  padding-bottom: 120px
+  &__breadcrumbs
+    padding-top: 180px
+    color: rgba(255, 255, 255, 0.6)
+    svg
+      stroke: #fff
+    a
+      color: #fff
+  &-banner
+    height: 520px
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+    &__title
+      margin-top: 150px
+      font: 500 72px/80px $mainFont
+      color: #fff
+      letter-spacing: -1.6px
+      position: relative
+      width: fit-content
+      .count
+        font: 500 16px/24px $mainFont
+        position: absolute
+        top: 10px
+        left: calc(100% + 1em)
+        white-space: nowrap
+        letter-spacing: 0
+  &-tags
+    &__wrap
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 12px
+      margin-top: 60px
+    &__tag
+      cursor: pointer
+      padding: 8px 10px
+      border: 1px solid $gray100
+      border-radius: 200px
+      white-space: nowrap
+      color: $gray700
+      font: 500 16px/24px $mainFont
+      display: flex
+      align-items: center
+      justify-content: center
+      gap: 8px
+      &.active
+        cursor: initial
+        color: #fff
+        background: $accent700
+        svg
+          display: block
+    &__close
+      display: none
+      width: 16px
+      height: 16px
+      cursor: pointer
+  &-list
+    &__wrap
+      margin-top: 80px
+      display: grid
+      grid-template-columns: repeat(3, 1fr)
+      grid-gap: 80px 32px
+    &__button
+      margin-top: 80px
+      width: 100%

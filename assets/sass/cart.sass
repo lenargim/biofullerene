@@ -1,0 +1,78 @@
+.cart-page
+  padding-top: 60px
+  &__title
+    padding: 32px 0
+    border-bottom: 1px solid $gray50
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    gap: 1em
+    margin-bottom: 32px
+    sup
+      color: $gray300
+      font: 500 16px/24px $mainFont
+  &__clear
+    font: 500 16px/24px $mainFont
+    color: $gray400
+  &__wrap
+    display: grid
+    grid-template-columns: 7fr 5fr
+    grid-gap: 30px
+    margin: 40px 0 80px
+  &__list
+    display: flex
+    flex-direction: column
+    gap: 20px
+  &__info
+    border: 1px solid $gray100
+    padding: 40px
+    border-radius: 12px
+  &__total
+    margin-top: 32px
+  &__checkout
+    margin-top: 24px
+  &__payments
+    margin-top: 16px
+    display: flex
+    flex-direction: column
+    gap: 16px
+    justify-content: flex-start
+    align-items: center
+    .row
+      display: flex
+      align-items: center
+      justify-content: center
+      gap: 28px
+      span
+        white-space: nowrap
+        font: 400 14px/20px $mainFont
+        color: $gray500
+        position: relative
+        &:not(:last-child):after
+          content: ''
+          position: absolute
+          width: 4px
+          height: 4px
+          border-radius: 50%
+          background: $gray200
+          left: calc(100% + 12px)
+          top: calc(50% - 2px)
+    .icons
+      display: flex
+      align-items: center
+      justify-content: center
+      gap: 8px
+      svg
+        width: 34px
+        height: 24px
+  &__empty
+    padding-bottom: 10vh
+    text-align: center
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    flex: 1 0 auto
+    &-button
+      margin-top: 50px
+      padding: 12px 24px

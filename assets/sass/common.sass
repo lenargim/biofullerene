@@ -1,0 +1,214 @@
+*
+  box-sizing: border-box
+  outline: none
+  transition: all 0.1s ease
+  &::selection
+    background: $accent500
+    color: #fff
+
+html
+  overflow-x: hidden
+
+body, input, textarea, table, button
+  font: 400 16px/1.5 $mainFont
+
+body
+  margin: 0
+  width: 100%
+  padding: 0
+  overflow-x: hidden
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  min-width: 295px
+  position: relative
+  color: $gray900
+  transition-duration: 0s
+  &.home
+    padding-top: 0
+html
+  height: 100%
+
+header,
+footer,
+section,
+main
+  position: relative
+button
+  font-size: initial
+  cursor: pointer
+  background: transparent
+
+.container
+  width: 100%
+  height: 100%
+  padding: 0 40px
+  margin: 0 auto
+  max-width: 1296px
+  &_big
+    max-width: 1440px
+    padding: 0 44px
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus
+  transition: background-color 600000s 0s, color 600000s 0s
+
+input[type=search]::-ms-clear
+  display: none
+  width: 0
+  height: 0
+
+input[type=search]::-ms-reveal
+  display: none
+  width: 0
+  height: 0
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration
+  display: none
+
+input::-webkit-calendar-picker-indicator
+  opacity: 0
+
+nav
+  list-style-type: none
+ul
+  list-style-type: none
+  li
+    padding: 0
+    list-style-position: inside
+
+ol
+  margin: 0
+  padding: 0
+  li
+    list-style-position: inside
+    padding: 0
+a
+  color: $gray900
+  text-decoration: none
+
+h1, h2, h3, h4, p, ul
+  margin: 0
+  padding: 0
+h2
+  padding-bottom: 32px
+  font: 500 14px/20px $mainFont
+  color: $accent700
+  &.center
+    text-align: center
+
+table
+  width: 100%
+
+
+.img
+  display: flex
+  align-items: center
+  justify-content: center
+  overflow: hidden
+  flex-shrink: 0
+  img, picture
+    width: 100%
+    height: 100%
+    display: block
+    object-fit: cover
+
+select
+  width: 100%
+  appearance: none
+  -moz-appearance: none
+  -webkit-appearance: none
+  outline: none
+  &::-ms-expand
+    display: none
+
+input, textarea
+  border: none
+  outline: none
+  width: 100%
+
+textarea
+  resize: none
+
+button
+  border: none
+
+address
+  font-style: normal
+
+.input
+  background: transparent
+
+img::selection
+  background: transparent
+svg
+  fill: transparent
+.nowrap
+  white-space: nowrap
+.hidden
+  display: none
+.pointer
+  cursor: pointer
+.uppercase
+  text-transform: uppercase
+.underline
+  text-decoration: underline
+.block
+  position: relative
+  padding: 120px 0
+.button
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 8px
+  border-radius: 200px
+  font-weight: 500
+  cursor: pointer
+  white-space: nowrap
+  user-select: none
+  padding: 12px
+  box-sizing: content-box
+  &.disabled
+    pointer-events: none
+    cursor: default
+  &.blue
+    background: $accent700
+    color: #fff
+    &.disabled
+      background: $accent50
+  &.white
+    background: #fff
+    border: 1px solid $gray100
+    box-shadow: 0 1px 2px rgba(13, 18, 30, 0.04)
+    color: $accent700
+    &.disabled
+      border-color: $gray50
+      color: $gray50
+.main-text
+  font: 500 40px/48px $mainFont
+  letter-spacing: -0.4px
+.block-title
+  font: 500 32px/38px $mainFont
+
+.socials
+  display: flex
+  gap: 8px
+  &__link
+    width: 48px
+    height: 48px
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 14px
+    border: 1px solid
+    border-radius: 50%
+    filter: drop-shadow(0px 1px 2px rgba(13, 18, 30, 0.04))
+
+.sup
+  color: $gray300
+  font: 500 14px/20px $mainFont

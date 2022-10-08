@@ -1,0 +1,183 @@
+.header
+  left: 0
+  right: 0
+  top: 0
+  background: transparent
+  z-index: 3
+  &.transparent
+    position: fixed
+    .header
+      &__row
+        background: transparent
+        .menu-item a
+          color: #fff
+      &__logo
+        fill: #fff
+      &__menu::after
+        background: #fff
+        opacity: 0.2
+      &__cart
+        color: #fff
+        .amount
+          border-color: #fff
+    .submenu-wrap
+      background: transparent
+      .menu-item a
+        color: #fff
+      &::after
+        background: #fff
+        opacity: 0.2
+  &.sticky
+    position: fixed
+    .header__row, .submenu-wrap
+      background: #fff
+      .menu-item a
+        color: #000
+    .header__logo
+      fill: $accent700
+    .header__cart
+      color: $gray900
+      .amount
+        border-color: $gray900
+  &__row
+    background: #fff
+  &__shipping
+    background: $accent700
+    color: #fff
+    display: flex
+    align-items: center
+    justify-content: center
+    font: 500 14px/20px $mainFont
+    padding: 10px
+    height: 40px
+    position: relative
+    overflow: hidden
+    &.closed
+      padding: 0
+      height: 0
+    .cross
+      padding: 10px
+      width: 40px
+      height: 40px
+      line-height: 1
+      top: calc(50% - 20px)
+      position: absolute
+      z-index: 2
+      right: 0
+      cursor: pointer
+      stroke: #fff
+  &__wrap
+    display: flex
+    align-items: center
+    justify-content: space-between
+    height: 80px
+  &__logo
+    margin: 0 auto
+    max-width: 150px
+    max-height: 20px
+    fill: $accent700
+    display: block
+  &__part
+    width: calc(100%/3)
+  &__cart
+    text-align: right
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    gap: 8px
+    font-weight: 500
+    cursor: pointer
+    .amount
+      flex-shrink: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 28px
+      height: 28px
+      border-radius: 50%
+      border: 1.6px solid $gray900
+  &__menu
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    gap: 40px
+    height: 100%
+    &:after
+      content: ''
+      height: 1px
+      position: absolute
+      bottom: -1px
+      left: -100%
+      right: -100%
+      background: #000
+      opacity: 0.08
+    .menu-item
+      display: flex
+      align-items: center
+      height: 100%
+      a
+        white-space: nowrap
+        font-weight: 500
+        &:hover
+          color: $gray600
+      &:hover
+        .submenu-wrap
+          display: block
+          height: 80px
+          position: absolute
+          left: 0
+          right: 0
+          top: 100%
+          width: 100%
+        .submenu
+          display: flex
+          align-items: center
+          gap: 40px
+    .submenu-wrap
+      background: #fff
+      display: none
+      &:before
+        content: ''
+        position: absolute
+        height: 2%
+        top: -1%
+        left: 0
+        right: 0
+        background: transparent
+        z-index: 2
+      &:after
+        content: ''
+        height: 1px
+        position: absolute
+        bottom: -1px
+        left: -100%
+        right: -100%
+        background: #000
+        opacity: 0.08
+  &-checkout
+    border-bottom: 1px solid rgba(0,0,0,0.08)
+    &__secure
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 12px
+      color: $gray700
+      svg
+        width: 16px
+        height: 16px
+        stroke: $success400
+        flex-shrink: 0
+    &__help
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 6px
+      color: $accent600
+      font-weight: 500
+      svg
+        width: 16px
+        height: 16px
+        stroke: $accent600
+        flex-shrink: 0
+.sub-menu-toggle
+  display: none

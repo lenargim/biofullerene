@@ -1,0 +1,61 @@
+.team
+  &__row
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 30px
+    margin-bottom: 64px
+  &__info
+    display: flex
+    justify-content: flex-end
+    align-items: flex-start
+    gap: 40px
+    width: 100%
+  &__desc
+    color: $gray700
+    font: 400 18px/28px $mainFont
+  &__slider
+    position: relative
+    &::after
+      content: ''
+      position: absolute
+      height: 1px
+      background: $gray100
+      left: 0
+      right: 0
+      bottom: -120px
+  &__expert.swiper-slide
+    height: auto
+    background: $gray25
+    border-radius: 12px
+    padding: 0 44px 44px
+    display: flex
+    flex-direction: column
+  &__img
+    border: 4px solid #fff
+    box-shadow: 0 12px 12px -4px rgba(13, 18, 30, 0.06), 0px 4px 8px -2px rgba(13, 18, 30, 0.02)
+    border-radius: 50%
+    overflow: hidden
+    width: 96px
+    height: 96px
+    position: relative
+    top: -20px
+    margin-bottom: 12px
+  &__brand
+    color: $accent800
+    margin-bottom: 8px
+    font: 500 14px/20px $mainFont
+  &__name
+    font: 500 18px/28px $mainFont
+    margin-bottom: 20px
+  &__text
+    color: $gray700
+    padding-bottom: 20px
+    flex: 1 0 auto
+    span
+      text-decoration: none !important
+  &__job
+    padding-top: 20px
+    border-top: 1px solid $gray100
+    color: $gray300
+    font: 500 14px/20px $mainFont
+    height: 80px

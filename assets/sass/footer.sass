@@ -1,0 +1,113 @@
+.footer
+  background: $gray800
+  padding: 56px 0
+  &__row
+    display: grid
+    grid-template-columns: 2fr 1fr
+    grid-gap: 30px
+    color: #fff
+    padding-bottom: 60px
+    border-bottom: 1px solid $gray700
+    &-title
+      margin-bottom: 4px
+      font: 500 18px/28px $mainFont
+    &-desc
+      color: $gray200
+    &-subscribe-wrap
+      position: relative
+      .wpcf7-spinner
+        position: absolute
+        width: 38px
+        height: 38px
+        margin: 0
+        opacity: 0.9
+        &::before
+          top: 10px
+          left: 10px
+  &__label
+    font: 500 14px/20px $mainFont
+    margin-bottom: 4px
+  &__email
+    padding: 10px 102px 10px 16px
+    border: 1px solid $gray600
+    filter: drop-shadow(0px 1px 2px rgba(13, 18, 30, 0.04))
+    border-radius: 8px
+    background: transparent
+    color: #fff
+    &::placeholder
+      color: $gray600
+  &__submit
+    position: absolute
+    font-weight: 500
+    color: #fff
+    background: transparent
+    border: 0
+    padding: 0
+    cursor: pointer
+    right: 16px
+    display: inline
+    width: unset
+    top: 36px
+  .wpcf7-response-output
+    display: none !important
+  &__main
+    margin-top: 56px
+    display: grid
+    grid-gap: 30px
+    grid-template-columns: repeat(4, 1fr)
+  &__logo
+    fill: #fff
+    max-width: 150px
+    max-height: 20px
+    margin-bottom: 24px
+  &__socials
+    &-link
+      border-color: $gray600
+    svg
+      stroke: #fff
+  &__column
+    &-title
+      font: 500 14px/20px $mainFont
+      color: $gray400
+      margin-bottom: 20px
+  &__menu
+    display: flex
+    flex-direction: column
+    gap: 8px
+    a
+      font-weight: 500
+      color: #fff
+  &__help
+    display: inline-block
+    white-space: nowrap
+    align-self: flex-end
+    margin-top: 44px
+    color: #fff
+    padding: 8px 20px
+    border: 1px solid $gray600
+    filter: drop-shadow(0px 1px 2px rgba(13, 18, 30, 0.04))
+    border-radius: 200px
+    font-weight: 500
+  &__text
+    margin-top: 56px
+    color: $gray400
+    font: 400 14px/20px
+  &__policy
+    margin-top: 56px
+    display: flex
+    gap: 32px
+    font-weight: 500
+    color: $gray100
+    &-menu
+      display: flex
+      gap: 32px
+      a
+        font-weight: 500
+        color: $gray100
+.footer-checkout
+  padding: 32px 0
+  border-top: 1px solid rgba(0, 0, 0, 0.08)
+  &__policy
+    display: flex
+    align-items: center
+    justify-content: space-between

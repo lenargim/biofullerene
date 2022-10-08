@@ -1,0 +1,38 @@
+.overlay
+  position: fixed
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  background: rgba(36, 36, 36, 0.72)
+  z-index: 3
+  display: none
+  &.active
+    display: block
+.modal
+  position: absolute
+  top: 12px
+  right: 12px
+  bottom: 12px
+  width: 50vw
+  border-radius: 12px
+  background: #fff
+  padding: 44px
+  display: none
+  overflow-y: auto
+  &.active
+    display: flex
+  .close
+    box-shadow: 0 1px 2px rgba(13, 18, 30, 0.04)
+    border-radius: 200px
+    border: 1px solid $gray100
+    width: 36px
+    height: 36px
+    display: flex
+    align-items: center
+    justify-content: center
+    cursor: pointer
+    svg
+      width: 20px
+      height: 20px
+      stroke: $accent700

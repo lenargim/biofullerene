@@ -1,0 +1,43 @@
+.research
+  &__title
+    margin-bottom: 44px
+  &__wrap
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-gap: 32px
+  &__item
+    &:hover
+      .research__item-title
+        color: $gray400
+      img
+        transition: all 0.4s ease
+        transform: scale(1.25)
+    &-img
+      margin-bottom: 20px
+      border-radius: 12px
+    &-taglist
+      display: flex
+      flex-wrap: wrap
+      align-items: center
+      justify-content: flex-start
+      gap: 4px
+    &-tag
+      display: flex
+      align-items: center
+      justify-content: center
+      font: 500 12px/16px $mainFont
+      color: $gray700
+      padding: 4px 12px
+      border-radius: 200px
+      border: 1px solid $gray100
+    &-title
+      display: block
+      margin-top: 16px
+      font: 500 18px/28px $mainFont
+  &__button
+    width: 100%
+    margin-top: 44px
+    svg
+      width: 20px
+      height: 20px
+      stroke: $accent700

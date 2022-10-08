@@ -1,0 +1,521 @@
+<?php
+
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts', 9999 );
+add_action( 'wp_head', 'my_theme_enqueue_scripts', 9999 );
+function my_theme_enqueue_scripts() {
+	//wp_dequeue_style( 'twenty-twenty-one-style' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_enqueue_style( 'main-styles', get_template_directory_uri() . '/style.css', array(), filemtime( get_template_directory() . '/style.css' ), false );
+	//wp_enqueue_style('main-styles', get_template_directory_uri() . '/style.css');
+
+	wp_enqueue_script( 'main-scripts', get_template_directory_uri() . '/main.min.js', array( 'jquery' ) );
+	wp_localize_script( 'cart', 'ajaxVar', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+	wp_enqueue_script( 'cart', get_template_directory_uri() . '/assets/js/cart.js', array( 'jquery' ) );
+	if ( is_checkout() ) {
+		wp_enqueue_script( 'checkout-scripts', get_template_directory_uri() . '/assets/js/checkout.js', array( 'jquery' ) );
+	}
+
+	// AJAX
+	wp_register_script( 'true_loadmore', get_stylesheet_directory_uri() . '/assets/js/loadmore.js', array( 'jquery' ) );
+	wp_localize_script( 'true_loadmore', 'ajaxVar', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+	wp_enqueue_script( 'true_loadmore' );
+	wp_enqueue_script( 'select_scripts', get_template_directory_uri() . '/assets/js/select.js', array(
+		'jquery',
+		'true_loadmore'
+	) );
+
+	wp_enqueue_script( 'research', get_stylesheet_directory_uri() . '/assets/js/research.js', array( 'jquery' ) );
+
+	if (
+		is_page_template( 'home.php' )
+		//|| is_singular('services')
+		|| is_product()
+	) {
+		wp_enqueue_style( 'swiper-styles', 'https://unpkg.com/swiper@8/swiper-bundle.min.css' );
+		wp_enqueue_script( 'swiper-lib', 'https://unpkg.com/swiper@8/swiper-bundle.min.js', array( 'jquery' ) );
+		wp_enqueue_script( 'swiper-script', get_template_directory_uri() . '/assets/js/swiper.js', array( 'swiper-lib' ) );
+	}
+
+}
+
+add_action( 'wp_default_scripts', function ( $scripts ) {
+	if ( ! empty( $scripts->registered['jquery'] ) ) {
+		$scripts->registered['jquery']->deps = array_diff( $scripts->registered['jquery']->deps, [ 'jquery-migrate' ] );
+	}
+} );
+
+add_action( 'admin_menu', 'remove_menus' );
+function remove_menus() {
+	//remove_menu_page('index.php');                # Консоль
+	//remove_menu_page('edit.php');                 # Записи
+	//remove_menu_page('edit-comments.php');        # Комментарии
+	//remove_menu_page('edit.php?post_type=page');  # Страницы
+	//remove_menu_page('upload.php');               # Медиафайлы
+	//remove_menu_page('themes.php');               # Внешний вид
+	//remove_menu_page('plugins.php');              # Плагины
+	//remove_menu_page('users.php');                # Пользователи
+	remove_menu_page( 'tools.php' );                # Инструменты
+	//remove_menu_page('options-general.php');      # Настройки
+	//remove_menu_page('edit.php?post_type=acf-field-group'); # ACF
+}
+
+
+add_action( 'init', 'custom_posts' );
+function custom_posts() {
+	register_post_type( 'faq', array(
+		'labels'             => array(
+			'name'               => 'FAQ', // Основное название типа записи
+			'singular_name'      => 'faq', // отдельное название записи типа Book
+			'add_new'            => 'Add question',
+			'add_new_item'       => 'Add new question',
+			'edit_item'          => 'Edit question',
+			'new_item'           => 'New question',
+			'view_item'          => 'View question',
+			'search_items'       => 'Search questions',
+			'not_found'          => 'questions not found',
+			'not_found_in_trash' => 'not_found_in_trash',
+			'parent_item_colon'  => '',
+			'menu_name'          => 'FAQ'
+
+		),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => true,
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'menu_icon'          => 'dashicons-list-view',
+		'supports'           => array( 'title', 'editor' )
+	) );
+
+	register_post_type( 'contacts', array(
+		'labels'             => array(
+			'name'               => 'Contacts', // Основное название типа записи
+			'singular_name'      => 'contact', // отдельное название записи типа Book
+			'add_new'            => 'Add contact',
+			'add_new_item'       => 'Add new contact',
+			'edit_item'          => 'Edit contact',
+			'new_item'           => 'New contact',
+			'view_item'          => 'View contact',
+			'search_items'       => 'Search contacts',
+			'not_found'          => 'contacts not found',
+			'not_found_in_trash' => 'No contacts',
+			'parent_item_colon'  => '',
+			'menu_name'          => 'Contacts'
+
+		),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => true,
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'menu_icon'          => 'dashicons-admin-site',
+		'supports'           => array( 'title', 'thumbnail' )
+	) );
+
+	register_post_type( 'experts', array(
+		'labels'             => array(
+			'name'               => 'Experts', // Основное название типа записи
+			'singular_name'      => 'expert', // отдельное название записи типа Book
+			'add_new'            => 'Add expert',
+			'add_new_item'       => 'Add new expert',
+			'edit_item'          => 'Edit expert',
+			'new_item'           => 'New expert',
+			'view_item'          => 'View expert',
+			'search_items'       => 'Search expert',
+			'not_found'          => 'experts not found',
+			'not_found_in_trash' => 'No expert',
+			'parent_item_colon'  => '',
+			'menu_name'          => 'Experts'
+
+		),
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => true,
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => null,
+		'menu_icon'          => 'dashicons-admin-users',
+		'supports'           => array( 'title', 'thumbnail', 'editor' )
+	) );
+
+
+//  register_taxonomy('specialisation', 'doctors', array(
+//      'hierarchical' => false,
+//      'labels' => array(
+//          'name' => _x('Услуги(слайдер)', 'taxonomy general name'),
+//          'singular_name' => _x('Услуга', 'taxonomy singular name'),
+//          'search_items' => __('Поиск Услуг'),
+//          'popular_items' => __('Популярные услуги'),
+//          'all_items' => __('Все услуги'),
+//          'parent_item' => null,
+//          'parent_item_colon' => null,
+//          'edit_item' => __('Изменить услугу'),
+//          'update_item' => __('Обновить услугу'),
+//          'add_new_item' => __('Добавить услугу'),
+//          'new_item_name' => __('Новая услуга'),
+//          'separate_items_with_commas' => __('Separate услугу with commas'),
+//          'add_or_remove_items' => __('Добавить или удалить услугу'),
+//          'choose_from_most_used' => __('Choose from the most used Услуги'),
+//          'menu_name' => __('Услуги(сладер)'),
+//      ),
+//      'show_ui' => true,
+//      'query_var' => true,
+//  ));
+}
+
+function my_nav_menu_submenu_css_class( $classes ) {
+	$classes[] = 'submenu container container_big';
+
+	return $classes;
+}
+
+add_filter( 'nav_menu_submenu_css_class', 'my_nav_menu_submenu_css_class' );
+
+add_action( 'init', function () {
+	if ( ! isset( $_COOKIE['shipping_popup'] ) ) {
+		setcookie( 'shipping_popup', 'open' );
+	}
+} );
+
+if ( function_exists( 'add_theme_support' ) ) {
+	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'research_thumbnail', 384, 240 );
+}
+
+add_theme_support( 'woocommerce', array(
+	'thumbnail_image_width'         => 420,
+	'gallery_thumbnail_image_width' => 68,
+	'single_image_width'            => 552,
+) );
+
+
+add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+
+add_filter( 'private_title_format', 'true_no_private_title_format' );
+
+function true_no_private_title_format( $format ) {
+	return '%s';
+}
+
+//add_filter('woocommerce_add_to_cart_fragments', 'cart_count_fragments', 10, 1);
+//
+//function cart_count_fragments($fragments)
+//{
+//  $fragments['span.amount-ajax'] = '<span class="count amount amount-ajax">' . WC()->cart->get_cart_contents_count() . '</span>';
+//  return $fragments;
+//}
+
+
+add_filter( 'woocommerce_get_breadcrumb', 'custom_breadcrumb', 20, 2 );
+function custom_breadcrumb( $crumbs, $breadcrumb ) {
+
+	// only on the single product page
+	if ( ! is_product() ) {
+		return $crumbs;
+	}
+
+	// gets the first element of the array "$crumbs"
+	$new_crumbs[] = reset( $crumbs );
+	// gets the last element of the array "$crumbs"
+	$new_crumbs[] = end( $crumbs );
+
+	return $new_crumbs;
+}
+
+add_action( 'after_setup_theme', 'yourtheme_setup' );
+
+function yourtheme_setup() {
+	remove_theme_support( 'wc-product-gallery-zoom' );
+	remove_theme_support( 'wc-product-gallery-lightbox' );
+}
+
+class WPSE_78121_Sublevel_Walker extends Walker_Nav_Menu {
+	function start_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat( "\t", $depth );
+		$output .= "\n$indent<div class='submenu-wrap'><ul class='submenu container container_big'>\n";
+	}
+
+	function end_lvl( &$output, $depth = 0, $args = array() ) {
+		$indent = str_repeat( "\t", $depth );
+		$output .= "$indent</ul></div>\n";
+	}
+}
+
+
+// Add Variation Settings
+add_action( 'woocommerce_product_after_variable_attributes', 'variation_settings_fields', 10, 3 );
+
+// Save Variation Settings
+add_action( 'woocommerce_save_product_variation', 'save_variation_settings_fields', 10, 2 );
+
+// Create new fields for variations
+function variation_settings_fields( $loop, $variation_data, $variation ) {
+	// Text Field
+	woocommerce_wp_text_input(
+		array(
+			'id'          => '_text_field[' . $variation->ID . ']',
+			'label'       => __( 'Type', 'woocommerce' ),
+			'placeholder' => 'Example: 3 month supply',
+			'desc_tip'    => 'true',
+			'description' => __( 'Enter the custom value here.', 'woocommerce' ),
+			'value'       => get_post_meta( $variation->ID, '_text_field', true )
+		)
+	);
+}
+
+// Save new fields for variations
+function save_variation_settings_fields( $post_id ) {
+	// Text Field
+	$text_field = $_POST['_text_field'][ $post_id ];
+	if ( ! empty( $text_field ) ) {
+		update_post_meta( $post_id, '_text_field', esc_attr( $text_field ) );
+	}
+}
+
+add_filter( 'woocommerce_available_variation', 'load_variation_settings_fields' );
+
+// Add custom fields for variations
+function load_variation_settings_fields( $variations ) {
+	// duplicate the line for each field
+	$variations['text_field'] = get_post_meta( $variations['variation_id'], '_text_field', true );
+
+	return $variations;
+}
+
+
+add_filter( 'acf_archive_post_types', 'change_acf_archive_cpt' );
+function change_acf_archive_cpt( $cpts ) {
+	// 'book' and 'movie' are the cpt key.
+
+	// Remove cpt
+	unset( $cpts['faq'] );
+	unset( $cpts['contacts'] );
+	unset( $cpts['product'] );
+
+	// Add cpt
+	$cpts['experts'];
+
+	return $cpts;
+}
+
+
+add_action( 'wp_ajax_loadmore', 'actions_loadmore' );
+add_action( 'wp_ajax_nopriv_loadmore', 'actions_loadmore' );
+
+function actions_loadmore() {
+	$offset     = $_POST['offset'];
+	$product_id = $_POST['product_id'];
+	$order      = $_POST['order'];
+	$sort       = $_POST['sort'];
+
+
+	$args = [
+		'post_type' => 'product',
+		'number'    => 4,
+		'offset'    => $offset,
+		'post_id'   => $product_id,
+		'status '   => 'approve',
+		'order'     => $sort,
+		'orderby'   => $order,
+	];
+	if ( $order = 'rating' ) {
+		$args['meta_key'] = 'rating';
+	}
+
+	$comments = get_comments( $args );
+	wp_list_comments( array( 'callback' => 'woocommerce_comments' ), $comments );
+	die();
+}
+
+add_action( 'wp_ajax_load_research', 'actions_load_research' );
+add_action( 'wp_ajax_nopriv_load_research', 'actions_load_research' );
+
+function actions_load_research() {
+	global $post;
+	$args  = [
+		'post_type'      => 'post',
+		'numberposts'    => - 1,
+		'posts_per_page' => - 1,
+        'order' => 'ASC'
+	];
+
+	$posts = get_posts( $args );
+	foreach ( $posts as $post ):
+		setup_postdata( $post ); ?>
+        <div class="research__item">
+            <a href="<?php echo get_post_permalink(); ?>" class="research__item-img img">
+                <img src="<?php the_post_thumbnail_url( 'research_thumbnail' ) ?>"
+                     alt="<?php the_title() ?>">
+            </a>
+			<?php $tags = get_the_tags(); ?>
+			<?php if ( $tags ) : ?>
+                <div class="research__item-taglist">
+					<?php foreach ( $tags as $tag ): ?>
+                        <span class="research__item-tag"><?php echo $tag->name ?></span>
+					<?php endforeach; ?>
+                </div>
+			<?php endif; ?>
+            <a href="<?php echo get_post_permalink(); ?>"
+               class="research__item-title"><?php the_title() ?></a>
+        </div>
+	<?php endforeach;
+	wp_reset_postdata();
+	die();
+}
+
+add_action( 'wp_ajax_tag_filter', 'filter_research_articles_by_tag' );
+add_action( 'wp_ajax_nopriv_tag_filter', 'filter_research_articles_by_tag' );
+
+function filter_research_articles_by_tag(){
+	global $post;
+    $slug = $_POST['slug'];
+	$args  = [
+		'post_type'      => 'post',
+		'numberposts'    => - 1,
+		'posts_per_page' => - 1,
+		'order' => 'ASC',
+        'tag' => $slug
+	];
+
+	$posts = get_posts( $args );
+	foreach ( $posts as $post ):
+		setup_postdata( $post ); ?>
+        <div class="research__item">
+            <a href="<?php echo get_post_permalink(); ?>" class="research__item-img img">
+                <img src="<?php the_post_thumbnail_url( 'research_thumbnail' ) ?>"
+                     alt="<?php the_title() ?>">
+            </a>
+			<?php $tags = get_the_tags(); ?>
+			<?php if ( $tags ) : ?>
+                <div class="research__item-taglist">
+					<?php foreach ( $tags as $tag ): ?>
+                        <span class="research__item-tag"><?php echo $tag->name ?></span>
+					<?php endforeach; ?>
+                </div>
+			<?php endif; ?>
+            <a href="<?php echo get_post_permalink(); ?>"
+               class="research__item-title"><?php the_title() ?></a>
+        </div>
+	<?php endforeach;
+	wp_reset_postdata();
+	die();
+}
+
+
+add_action( 'wp_ajax_sort', 'review_sort' );
+add_action( 'wp_ajax_nopriv_sort', 'review_sort' );
+
+function review_sort() {
+	$product_id = $_POST['product_id'];
+	$order      = $_POST['order'];
+	$sort       = $_POST['sort'];
+
+	$args = [
+		'post_type' => 'product',
+		'number'    => 4,
+		'post_id'   => $product_id,
+		'status '   => 'approve',
+		'order'     => $sort,
+		'orderby'   => $order,
+	];
+	if ( $order = 'rating' ) {
+		$args['meta_key'] = 'rating';
+	}
+	$comments = get_comments( $args );
+	wp_list_comments( array( 'callback' => 'woocommerce_comments' ), $comments );
+	die();
+}
+
+add_filter( 'woocommerce_get_item_data', 'customizing_cart_item_data', 10, 2 );
+function customizing_cart_item_data( $cart_data, $cart_item ) {
+	$description = $cart_item['data']->get_description(); // Get the product description
+
+	// For product variations when description is empty
+//  if( $cart_item['variation_id'] > 0 && empty( $description ) ){
+//    // Get the parent variable product object
+//    $parent_product = wc_get_product( $cart_item['product_id'] );
+//    // Get the variable product description
+//    $description = $parent_product->get_description();
+//  }
+
+	// If product or variation description exists we display it
+	if ( ! empty( $description ) ) {
+		$cart_data[] = array(
+			'key'     => __( 'Description', 'woocommerce' ),
+			'value'   => $description,
+			'display' => $description,
+		);
+	}
+
+	return $cart_data;
+}
+
+
+add_action( 'wp_ajax_cancel_delete', 'cancel_product_delete' );
+add_action( 'wp_ajax_nopriv_cancel_delete', 'cancel_product_delete' );
+
+function cancel_product_delete() {
+	$key          = sanitize_text_field( $_POST['key'] );
+	$qty          = intval( sanitize_text_field( $_POST['qty'] ) );
+	$variation_id = intval( sanitize_text_field( $_POST['id'] ) );
+
+	$variation = wc_get_product( $variation_id );
+
+	if ( $key ) {
+		$cart = WC()->cart;
+
+		$cart->add_to_cart( $variation->get_parent_id(), $qty, $variation_id );
+		$items                  = $cart->get_cart();
+		$data['count']          = WC()->cart->cart_contents_count;
+		$data['total']          = WC()->cart->total;
+		$data['subtotal']       = $cart->subtotal;
+		$data['variation_id']   = $variation_id;
+		$data['item_total']     = $items[ $key ]['line_total'];
+		$data['item_quantity']  = $items[ $key ]['quantity'];
+		$data['item_reg_price'] = wc_get_product( $variation_id )->get_regular_price();
+		$data['item_price']     = wc_get_product( $variation_id )->get_price();
+	}
+	echo json_encode( $data );
+	wp_die();
+}
+
+
+add_action( 'init', 'woocommerce_clear_cart_url' );
+function woocommerce_clear_cart_url() {
+	global $woocommerce;
+
+	if ( isset( $_GET['empty-cart'] ) ) {
+		$woocommerce->cart->empty_cart();
+	}
+}
+
+add_filter( 'wc_add_to_cart_message', 'remove_add_to_cart_message' );
+function remove_add_to_cart_message() {
+	return;
+}
+
+function woo_dequeue_select2() {
+	if ( class_exists( 'woocommerce' ) ) {
+		wp_dequeue_style( 'select2' );
+		wp_deregister_style( 'select2' );
+
+		wp_dequeue_script( 'selectWoo' );
+		wp_deregister_script( 'selectWoo' );
+	}
+}
+
+add_action( 'wp_enqueue_scripts', 'woo_dequeue_select2', 100 );

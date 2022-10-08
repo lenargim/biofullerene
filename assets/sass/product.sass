@@ -1,0 +1,510 @@
+.product-page
+  padding-top: 66px
+  .breadcrumbs
+    padding-bottom: 32px
+    color: $gray200
+    a
+      color: $gray500
+  &__wrap
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 30px
+    width: 100%
+  &__images
+    width: 552px
+    position: relative
+  &__slider
+    overflow: hidden
+  &__img
+    overflow: hidden
+    height: auto
+    border-radius: 12px
+  &__thumbs
+    margin-top: 8px
+  &__thumb.swiper-slide
+    cursor: pointer
+    width: 68px
+    height: 68px
+    border-radius: 12px
+    &.swiper-slide-thumb-active
+      border: 2px solid $accent700
+      .product-page__thumb-wrap
+        border-radius: 12px
+        overflow: hidden
+        border: 2px solid #fff
+        transition: all 0s ease
+  &__title
+    display: flex
+    align-items: flex-end
+    gap: 1em
+    justify-content: space-between
+    .share
+      color: $accent600
+      display: flex
+      align-items: center
+      gap: 4px
+      font-weight: 500
+      cursor: pointer
+      position: relative
+      &:hover .share__modal-wrap
+        z-index: 1
+        opacity: 1
+      svg
+        width: 16px
+        height: 16px
+        stroke: $accent600
+        fill: none
+      &__modal-wrap
+        position: absolute
+        right: 0
+        top: calc(100% + 4px)
+        width: 200px
+        height: 140px
+        background: #fff
+        border: 1px solid $gray50
+        box-shadow: 0 4px 8px -2px rgba(13, 18, 30, 0.08), 0px 2px 4px -2px rgba(13, 18, 30, 0.08)
+        border-radius: 8px
+        padding: 4px
+        z-index: -1
+        opacity: 0
+      &__modal
+        display: flex
+        flex-direction: column
+        align-items: stretch
+        overflow: auto
+        height: 100%
+        &::-webkit-scrollbar
+          width: 4px
+          margin-right: 4px
+          padding-right: 4px
+          display: block
+        &::-webkit-scrollbar-track
+          background: transparent
+        &::-webkit-scrollbar-thumb
+          background-color: $gray50
+          border-radius: 8px
+          position: absolute
+          right: 4px
+      &__item
+        padding: 10px 12px
+        display: flex
+        align-items: center
+        gap: 8px
+        border-radius: 4px
+        background: transparent
+        &:hover
+          background: $gray25
+  &__popular
+    padding: 20px 0
+    border-bottom: 1px solid $gray50
+    display: flex
+    align-items: center
+    gap: 12px
+    cursor: pointer
+  &__reviews
+    font: 500 14px/20px $mainFont
+    color: $gray400
+  &__rating
+    background: url("./assets/images/svg/rating.svg") left center no-repeat
+    width: 96px
+    height: 16px
+    position: relative
+    &-fill
+      left: 0
+      top: 0
+      bottom: 0
+      right: 0
+      background: url("./assets/images/svg/rating-fill.svg") left center no-repeat
+      position: absolute
+  &__serving
+    font: 500 14px/20px $mainFont
+    margin-top: 20px
+    color: $gray500
+  &__desc
+    color: $gray700
+    margin-top: 32px
+  &__plan
+    margin-top: 32px
+    &-title
+      font-weight: 500
+  &__types
+    margin-top: 12px
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 8px
+  &__type
+    position: relative
+    &-input
+      opacity: 0
+      position: absolute
+      z-index: -1
+      &:checked + .label
+        border: 2px solid $accent700
+        top: -1px
+        left: -1px
+        bottom: -1px
+        right: -1px
+        &:before
+          border: 4px solid $accent700
+    &-label
+      border: 1px solid $gray100
+      border-radius: 8px
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      padding: 20px
+      gap: 12px
+      box-sizing: border-box
+      position: relative
+      cursor: pointer
+      transition: all 0s ease
+      &:before
+        content: ''
+        width: 16px
+        height: 16px
+        border-radius: 50px
+        border: 1px solid $gray200
+        flex-shrink: 0
+        box-sizing: border-box
+    &-text div
+      font-size: 14px
+      line-height: 20px
+      &:first-child
+        font-weight: 500
+      &:last-child
+        color: $gray400
+  &__block
+    margin-top: 20px
+    background: #fff
+    border: 1px solid $gray100
+    box-shadow: 0 1px 2px rgba(13, 18, 30, 0.04)
+    border-radius: 8px
+    padding: 20px
+    display: flex
+    flex-direction: column
+    gap: 12px
+    position: relative
+    &::after
+      content: ''
+      width: 12px
+      height: 6px
+      position: absolute
+      bottom: 100%
+      background: url("./assets/images/svg/cloud.svg") no-repeat
+    &.individual
+      &::after
+        left: 20%
+      .product-page__variation.subscribe
+        display: none
+    &.subscribe
+      &::after
+        left: 70%
+      .product-page__variation.individual
+        display: none
+  &__box
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    gap: 12px
+    width: 100%
+    cursor: pointer
+  &__label
+    &::before
+      content: ''
+      width: 16px
+      height: 16px
+      border-radius: 50px
+      border: 1px solid $gray200
+      flex-shrink: 0
+      box-sizing: border-box
+  &__variation
+    position: relative
+    &:nth-last-child(n+2)
+      padding-bottom: 12px
+      border-bottom: 1px solid $gray50
+    &-input
+      position: absolute
+      opacity: 0
+      z-index: -1
+      &:checked + .label
+        &:before
+          border: 4px solid $accent700
+    &-price
+      margin-left: auto
+    &-type
+      font: 500 14px/20px $mainFont
+      color: $gray800
+    &-desc
+      color: $gray400
+      font: 400 14px/20px $mainFont
+    &-price
+      display: flex
+      align-items: center
+      justify-content: flex-end
+      gap: 12px
+      .price
+        display: flex
+        align-items: center
+        gap: 12px
+      .save
+        background: $success25
+        border-radius: 16px
+        color: $success500
+        padding: 2px 8px
+        font: 500 12px/18px $mainFont
+      .amount
+        font-weight: 600
+      ins
+        text-decoration: none
+      del
+        color: $gray300
+  &__subscribe
+    cursor: initial
+    padding-bottom: 12px
+    border-bottom: 1px solid $gray50
+    &-after
+      margin-top: 16px
+      font: 400 14px/20px $mainFont
+      color: $gray700
+    &-link
+      margin-top: 16px
+      color: $accent600
+      font: 500 14px/20px $mainFont
+      display: block
+  &__add
+    width: 100%
+    margin-top: 32px
+    box-sizing: border-box
+  &__how
+    margin-top: 8px
+  &__advantages
+    margin-top: 32px
+    color: $gray700
+    &-title
+      margin-bottom: 32px
+    &-list
+      display: flex
+      flex-direction: column
+      gap: 4px
+    &-item
+      display: flex
+      align-items: center
+      gap: 12px
+      svg
+        width: 16px
+        height: 16px
+        stroke: $success400
+        fill: none
+  &__text
+    border-top: 1px solid $gray100
+    &.opened
+      .product-page__text-desc
+        max-height: 100vh
+        padding-bottom: 40px
+        opacity: 1
+      svg
+        transform: rotate(-90deg)
+    &-title
+      display: flex
+      align-items: flex-start
+      justify-content: space-between
+      position: relative
+      padding: 24px 0
+      gap: 24px
+      font-weight: 500
+      cursor: pointer
+      svg
+        padding: 8px
+        width: 32px
+        height: 32px
+        stroke: $accent700
+        transform: rotate(90deg)
+        flex-shrink: 0
+    &-desc
+      max-height: 0
+      overflow: hidden
+      color: $gray700
+      opacity: 0
+  &__accordeon
+    margin-top: 32px
+  &__infograph
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    padding-top: 80px
+    border-top: 1px solid $gray100
+    margin-top: 80px
+    gap: 1em
+    &-item
+      display: flex
+      flex-direction: column
+      gap: 12px
+      text-align: center
+    &-img
+      width: 65px
+      height: 65px
+  &__cite
+    background: $beige25
+    text-align: center
+    padding: 80px 120px
+    &-img
+      width: 96px
+      height: 96px
+      border-radius: 50%
+      border: 4px solid #fff
+      box-shadow: 0 12px 12px -4px rgba(13, 18, 30, 0.06), 0px 4px 8px -2px rgba(13, 18, 30, 0.02)
+      margin: 0 auto 32px
+    &-text
+      padding-bottom: 32px
+      border-bottom: 1px solid $gray100
+      span[style*="text-decoration: underline;"]
+        position: relative
+        z-index: 1
+        text-decoration: none !important
+        &:before
+          content: ''
+          width: calc(100% + 10px)
+          aspect-ratio: 140/18
+          position: absolute
+          left: 0
+          top: 66%
+          z-index: -1
+          background: url("./assets/images/svg/underline2.svg") center/cover no-repeat
+    &-job
+      padding-top: 32px
+      color: $gray300
+      font: 500 14px/20px $mainFont
+.product-reviews
+  &__title
+    margin-bottom: 44px
+  &__wrap
+    display: grid
+    grid-template-columns: 9fr 3fr
+    grid-gap: 30px
+  &__list
+    display: flex
+    flex-direction: column
+    gap: 40px
+  &__more
+    width: 100%
+  &__item
+    display: flex
+    align-items: flex-start
+    justify-content: flex-start
+    width: 100%
+    padding-bottom: 40px
+    gap: 30px
+    &:not(:last-of-type)
+      border-bottom: 1px solid $gray100
+    &:nth-child(4n+1) .logo
+      background: $accent50
+    &:nth-child(4n+2) .logo
+      background: $warning25
+    &:nth-child(4n+3) .logo
+      background: $success50
+    &:nth-child(4n+4) .logo
+      background: $destructive50
+    &-left
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 16px
+      width: 33%
+    &-img
+      width: 60px
+      height: 60px
+      border-radius: 50%
+      border: 4px solid #fff
+      box-shadow: 0 12px 12px -4px rgba(13, 18, 30, 0.06), 0px 4px 8px -2px rgba(13, 18, 30, 0.02)
+      text-transform: uppercase
+      color: $accent700
+      font-weight: 500
+      display: flex
+      align-items: center
+      justify-content: center
+      box-sizing: content-box
+      flex-shrink: 0
+    &-content
+      width: 55%
+    &-info
+      width: 280px
+      flex-shrink: 0
+    &-name
+      font-weight: 500
+    &-age
+      font: 400 14px/20px $mainFont
+      color: $gray400
+    &-rating
+      background: url("./assets/images/svg/rating.svg") left center no-repeat
+      width: 96px
+      height: 16px
+      position: relative
+      &-fill
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        right: 0
+        background: url("./assets/images/svg/rating-fill.svg") left center no-repeat
+    &-text
+      color: $gray700
+      margin-top: 24px
+    &-date
+      font: 400 14px/20px $mainFont
+      margin-top: 24px
+      color: $gray400
+  &__add
+    width: 100%
+    margin-bottom: 32px
+  &__rating
+    position: relative
+    display: flex
+    gap: 20px
+    align-items: center
+    justify-content: flex-start
+    &-number
+      color: $gray900
+      font: 500 48px/56px $mainFont
+      letter-spacing: -0.8px
+    &-bg
+      background: url("./assets/images/svg/rating.svg") left center no-repeat
+      width: 96px
+      height: 16px
+      position: relative
+      transform: scale(1.1)
+      transform-origin: left center
+      margin-bottom: 10px
+    &-fill
+      position: absolute
+      left: 0
+      top: 0
+      bottom: 0
+      background: url("./assets/images/svg/rating-fill.svg") left center no-repeat
+  &__table
+    width: 100%
+    margin-top: 36px
+    &-row
+      display: flex
+      gap: 8px
+      align-items: center
+      justify-content: flex-start
+      color: $gray500
+      font: 400 14px/20px $mainFont
+      margin-bottom: 2px
+      .row
+        flex: 0 0 200px
+        background: $gray50
+        height: 4px
+        border-radius: 8px
+        position: relative
+        overflow: hidden
+      .fill
+        position: absolute
+        left: 0
+        top: 0
+        bottom: 0
+        background: $yellow200
+      .number
+        width: 12px
+  &__sort
+    margin-top: 30px
