@@ -36,7 +36,6 @@ do_action( 'woocommerce_before_checkout_form', $checkout );
             </svg>
             <span>Back to cart</span>
         </a>
-
         <div class="checkout__wrap">
             <div class="checkout__main" id="customer_details">
                 <h1>Checkout</h1>
@@ -97,14 +96,18 @@ do_action( 'woocommerce_before_checkout_form', $checkout );
                             </svg>
                             <span>Return to cart</span>
                         </a>
-                        <button class="button blue next open-shipping-part" type="button">Continue to shipping address</button>
+                        <button class="button blue next open-shipping-part" type="button">Continue to shipping address
+                        </button>
                     </div>
                 </div>
                 <div class="shipping-part checkout-part">
                     <h2>Shipping address</h2>
                     <h3 id="ship-to-different-address" class="hidden">
                         <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
-                            <input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" <?php checked( apply_filters( 'woocommerce_ship_to_different_address_checked', 'shipping' === get_option( 'woocommerce_ship_to_destination' ) ? 1 : 0 ), 1 ); ?> type="checkbox" name="ship_to_different_address" value="1" /> <span><?php esc_html_e( 'Ship to a different address?', 'woocommerce' ); ?></span>
+                            <input id="ship-to-different-address-checkbox"
+                                   class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" <?php checked( apply_filters( 'woocommerce_ship_to_different_address_checked', 'shipping' === get_option( 'woocommerce_ship_to_destination' ) ? 1 : 0 ), 1 ); ?>
+                                   type="checkbox" name="ship_to_different_address" value="1"/>
+                            <span><?php esc_html_e( 'Ship to a different address?', 'woocommerce' ); ?></span>
                         </label>
                     </h3>
 					<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>
@@ -124,26 +127,28 @@ do_action( 'woocommerce_before_checkout_form', $checkout );
                             </svg>
                             <span>Return to information</span>
                         </button>
-                        <button class="button blue next open-method-part" type="button">Continue to shipping method</button>
+                        <button class="button blue next open-method-part" type="button">Continue to shipping method
+                        </button>
                     </div>
                 </div>
                 <div class="method-part checkout-part">
                     <h2>Shipping method</h2>
                     <div class="checkout__method">
-						<?php wc_cart_totals_shipping_html(); ?>
+	                    <?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
+
+	                    <?php wc_cart_totals_shipping_html(); ?>
+
+	                    <?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
                     </div>
                     <div class="checkout__last-row">
-                        <a href="<?php echo wc_get_cart_url(); ?>" class="back">
+                        <div class="back open-shipping-part">
                             <svg>
                                 <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#arrow"></use>
                             </svg>
                             <span>Return to shipping</span>
-                        </a>
+                        </div>
                         <button class="button blue next" type="submit">Continue to payment</button>
-                        <!--	                    --><?php //echo apply_filters( 'woocommerce_pay_order_button_html', '<button type="submit" class="button alt" id="place_order" value="' . esc_attr( $order_button_text ) . '" data-value="' . esc_attr( $order_button_text ) . '">' . esc_html( $order_button_text ) . '</button>' ); // @codingStandardsIgnoreLine ?>
                     </div>
-
-
                 </div>
             </div>
             <div class="checkout__data">

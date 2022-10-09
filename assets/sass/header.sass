@@ -4,6 +4,9 @@
   top: 0
   background: transparent
   z-index: 3
+  &.blue
+    .header__row, .submenu-wrap
+      background: #f5f9ff
   &.transparent
     position: fixed
     .header
@@ -179,5 +182,27 @@
         height: 16px
         stroke: $accent600
         flex-shrink: 0
+  &__cookies
+    position: fixed
+    left: 12px
+    right: 12px
+    bottom: 12px
+    background: #fff
+    border-radius: 12px
+    padding: 16px 20px
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 32px
+    p
+      font-size: 14px
+    &-buttonbox
+      display: flex
+      align-items: center
+      justify-content: flex-end
+      gap: 8px
+      .button
+        padding: 8px 12px
+        font-size: 14px
 .sub-menu-toggle
   display: none

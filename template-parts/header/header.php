@@ -3,11 +3,17 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<header class="header <?php if ( is_page_template( 'home.php' ) ||
-                                 is_page_template( 'research.php' ) ||
-                                 is_page_template( 'locations.php' ) ||
-                                 is_page_template( 'company.php' ) ) {
-	echo 'transparent';
+<header
+        class="header <?php if ( is_page_template( 'home.php' ) ||
+           is_page_template( 'research.php' ) ||
+           is_page_template( 'locations.php' ) ||
+           is_page_template( 'company.php' ) ) {
+	echo 'transparent ';
+} else if ( is_single() ||
+            is_post_type_archive( 'faq' ) ||
+            is_page_template( 'terms.php' )
+        ) {
+	echo 'blue';
 } ?>">
 	<?php if ( ! isset( $_COOKIE['shipping_popup'] ) ) {
 		$shippingValue = 'open';
@@ -20,6 +26,24 @@
             <svg class="cross">
                 <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#cross"></use>
             </svg>
+        </div>
+	<?php endif; ?>
+
+
+	<?php if ( ! isset( $_COOKIE['cookies_popup'] ) ) {
+		$cookiesValue = 'open';
+	} else {
+		$cookiesValue = $_COOKIE['cookies_popup'];
+	} ?>
+	<?php if ( $cookiesValue == 'open' ): ?>
+        <div class="header__cookies">
+            <p>Our site uses cookies to make for a more optimal experience. By continuing to browse<br>
+                the site you are agreeing to our use of cookies. You can view <a
+                        href="<?php echo get_privacy_policy_url(); ?>">our cookie information here</a>.</p>
+            <div class="header__cookies-buttonbox">
+                <button class="button white set-cookies">Decline</button>
+                <button class="button blue set-cookies">Allow</button>
+            </div>
         </div>
 	<?php endif; ?>
     <div class="header__row">

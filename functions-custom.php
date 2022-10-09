@@ -152,30 +152,6 @@ function custom_posts() {
 		'menu_icon'          => 'dashicons-admin-users',
 		'supports'           => array( 'title', 'thumbnail', 'editor' )
 	) );
-
-
-//  register_taxonomy('specialisation', 'doctors', array(
-//      'hierarchical' => false,
-//      'labels' => array(
-//          'name' => _x('Услуги(слайдер)', 'taxonomy general name'),
-//          'singular_name' => _x('Услуга', 'taxonomy singular name'),
-//          'search_items' => __('Поиск Услуг'),
-//          'popular_items' => __('Популярные услуги'),
-//          'all_items' => __('Все услуги'),
-//          'parent_item' => null,
-//          'parent_item_colon' => null,
-//          'edit_item' => __('Изменить услугу'),
-//          'update_item' => __('Обновить услугу'),
-//          'add_new_item' => __('Добавить услугу'),
-//          'new_item_name' => __('Новая услуга'),
-//          'separate_items_with_commas' => __('Separate услугу with commas'),
-//          'add_or_remove_items' => __('Добавить или удалить услугу'),
-//          'choose_from_most_used' => __('Choose from the most used Услуги'),
-//          'menu_name' => __('Услуги(сладер)'),
-//      ),
-//      'show_ui' => true,
-//      'query_var' => true,
-//  ));
 }
 
 function my_nav_menu_submenu_css_class( $classes ) {

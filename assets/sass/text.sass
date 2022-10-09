@@ -6,6 +6,9 @@
   h3
     font: 500 24px/32px $mainFont
     margin-bottom: 32px
+  h4
+    font: 500 18px/28px $mainFont
+    margin-bottom: 16px
   p
     margin-bottom: 48px
     color: $gray700
@@ -40,3 +43,21 @@
       border-bottom: 1px solid $gray50
     tr:last-child td
       border-bottom: none
+  .warning
+    margin: 32px 0
+    background: $warning25
+    padding: 12px 20px
+    border-radius: 12px
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    gap: 16px
+    color: $gray700
+    font: 500 14px/20px $mainFont
+    &::before
+      content: ''
+      width: 24px
+      height: 24px
+      background: url("./assets/images/svg/alert-circle.svg") center/cover no-repeat
+    a
+      color: $accent600
