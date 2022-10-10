@@ -50,6 +50,7 @@
                 <?php the_content(); ?>
             </div>
         </div>
+	    <?php get_template_part( 'template-parts/not-find' ); ?>
     </div>
 </main>
 <?php get_template_part( 'template-parts/footer/footer' ); ?>
