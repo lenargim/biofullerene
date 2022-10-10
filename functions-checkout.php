@@ -1,96 +1,10 @@
 <?php
 
-add_filter( 'woocommerce_checkout_fields', 'unset_fields_checkout', 9999 );
+    // add fields
+    add_action( 'woocommerce_after_checkout_billing_form', 'subscribe_checkbox' );
 
-function unset_fields_checkout( $checkout_fields ) {
-
-	// and to remove the billing fields below
-	unset( $checkout_fields['billing']['billing_company'] );
-	unset( $checkout_fields['billing']['billing_address_1'] );
-	unset( $checkout_fields['billing']['billing_address_2'] );
-	unset( $checkout_fields['billing']['billing_city'] );
-	unset( $checkout_fields['billing']['billing_state'] );
-	unset( $checkout_fields['billing']['billing_postcode'] );
-
-	unset( $checkout_fields['shipping']['shipping_first_name'] );
-	unset( $checkout_fields['shipping']['shipping_last_name'] );
-	unset( $checkout_fields['shipping']['shipping_company'] );
-
-	unset( $checkout_fields['order']['order_comments'] );
-
-	return $checkout_fields;
-}
-
-add_filter( 'woocommerce_checkout_fields', 'checkout_fields_edit', 9999 );
-
-function checkout_fields_edit( $fields ) {
-	unset( $fields['billing']['billing_phone']['required'] );
-
-	$fields['billing']['billing_first_name']['label'] = 'First name';
-	$fields['billing']['billing_last_name']['label']  = 'Last name';
-	$fields['billing']['billing_phone']['label']      = 'Phone';
-	$fields['billing']['billing_email']['label']      = 'Email';
-
-	$fields['billing']['billing_first_name']['class'] = 'first-validation';
-	$fields['billing']['billing_last_name']['class']  = 'first-validation';
-	$fields['billing']['billing_email']['class']      = 'form-row-wide first-validation';
-
-	$fields['billing']['billing_first_name']['description'] = 'Please, enter your first name';
-	$fields['billing']['billing_last_name']['description']  = 'Please, enter your last name';
-	$fields['billing']['billing_email']['description']      = 'Please, enter your email';
-	$fields['billing']['billing_phone']['description']      = 'Used to contact you with delivery info (mobile preferred)';
-
-	$fields['billing']['billing_first_name']['placeholder'] = 'Enter your first name';
-	$fields['billing']['billing_last_name']['placeholder']  = 'Enter your last name';
-	$fields['billing']['billing_phone']['placeholder']      = '+1 (000) 000-00000';
-	$fields['billing']['billing_email']['placeholder']      = 'example@gmail.com';
-
-	$fields['shipping']['shipping_address_1']['label']       = 'Address';
-	$fields['shipping']['shipping_address_1']['placeholder'] = 'Enter your address';
-
-	$fields['shipping']['shipping_address_2']['required'] = true;
-	$fields['shipping']['shipping_address_2']['label']       = 'Apartment, suite, etc.';
-	$fields['shipping']['shipping_address_2']['placeholder'] = 'Enter your apartment, suite, etc.';
-
-	$fields['shipping']['shipping_city']['placeholder']      = 'Enter your town/city';
-	$fields['shipping']['shipping_postcode']['placeholder']  = 'Enter zip code';
-
-	$fields['shipping']['shipping_address_1']['class'] = [ 'second-validation', 'form-row-wide' ];
-	$fields['shipping']['shipping_address_2']['class'] = [ 'validate-required', 'second-validation', 'form-row-wide' ];
-	$fields['shipping']['shipping_country']['class']   = [
-		'form-row-wide',
-		'address-field',
-		'update_totals_on_change',
-		'validate-required',
-	];
-	$fields['shipping']['shipping_city']['class']      = [ 'form-row-wide', 'second-validation' ];
-	$fields['shipping']['shipping_state']['class']     = [
-		'address-field',
-		'validate-required',
-		'validate-state',
-		'second-validation'
-	];
-	$fields['shipping']['shipping_postcode']['class']  = [ 'form-row second-validation' ];
-
-	$fields['shipping']['shipping_address_1']['description'] = 'Please, enter your address';
-	$fields['shipping']['shipping_address_2']['description'] = 'Please, enter your apartment, suite, etc.';
-	$fields['shipping']['shipping_city']['description']      = 'Please, enter your town/city';
-	$fields['shipping']['shipping_postcode']['description']  = 'Please, enter zip code';
-	$fields['shipping']['shipping_state']['description']     = 'Please, choose state';
-
-
-
-	// the same way you can make any field required, example:
-	// $fields[ 'billing' ][ 'billing_company' ][ 'required' ] = true;
-
-	return $fields;
-}
-
-// add fields
-add_action( 'woocommerce_after_checkout_billing_form', 'subscribe_checkbox' );
-
-// save fields to order meta
-add_action( 'woocommerce_checkout_update_order_meta', 'save_what_we_added' );
+    // save fields to order meta
+    add_action( 'woocommerce_checkout_update_order_meta', 'save_what_we_added' );
 
 // checkbox
 function subscribe_checkbox( $checkout ) {
@@ -230,4 +144,101 @@ function elex_remove_checkout_optional_text( $field, $key, $args, $value ) {
 	}
 
 	return $field;
+}
+
+
+add_filter( 'woocommerce_checkout_fields', 'checkout_fields_edit', 9999 );
+
+function checkout_fields_edit( $fields ) {
+	// and to remove the billing fields below
+	unset( $fields['billing']['billing_company'] );
+	unset( $fields['billing']['billing_address_1'] );
+	unset( $fields['billing']['billing_address_2'] );
+	unset( $fields['billing']['billing_city'] );
+	unset( $fields['billing']['billing_state'] );
+	unset( $fields['billing']['billing_postcode'] );
+
+	unset( $fields['shipping']['shipping_first_name'] );
+	unset( $fields['shipping']['shipping_last_name'] );
+	unset( $fields['shipping']['shipping_company'] );
+
+	unset( $fields['order']['order_comments'] );
+	unset( $fields['billing']['billing_phone']['required'] );
+
+	$fields['billing']['billing_first_name']['label'] = 'First name';
+	$fields['billing']['billing_last_name']['label']  = 'Last name';
+	$fields['billing']['billing_phone']['label']      = 'Phone';
+	$fields['billing']['billing_email']['label']      = 'Email';
+
+	$fields['billing']['billing_first_name']['class'] = 'first-validation';
+	$fields['billing']['billing_last_name']['class']  = 'first-validation';
+	$fields['billing']['billing_email']['class']      = 'form-row-wide first-validation';
+
+	$fields['billing']['billing_first_name']['description'] = 'Please, enter your first name';
+	$fields['billing']['billing_last_name']['description']  = 'Please, enter your last name';
+	$fields['billing']['billing_email']['description']      = 'Please, enter your email';
+	$fields['billing']['billing_phone']['description']      = 'Used to contact you with delivery info (mobile preferred)';
+
+	$fields['billing']['billing_first_name']['placeholder'] = 'Enter your first name';
+	$fields['billing']['billing_last_name']['placeholder']  = 'Enter your last name';
+	$fields['billing']['billing_phone']['placeholder']      = '+1 (000) 000-00000';
+	$fields['billing']['billing_email']['placeholder']      = 'example@gmail.com';
+
+//	$fields['shipping']['shipping_address_1']['label']       = 'Address';
+//	$fields['shipping']['shipping_address_1']['placeholder'] = 'Enter your address';
+//
+//	$fields['shipping']['shipping_address_2']['label']       = 'Apartment, suite, etc.';
+//	$fields['shipping']['shipping_address_2']['placeholder'] = 'Enter your apartment, suite, etc.';
+//
+//	$fields['shipping']['shipping_city']['placeholder']      = 'Enter your town/city';
+//	$fields['shipping']['shipping_postcode']['placeholder']  = 'Enter zip code';
+//
+//	$fields['shipping']['shipping_address_1']['class'] = [ 'second-validation' ];
+//	$fields['shipping']['shipping_address_2']['class'] = [ 'validate-required', 'second-validation', 'form-row-wide' ];
+//	$fields['shipping']['shipping_country']['class']   = [ 'form-row-wide', 'address-field', 'update_totals_on_change', 'validate-required'];
+//	$fields['shipping']['shipping_city']['class']      = [ 'form-row-wide', 'second-validation' ];
+//	$fields['shipping']['shipping_state']['class']     = [ 'address-field', 'validate-required', 'validate-state', 'second-validation' ];
+//	$fields['shipping']['shipping_postcode']['class']  = [ 'form-row', 'second-validation' ];
+//
+//	$fields['shipping']['shipping_address_1']['description'] = 'Please, enter your address';
+//	$fields['shipping']['shipping_address_2']['description'] = 'Please, enter your apartment, suite, etc.';
+//	$fields['shipping']['shipping_city']['description']      = 'Please, enter your town/city';
+//	$fields['shipping']['shipping_postcode']['description']  = 'Please, enter zip code';
+//	$fields['shipping']['shipping_state']['description']     = 'Please, choose state';
+//
+//	$fields['shipping']['shipping_address_2']['required'] = true;
+
+	return $fields;
+}
+
+add_filter('woocommerce_default_address_fields', 'custom_woocommerce_default_address_fields', 9999);
+function custom_woocommerce_default_address_fields($fields)
+{
+	$fields['state']['class'][0] = 'form-row-first';
+	$fields['postcode']['class'][0] = 'form-row-last';
+	$fields['state']['class'][1] = 'second-validation';
+	$fields['postcode']['class'][1] = 'second-validation';
+	$fields['address_1']['class'][0] = 'second-validation';
+	$fields['address_2']['class'][0] = 'second-validation';
+	$fields['city']['class'][0] = 'second-validation';
+	$fields['city']['class'][1] = 'form-row-wide';
+	$fields['address_1']['class'][1] = 'form-row-wide';
+	$fields['address_2']['class'][1] = 'form-row-wide';
+
+
+	$fields['address_1']['label'] = 'Address';
+	$fields['address_2']['label'] = 'Apartment, suite, etc.';
+	$fields['address_2']['label_class'] = [''];
+	$fields['address_1']['placeholder'] = 'Enter your address';
+	$fields['address_2']['placeholder'] = 'Enter your apartment, suite, etc.';
+	$fields['postcode']['placeholder'] = 'Enter zip code';
+	$fields['address_1']['description'] = 'Please, enter your address';
+	$fields['city']['description'] = 'Please, enter your town/city';
+	$fields['address_2']['description'] = 'Please, enter your apartment, suite, etc.';
+	$fields['state']['description'] = 'Please, choose state';
+	$fields['postcode']['description'] = 'Please, enter zip code';
+
+	$fields['address_2']['required'] = true;
+
+	return $fields;
 }
