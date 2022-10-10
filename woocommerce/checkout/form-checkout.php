@@ -92,13 +92,13 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                         <h2>Shipping method</h2>
                         <div class="checkout__method">
 							<?php do_action( 'woocommerce_review_order_before_shipping' ); ?>
-
+<?php WC()->cart->calculate_totals(); ?>
 							<?php wc_cart_totals_shipping_html(); ?>
 
 							<?php do_action( 'woocommerce_review_order_after_shipping' ); ?>
                         </div>
                         <div class="checkout__last-row">
-                            <button class="back open-shipping-part">
+                            <button type="button" class="back open-shipping-part">
                                 <svg>
                                     <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#arrow"></use>
                                 </svg>
