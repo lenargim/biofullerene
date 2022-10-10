@@ -189,14 +189,6 @@ function true_no_private_title_format( $format ) {
 	return '%s';
 }
 
-//add_filter('woocommerce_add_to_cart_fragments', 'cart_count_fragments', 10, 1);
-//
-//function cart_count_fragments($fragments)
-//{
-//  $fragments['span.amount-ajax'] = '<span class="count amount amount-ajax">' . WC()->cart->get_cart_contents_count() . '</span>';
-//  return $fragments;
-//}
-
 
 add_filter( 'woocommerce_get_breadcrumb', 'custom_breadcrumb', 20, 2 );
 function custom_breadcrumb( $crumbs, $breadcrumb ) {
@@ -421,14 +413,6 @@ function review_sort() {
 add_filter( 'woocommerce_get_item_data', 'customizing_cart_item_data', 10, 2 );
 function customizing_cart_item_data( $cart_data, $cart_item ) {
 	$description = $cart_item['data']->get_description(); // Get the product description
-
-	// For product variations when description is empty
-//  if( $cart_item['variation_id'] > 0 && empty( $description ) ){
-//    // Get the parent variable product object
-//    $parent_product = wc_get_product( $cart_item['product_id'] );
-//    // Get the variable product description
-//    $description = $parent_product->get_description();
-//  }
 
 	// If product or variation description exists we display it
 	if ( ! empty( $description ) ) {

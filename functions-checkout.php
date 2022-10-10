@@ -16,6 +16,8 @@ function unset_fields_checkout( $checkout_fields ) {
 	unset( $checkout_fields['shipping']['shipping_last_name'] );
 	unset( $checkout_fields['shipping']['shipping_company'] );
 
+	unset( $checkout_fields['order']['order_comments'] );
+
 	return $checkout_fields;
 }
 
@@ -30,13 +32,13 @@ function checkout_fields_edit( $fields ) {
 	$fields['billing']['billing_email']['label']      = 'Email';
 
 	$fields['billing']['billing_first_name']['class'] = 'first-validation';
-	$fields['billing']['billing_last_name']['class'] = 'first-validation';
-	$fields['billing']['billing_email']['class'] = 'form-row-wide first-validation';
+	$fields['billing']['billing_last_name']['class']  = 'first-validation';
+	$fields['billing']['billing_email']['class']      = 'form-row-wide first-validation';
 
 	$fields['billing']['billing_first_name']['description'] = 'Please, enter your first name';
-	$fields['billing']['billing_last_name']['description'] = 'Please, enter your last name';
-	$fields['billing']['billing_email']['description'] = 'Please, enter your email';
-	$fields['billing']['billing_phone']['description'] = 'Used to contact you with delivery info (mobile preferred)';
+	$fields['billing']['billing_last_name']['description']  = 'Please, enter your last name';
+	$fields['billing']['billing_email']['description']      = 'Please, enter your email';
+	$fields['billing']['billing_phone']['description']      = 'Used to contact you with delivery info (mobile preferred)';
 
 	$fields['billing']['billing_first_name']['placeholder'] = 'Enter your first name';
 	$fields['billing']['billing_last_name']['placeholder']  = 'Enter your last name';
@@ -45,37 +47,38 @@ function checkout_fields_edit( $fields ) {
 
 	$fields['shipping']['shipping_address_1']['label']       = 'Address';
 	$fields['shipping']['shipping_address_1']['placeholder'] = 'Enter your address';
+
+	$fields['shipping']['shipping_address_2']['required'] = true;
 	$fields['shipping']['shipping_address_2']['label']       = 'Apartment, suite, etc.';
 	$fields['shipping']['shipping_address_2']['placeholder'] = 'Enter your apartment, suite, etc.';
-	$fields['shipping']['shipping_address_2']['label_class'] = '';
-	$fields['shipping']['shipping_address_2']['required']    = true;
+
 	$fields['shipping']['shipping_city']['placeholder']      = 'Enter your town/city';
 	$fields['shipping']['shipping_postcode']['placeholder']  = 'Enter zip code';
 
-	$fields['shipping']['shipping_address_1']['class'] = [ 'form-row form-row-wide second-validation' ];
-	$fields['shipping']['shipping_address_2']['class'] = [ 'form-row form-row-wide second-validation' ];
+	$fields['shipping']['shipping_address_1']['class'] = [ 'second-validation', 'form-row-wide' ];
+	$fields['shipping']['shipping_address_2']['class'] = [ 'validate-required', 'second-validation', 'form-row-wide' ];
 	$fields['shipping']['shipping_country']['class']   = [
-		'class="form-row',
 		'form-row-wide',
 		'address-field',
 		'update_totals_on_change',
 		'validate-required',
 	];
-	$fields['shipping']['shipping_city']['class']      = [ 'form-row form-row-wide second-validation' ];
+	$fields['shipping']['shipping_city']['class']      = [ 'form-row-wide', 'second-validation' ];
 	$fields['shipping']['shipping_state']['class']     = [
-		'form-row',
 		'address-field',
 		'validate-required',
 		'validate-state',
-        'second-validation'
+		'second-validation'
 	];
 	$fields['shipping']['shipping_postcode']['class']  = [ 'form-row second-validation' ];
 
 	$fields['shipping']['shipping_address_1']['description'] = 'Please, enter your address';
 	$fields['shipping']['shipping_address_2']['description'] = 'Please, enter your apartment, suite, etc.';
-	$fields['shipping']['shipping_city']['description'] = 'Please, enter your town/city';
-	$fields['shipping']['shipping_postcode']['description'] = 'Please, enter zip code';
-	$fields['shipping']['shipping_state']['description'] = 'Please, choose state';
+	$fields['shipping']['shipping_city']['description']      = 'Please, enter your town/city';
+	$fields['shipping']['shipping_postcode']['description']  = 'Please, enter zip code';
+	$fields['shipping']['shipping_state']['description']     = 'Please, choose state';
+
+
 
 	// the same way you can make any field required, example:
 	// $fields[ 'billing' ][ 'billing_company' ][ 'required' ] = true;
@@ -177,12 +180,12 @@ function change_cart_shipping_method_full_label( $label, $method ) {
 	$has_cost  = 0 < $method->cost;
 	$hide_cost = ! $has_cost && in_array( $method->get_method_id(), array( 'free_shipping', 'local_pickup' ), true );
 
-	if ( ! $has_cost  ) {
-		$label  = $method->get_label() . '<div class="price">Free</div>';
+	if ( ! $has_cost ) {
+		$label = $method->get_label() . '<div class="price">Free</div>';
+	} else {
+		$label = $method->get_label() . '<div class="price">' . $method->cost . '$</div>';
 	}
-    else {
-	    $label  = $method->get_label() . '<div class="price">' . $method->cost . '$</div>';
-    }
+
 	return $label;
 }
 
@@ -212,19 +215,19 @@ function bks_remove_values( $value, $input ) {
 		'shipping_state',
 	); // All the fields in this array will be set as empty string, add or remove as required.
 
-	if (in_array($input, $item_to_set_null)) {
+	if ( in_array( $input, $item_to_set_null ) ) {
 		$value = '';
 	}
+
 	return $value;
 }
 
-add_filter( 'woocommerce_form_field' , 'elex_remove_checkout_optional_text', 10, 4 );
+add_filter( 'woocommerce_form_field', 'elex_remove_checkout_optional_text', 10, 4 );
 function elex_remove_checkout_optional_text( $field, $key, $args, $value ) {
-	if( is_checkout() && ! is_wc_endpoint_url() ) {
+	if ( is_checkout() && ! is_wc_endpoint_url() ) {
 		$optional = '&nbsp;<span class="optional">(' . esc_html__( 'optional', 'woocommerce' ) . ')</span>';
-		$field = str_replace( $optional, '&nbsp;<span class="optional">' . esc_html__( 'Optional', 'woocommerce' ) . '</span>', $field );
+		$field    = str_replace( $optional, '&nbsp;<span class="optional">' . esc_html__( 'Optional', 'woocommerce' ) . '</span>', $field );
 	}
+
 	return $field;
 }
-
-add_filter( 'woocommerce_ship_to_different_address_checked', '__return_true' );

@@ -20,7 +20,7 @@ defined( 'ABSPATH' ) || exit;
 <div class="shop_table woocommerce-checkout-review-order-table info">
 
     <div class="info__list">
-        <?php $cart = WC()->cart; ?>
+		<?php $cart = WC()->cart; ?>
 		<?php foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
 			$product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 
