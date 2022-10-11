@@ -10,7 +10,6 @@
 	      <?php echo $product->get_image('woocommerce_gallery_thumbnail'); ?>
       </a>
       <div class="mini-cart__text">
-        <?php $product = $product ?>
         <div class="mini-cart__name"><?php echo $product->get_title(); ?></div>
 
         <div class="mini-cart__desc">

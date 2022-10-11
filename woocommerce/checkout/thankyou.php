@@ -18,71 +18,83 @@
 defined( 'ABSPATH' ) || exit;
 ?>
 
-<div class="woocommerce-order">
+<?php get_template_part( 'template-parts/header/header-empty' ); ?>
 
-	<?php
-	if ( $order ) :
+    <div class="woocommerce-order thankyou">
 
-		do_action( 'woocommerce_before_thankyou', $order->get_id() );
-		?>
+		<?php
+		if ( $order ) :
 
-		<?php if ( $order->has_status( 'failed' ) ) : ?>
+			do_action( 'woocommerce_before_thankyou', $order->get_id() );
+			?>
 
-			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
+			<?php if ( $order->has_status( 'failed' ) ) : ?>
 
-			<p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
-				<a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay"><?php esc_html_e( 'Pay', 'woocommerce' ); ?></a>
+            <p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed"><?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
+
+            <p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
+                <a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>"
+                   class="button pay"><?php esc_html_e( 'Pay', 'woocommerce' ); ?></a>
 				<?php if ( is_user_logged_in() ) : ?>
-					<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay"><?php esc_html_e( 'My account', 'woocommerce' ); ?></a>
+                    <a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"
+                       class="button pay"><?php esc_html_e( 'My account', 'woocommerce' ); ?></a>
 				<?php endif; ?>
-			</p>
+            </p>
 
 		<?php else : ?>
 
-			<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-
-			<ul class="woocommerce-order-overview woocommerce-thankyou-order-details order_details">
-
-				<li class="woocommerce-order-overview__order order">
-					<?php esc_html_e( 'Order number:', 'woocommerce' ); ?>
-					<strong><?php echo $order->get_order_number(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				</li>
-
-				<li class="woocommerce-order-overview__date date">
-					<?php esc_html_e( 'Date:', 'woocommerce' ); ?>
-					<strong><?php echo wc_format_datetime( $order->get_date_created() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				</li>
-
-				<?php if ( is_user_logged_in() && $order->get_user_id() === get_current_user_id() && $order->get_billing_email() ) : ?>
-					<li class="woocommerce-order-overview__email email">
-						<?php esc_html_e( 'Email:', 'woocommerce' ); ?>
-						<strong><?php echo $order->get_billing_email(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-					</li>
-				<?php endif; ?>
-
-				<li class="woocommerce-order-overview__total total">
-					<?php esc_html_e( 'Total:', 'woocommerce' ); ?>
-					<strong><?php echo $order->get_formatted_order_total(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></strong>
-				</li>
-
-				<?php if ( $order->get_payment_method_title() ) : ?>
-					<li class="woocommerce-order-overview__payment-method method">
-						<?php esc_html_e( 'Payment method:', 'woocommerce' ); ?>
-						<strong><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></strong>
-					</li>
-				<?php endif; ?>
-
-			</ul>
+            <div class="container">
+                <nav class="single-post__breadcrumbs breadcrumbs">
+                    <a href="/">Home</a>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke-width="1.6" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                    <span>Thanks for your order</span>
+                </nav>
+                <h1>Thanks for your order!</h1>
+                <div class="thankyou__desc">
+                    <div class="number"><span>Your order number is:</span><button class="copy-text"><?php echo $order->get_order_number(); ?></button></div>
+                    <div class="mail-confirfation">We’ll email your order confirmation to <?php echo $order->get_billing_email(); ?></div>
+                </div>
+                <a href="#" class="thankyou__help button white">Need help?</a>
+            </div>
 
 		<?php endif; ?>
 
-		<?php do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() ); ?>
-		<?php do_action( 'woocommerce_thankyou', $order->get_id() ); ?>
+<!--			--><?php //do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() ); ?>
+			<?php do_action( 'woocommerce_thankyou', $order->get_id() ); ?>
 
-	<?php else : ?>
+		<?php else : ?>
 
-		<p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), null ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+            <p class="woocommerce-notice woocommerce-notice--success woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), null ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
-	<?php endif; ?>
+		<?php endif; ?>
 
-</div>
+        <div class="not-find block">
+            <div class="container">
+                <div class="not-find__wrap">
+                    <a href="#" class="not-find__item">
+                        <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-found.svg#shipping"></use></svg>
+                        <div class="not-find__name">Shipping</div>
+                    </a>
+                    <a href="#" class="not-find__item">
+                        <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-found.svg#billing"></use></svg>
+                        <div class="not-find__name">Billing and Payment</div>
+                    </a>
+                    <a href="#" class="not-find__item">
+                        <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-found.svg#return"></use></svg>
+                        <div class="not-find__name">Return Policy</div>
+                    </a>
+                    <a href="#" class="not-find__item">
+                        <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-found.svg#message"></use></svg>
+                        <div class="not-find__name">Customer service</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+	    <?php get_template_part( 'template-parts/faq' ); ?>
+    </div>
+
+<?php get_template_part( 'template-parts/footer/footer' ); ?>

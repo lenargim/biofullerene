@@ -245,6 +245,17 @@ function variation_settings_fields( $loop, $variation_data, $variation ) {
 			'value'       => get_post_meta( $variation->ID, '_text_field', true )
 		)
 	);
+
+	woocommerce_wp_text_input(
+		array(
+			'id'          => '_number_field[' . $variation->ID . ']',
+			'label'       => __( 'Duration (month)', 'woocommerce' ),
+			'placeholder' => '12',
+			'desc_tip'    => 'true',
+			'description' => __( 'Enter the custom value here.', 'woocommerce' ),
+			'value'       => get_post_meta( $variation->ID, '_number_field', true )
+		)
+	);
 }
 
 // Save new fields for variations
@@ -254,6 +265,11 @@ function save_variation_settings_fields( $post_id ) {
 	if ( ! empty( $text_field ) ) {
 		update_post_meta( $post_id, '_text_field', esc_attr( $text_field ) );
 	}
+
+	$number_field = $_POST['_number_field'][ $post_id ];
+	if ( ! empty( $number_field ) ) {
+		update_post_meta( $post_id, '_number_field', esc_attr( $number_field ) );
+	}
 }
 
 add_filter( 'woocommerce_available_variation', 'load_variation_settings_fields' );
@@ -262,6 +278,7 @@ add_filter( 'woocommerce_available_variation', 'load_variation_settings_fields' 
 function load_variation_settings_fields( $variations ) {
 	// duplicate the line for each field
 	$variations['text_field'] = get_post_meta( $variations['variation_id'], '_text_field', true );
+	$variations['number_field'] = get_post_meta( $variations['variation_id'], '_number_field', true );
 
 	return $variations;
 }
