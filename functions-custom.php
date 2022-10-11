@@ -30,7 +30,7 @@ function my_theme_enqueue_scripts() {
 		is_page_template( 'home.php' )
 		|| is_singular()
 		|| is_product()
-        || is_page_template( 'company.php' )
+		|| is_page_template( 'company.php' )
 	) {
 		wp_enqueue_style( 'swiper-styles', 'https://unpkg.com/swiper@8/swiper-bundle.min.css' );
 		wp_enqueue_script( 'swiper-lib', 'https://unpkg.com/swiper@8/swiper-bundle.min.js', array( 'jquery' ) );
@@ -277,7 +277,7 @@ add_filter( 'woocommerce_available_variation', 'load_variation_settings_fields' 
 // Add custom fields for variations
 function load_variation_settings_fields( $variations ) {
 	// duplicate the line for each field
-	$variations['text_field'] = get_post_meta( $variations['variation_id'], '_text_field', true );
+	$variations['text_field']   = get_post_meta( $variations['variation_id'], '_text_field', true );
 	$variations['number_field'] = get_post_meta( $variations['variation_id'], '_number_field', true );
 
 	return $variations;
@@ -333,11 +333,11 @@ add_action( 'wp_ajax_nopriv_load_research', 'actions_load_research' );
 
 function actions_load_research() {
 	global $post;
-	$args  = [
+	$args = [
 		'post_type'      => 'post',
 		'numberposts'    => - 1,
 		'posts_per_page' => - 1,
-        'order' => 'ASC'
+		'order'          => 'ASC'
 	];
 
 	$posts = get_posts( $args );
@@ -367,15 +367,15 @@ function actions_load_research() {
 add_action( 'wp_ajax_tag_filter', 'filter_research_articles_by_tag' );
 add_action( 'wp_ajax_nopriv_tag_filter', 'filter_research_articles_by_tag' );
 
-function filter_research_articles_by_tag(){
+function filter_research_articles_by_tag() {
 	global $post;
-    $slug = $_POST['slug'];
-	$args  = [
+	$slug = $_POST['slug'];
+	$args = [
 		'post_type'      => 'post',
 		'numberposts'    => - 1,
 		'posts_per_page' => - 1,
-		'order' => 'ASC',
-        'tag' => $slug
+		'order'          => 'ASC',
+		'tag'            => $slug
 	];
 
 	$posts = get_posts( $args );
@@ -426,6 +426,53 @@ function review_sort() {
 	wp_list_comments( array( 'callback' => 'woocommerce_comments' ), $comments );
 	die();
 }
+
+
+add_action( 'wp_ajax_modal_reviews', 'open_modal_reviews' );
+add_action( 'wp_ajax_nopriv_modal_reviews', 'open_modal_reviews' );
+
+function open_modal_reviews() {
+	$id = $_POST['id'];
+
+	$args     = [
+		'status'    => 'approve',
+		'post_type' => 'product',
+	];
+	$comments = get_comments( $args );
+
+	foreach ( $comments as $comment ): ?>
+		<?php $name = explode( " ", $comment->comment_author );
+		$initials   = null;
+		foreach ( $name as $i ):
+			$initials .= $i[0];
+		endforeach; ?>
+        <div class="swiper-slide">
+            <div class="modal-reviews__item">
+                <div class="modal-reviews__row">
+                    <div class="reviews__item-logo logo"><?php echo $initials ?></div>
+                    <div class="reviews__item-info">
+                        <div class="reviews__item-name"><?php echo $comment->comment_author; ?></div>
+		                <?php if ( get_field( 'age', $comment ) ): ?>
+                            <div class="reviews__item-age"><?php the_field( 'age', $comment ); ?> years
+                                old
+                            </div>
+		                <?php endif; ?>
+                    </div>
+                </div>
+				<?php $rating = get_comment_meta( $comment->comment_ID, 'rating', true ); ?>
+                <div class="reviews__item-rating">
+					<?php for ( $i = 0; $i < 5; $i ++ ) { ?>
+                        <div class="star <?php if ( $i < $rating ): echo 'orange'; endif; ?>"></div>
+					<?php }
+					?>
+                </div>
+                <div class="reviews__item-text"><?php echo $comment->comment_content; ?></div>
+            </div>
+        </div>
+	<?php endforeach;
+	die();
+}
+
 
 add_filter( 'woocommerce_get_item_data', 'customizing_cart_item_data', 10, 2 );
 function customizing_cart_item_data( $cart_data, $cart_item ) {
@@ -498,3 +545,10 @@ function woo_dequeue_select2() {
 }
 
 add_action( 'wp_enqueue_scripts', 'woo_dequeue_select2', 100 );
+
+
+add_filter( 'comment_excerpt_length', 'wp_kama_comment_excerpt_length_filter' );
+
+function wp_kama_comment_excerpt_length_filter() {
+	return 40;
+}

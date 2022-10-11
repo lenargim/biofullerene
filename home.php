@@ -153,8 +153,8 @@
 										?>
                                     </div>
                                 </div>
-                                <div class="reviews__item-text"><?php echo $comment->comment_content; ?></div>
-                                <div class="reviews__item-full">Read full review</div>
+                                <div class="reviews__item-text"><?php echo get_comment_excerpt($comment->comment_ID); ?></div>
+                                <div class="reviews__item-full" data-id="<?php echo $comment->comment_ID; ?>">Read full review</div>
                             </div>
 						<?php endforeach; ?>
                     </div>

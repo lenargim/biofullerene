@@ -57,7 +57,7 @@ defined( 'ABSPATH' ) || exit;
                     <div class="number"><span>Your order number is:</span><button class="copy-text"><?php echo $order->get_order_number(); ?></button></div>
                     <div class="mail-confirfation">We’ll email your order confirmation to <?php echo $order->get_billing_email(); ?></div>
                 </div>
-                <a href="#" class="thankyou__help button white">Need help?</a>
+                <a href="#" class="thankyou__help button white open-modal-help">Need help?</a>
             </div>
 
 		<?php endif; ?>

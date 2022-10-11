@@ -36,3 +36,84 @@
       width: 20px
       height: 20px
       stroke: $accent700
+.modal-reviews
+  &__item
+    position: relative
+    padding-bottom: 50px
+  &__row
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    gap: 16px
+    margin-bottom: 24px
+  .navigation
+    position: absolute
+    z-index: 1
+    bottom: 44px
+    left: 44px
+  .reviews__item-rating
+    position: relative
+    margin-bottom: 24px
+  .swiper-slide
+    &:nth-child(1n) .logo
+      background: $accent50
+    &:nth-child(2n) .logo
+      background: $warning25
+    &:nth-child(3n) .logo
+      background: $success50
+    &:nth-child(4n) .logo
+      background: $destructive50
+.modal-reviews, .modal-help
+  .close
+    position: absolute
+    top: 44px
+    right: 44px
+    z-index: 2
+.modal-help
+  flex-direction: column
+  gap: 24px
+  .pre
+    color: $gray400
+    margin-bottom: 8px
+    font: 500 14px/20px $mainFont
+  &__title
+    font: 500 24px/32px $mainFont
+  &__desc
+    color: $gray700
+  &__list
+    display: flex
+    flex-direction: column
+    gap: 1px
+  &__item
+    color: $accent600
+    padding: 12px 0
+    display: flex
+    align-items: center
+    justify-content: space-between
+    &:not(:last-of-type)
+      border-bottom: 1px solid $gray50
+    &::after
+      content: ''
+      background: url("./assets/images/svg/arrow-modal.svg") center/contain no-repeat
+      width: 10px
+      height: 10px
+  &__more
+    height: 100%
+    &-title
+      font: 500 16px/24px $mainFont
+      margin-bottom: 16px
+    &-link
+      padding: 24px
+      border: 1px solid $gray50
+      border-radius: 12px
+      width: 100%
+      display: flex
+      flex-direction: column
+      gap: 24px
+      font: 500 16px/24px $mainFont
+      color: $accent600
+  &__footer
+    color: $gray700
+    text-align: center
+    a
+      color: $accent600

@@ -93,5 +93,21 @@ $(document).ready(function () {
     },
   })
 
+  const modalReviews = new Swiper('.modal-reviews', {
+    slidesPerView: 1,
+    allowTouchMove: false,
+    speed: 200,
+    spaceBetween: 100,
+    navigation: {
+      nextEl: '.modal-next',
+      prevEl: '.modal-prev',
+      disabledClass: 'navigation-disabled',
+    },
+  })
+
+  $('.reviews__item-full').on('click', function (){
+    let index = $(this).parents('.swiper-slide').index();
+    modalReviews.slideTo(index, 0)
+  })
 
 });

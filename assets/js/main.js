@@ -92,7 +92,7 @@ $(document).ready(function () {
         const blockId = '#' + $(this).data("scroll");
         $('html,body').animate({scrollTop: $(blockId).offset().top}, 'slow');
     })
-    $('.modal .close').on('click', function () {
+    $('body').on('click', '.close', function () {
         $('.overlay').removeClass('active');
         $('.modal').removeClass('active');
     })
@@ -123,6 +123,37 @@ $(document).ready(function () {
         document.cookie = `cookies_popup=${val}`
     })
 
+
+
+    $('.reviews__item-full').on('click', function (){
+        if ($('.modal-reviews').hasClass('loaded')) {
+            $('.overlay').addClass('active');
+            $('.modal-reviews').addClass('active');
+            return;
+        }
+        const id = $(this).data('id');
+        const ajax_url = window.ajaxVar.ajaxurl || false;
+        $.ajax({
+            type: 'POST',
+            url: ajax_url, // получаем из wp_localize_script()
+            data: {
+                action: 'modal_reviews', // экшен для wp_ajax_ и wp_ajax_nopriv_
+                id,
+            },
+            success: function (data) {
+                $('.overlay').addClass('active');
+                $('.modal-reviews').addClass('active loaded');
+                $('.modal-reviews .swiper-wrapper').html(data);
+            },
+        });
+    });
+
+
+    $('.open-modal-help').on('click', function (e){
+        e.preventDefault();
+        $('.overlay').addClass('active');
+        $('.modal-help').addClass('active');
+    });
 });
 
 $(document).scroll(function () {

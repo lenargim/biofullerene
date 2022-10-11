@@ -30,7 +30,7 @@
             <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#logo"></use>
           </svg>
         </a>
-        <div class="header-checkout__help">
+        <div class="header-checkout__help open-modal-help">
           <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-checkout.svg#message"></use></svg>
           <span>Need help?</span>
         </div>
