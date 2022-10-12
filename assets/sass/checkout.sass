@@ -221,11 +221,13 @@
       top: 20px
 .form-row
   position: relative
+  br
+    display: none
   &.validate-required
     .description
       opacity: 0
   &.invalid
-    input
+    input, textarea
       border-color: $destructive500
     .description
       opacity: 1
@@ -244,12 +246,14 @@
     opacity: 1
     display: block !important
     font: 400 14px/20px $mainFont
-  input
+  input, textarea
     border: 1px solid $gray100
     border-radius: 8px
     padding: 10px 16px
     &::placeholder
       color: $gray300
+  textarea
+    height: 150px
   label
     font: 500 14px/20px $mainFont
     color: $gray800

@@ -3,6 +3,9 @@ $(document).ready(function () {
     // Mask
     $('input[type="tel"]').mask('+1(000)000-0000', {translation: {'Z': {pattern: /[0-79]/}}});
 
+    $('input[name="question-order"]').mask('000-000-000');
+    $('#age').mask('ZZZ', {translation: {'Z': {pattern: /[0-9]/}}});
+
 
     $('.cross').on('click', closeShippingPopup);
 
@@ -11,15 +14,15 @@ $(document).ready(function () {
     })
 
     $('.copy-link').on('click', copyToClipboard);
-    $('.copy-text').on('click', function (){
+    $('.copy-text').on('click', function () {
         const text = $(this).text();
         if (!navigator.clipboard) {
             fallbackCopyTextToClipboard(text);
             return;
         }
-        navigator.clipboard.writeText(text).then(function() {
+        navigator.clipboard.writeText(text).then(function () {
             console.log('Async: Copying to clipboard was successful!');
-        }, function(err) {
+        }, function (err) {
             console.error('Async: Could not copy text: ', err);
         });
         navigator.clipboard.writeText($(this).text());
@@ -97,6 +100,13 @@ $(document).ready(function () {
         $('.modal').removeClass('active');
     })
 
+    $('body').on('click', '.remove-cookie', function () {
+        console.log('removing');
+
+        //$.removeCookie('review_added', { path: '/' });
+        document.cookie = 'review_added=; Max-Age=0; path=/; domain=' + location.hostname;
+    })
+
     $(document).on('click', '.company-page__link', function (e) {
         e.preventDefault();
         var id = $(this).attr('href');
@@ -124,8 +134,7 @@ $(document).ready(function () {
     })
 
 
-
-    $('.reviews__item-full').on('click', function (){
+    $('.reviews__item-full').on('click', function () {
         if ($('.modal-reviews').hasClass('loaded')) {
             $('.overlay').addClass('active');
             $('.modal-reviews').addClass('active');
@@ -149,11 +158,91 @@ $(document).ready(function () {
     });
 
 
-    $('.open-modal-help').on('click', function (e){
+    $('.open-modal-help').on('click', function (e) {
         e.preventDefault();
         $('.overlay').addClass('active');
         $('.modal-help').addClass('active');
     });
+
+    $('.open-modal-question').on('click', function (e) {
+        e.preventDefault();
+        $('.overlay').addClass('active');
+        $('.modal').removeClass('active');
+        $('.modal-question').addClass('active');
+    });
+
+    $('.open-modal-review').on('click', function (e) {
+        e.preventDefault();
+        $('.overlay').addClass('active');
+        $('.modal').removeClass('active');
+        $('.modal-review').addClass('active');
+    });
+
+    $('.modal-question__submit').attr("disabled", true);
+    $('.modal .validate-required input, .modal .validate-required textarea').on('input change blur', function () {
+        let wrap = $(this).parents('.validate-required')
+        let val = $(this).val();
+        if (val) {
+            wrap.addClass('validated').removeClass('invalid')
+            if ($(this).attr('name') === 'question-email') {
+                if (!validateEmail(val) || !val) { // check if contains numbers
+                    wrap.addClass('invalid').removeClass('validated'); // error
+                } else {
+                    wrap.addClass('validated').removeClass('invalid'); // success
+                }
+            }
+        } else {
+            wrap.addClass('invalid').removeClass('validated')
+        }
+        const form = $(this).parents('form');
+        checkSubmit(form)
+    })
+
+    $('body').on('click', 'a[class^=star]', function () {
+        $(this).parents('.validate-required').addClass('validated').removeClass('invalid')
+    });
+
+    $('.comment-form').on('submit', function (e) {
+        $(this).find('.validate-required').not('.validated').each(function () {
+            e.preventDefault();
+            $(this).addClass('invalid')
+        });
+    })
+
+    function checkSubmit(form) {
+        let arr = []
+        const submit = form.find('input[type="submit"]')
+        form.find('.validate-required').each(function () {
+            arr.push($(this).hasClass('validated'))
+        });
+        if (arr.includes(false)) {
+            submit.attr("disabled", true);
+        } else {
+            submit.attr("disabled", false);
+        }
+    };
+
+    function validateEmail(val) {
+        const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test(val);
+    }
+
+    $('.closed-bottom').on('click', function () {
+        $('.close').click();
+    });
+
+    const questionForm = document.querySelector('.modal-question__form');
+    questionForm.addEventListener('wpcf7mailsent', function (event) {
+        var inputs = event.detail.inputs;
+        for (let i = 0; i < inputs.length; i++) {
+            if ('question-email' == inputs[i].name) {
+                $('.thx-email').text(inputs[i].value)
+                break;
+            }
+        }
+        $('.modal-question').removeClass('active');
+        $('.modal-send').addClass('active');
+    }, false);
 });
 
 $(document).scroll(function () {

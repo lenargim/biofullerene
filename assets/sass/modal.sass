@@ -14,7 +14,8 @@
   top: 12px
   right: 12px
   bottom: 12px
-  width: 50vw
+  max-width: 588px
+  width: 100%
   border-radius: 12px
   background: #fff
   padding: 44px
@@ -117,3 +118,117 @@
     text-align: center
     a
       color: $accent600
+.modal-question
+  flex-direction: column
+  gap: 24px
+  &__title
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 1em
+    span
+      font: 500 24px/32px $mainFont
+  &__desc
+    color: $gray700
+  &__form
+    display: flex
+    flex-direction: column
+    gap: 40px
+    .wpcf7-spinner
+      position: absolute
+      right: 30px
+      bottom: 30px
+  &__footer
+    text-align: center
+    font: 500 14px/20px $mainFont
+    color: $gray500
+    margin-top: 16px
+    a
+      color: $gray800
+      text-decoration: underline
+  &__submit
+    box-sizing: border-box
+.modal-send, .modal-review-send
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  .closed
+    position: absolute
+    top: 44px
+    right: 44px
+  .closed-bottom
+    position: absolute
+    left: 44px
+    right: 44px
+    bottom: 44px
+  svg
+    display: block
+    margin: 0 auto
+  &__wrap
+    display: flex
+    flex-direction: column
+    gap: 20px
+    align-items: center
+    width: 340px
+    padding-bottom: 50px
+  &__title
+    font: 500 24px/32px $mainFont
+  &__desc
+    text-align: center
+    .thx-email
+      color: $accent600
+      text-decoration: underline
+.modal-review
+  flex-direction: column
+  &__title
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 1em
+    margin-bottom: 24px
+    span
+      font: 500 24px/32px $mainFont
+  &__product
+    margin-bottom: 32px
+    span
+      color: $gray600
+      font: 400 14px/20px $mainFont
+    &-wrap
+      margin-top: 12px
+      display: flex
+      align-items: center
+      gap: 16px
+    &-img
+      width: 48px
+      height: 48px
+      border-radius: 12px
+      overflow: hidden
+    &-name
+      font-weight: 500
+    &-price
+      font-weight: 500
+      margin-left: auto
+  .comment-form
+    display: flex
+    flex-direction: column
+    gap: 25px
+  .stars
+    span
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 4px
+    a
+      display: block
+      width: 24px
+      height: 24px
+      background: url("./assets/images/svg/star-dark.svg") center/cover no-repeat
+      font-size: 0
+    &.selected
+      a
+        background: url("./assets/images/svg/star-orange.svg") center/cover no-repeat
+        &.active ~ a
+          background: url("./assets/images/svg/star-dark.svg") center/cover no-repeat
+  .comment-form-rating.invalid .stars
+    a
+      background: url("./assets/images/svg/star-red.svg") center/cover no-repeat

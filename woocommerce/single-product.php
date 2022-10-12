@@ -341,7 +341,7 @@ get_template_part('template-parts/header/header'); ?>
                   'post_type' => 'product',
                   'number' => 4,
                   'post_id' => $product->get_id(),
-                  'status ' => 'approve',
+                  'status' => 'approve',
               ];
               $comments = get_comments($args);
               wp_list_comments(array('callback' => 'woocommerce_comments'), $comments);
@@ -361,7 +361,7 @@ get_template_part('template-parts/header/header'); ?>
             <?php endif; ?>
           </div>
           <div class="product-reviews__sidebar">
-            <button class="button white product-reviews__add">Leave review</button>
+            <button class="button white product-reviews__add open-modal-review">Leave review</button>
             <div class="product-reviews__popular">
               <div class="product-reviews__rating">
                 <div class="product-reviews__rating-number">
@@ -380,7 +380,7 @@ get_template_part('template-parts/header/header'); ?>
               <?php $args = [
                   'post_type' => 'product',
                   'post_id' => $product->get_id(),
-                  'status ' => 'approve'
+                  'status' => 'approve'
               ];
               $all_comments = get_comments($args);
               $rating_arr = [0, 0, 0, 0, 0];

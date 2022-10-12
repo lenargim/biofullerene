@@ -313,7 +313,7 @@ function actions_loadmore() {
 	$args = [
 		'post_type' => 'product',
 		'number'    => 4,
-		'offset'    => $offset,
+		'offset'    => $offset+1,
 		'post_id'   => $product_id,
 		'status '   => 'approve',
 		'order'     => $sort,
@@ -415,7 +415,7 @@ function review_sort() {
 		'post_type' => 'product',
 		'number'    => 4,
 		'post_id'   => $product_id,
-		'status '   => 'approve',
+		'status'   => 'approve',
 		'order'     => $sort,
 		'orderby'   => $order,
 	];
@@ -551,4 +551,66 @@ add_filter( 'comment_excerpt_length', 'wp_kama_comment_excerpt_length_filter' );
 
 function wp_kama_comment_excerpt_length_filter() {
 	return 40;
+}
+
+
+add_filter('comment_form_fields', 'kama_reorder_comment_fields' );
+function kama_reorder_comment_fields( $fields ){
+	// die(print_r( $fields )); // посмотрим какие поля есть
+
+	$new_fields = array(); // сюда соберем поля в новом порядке
+
+	$myorder = array('rating','author', 'age', 'email', 'comment'); // нужный порядок
+
+	foreach( $myorder as $key ){
+		$new_fields[ $key ] = $fields[ $key ];
+		unset( $fields[ $key ] );
+	}
+
+	// если остались еще какие-то поля добавим их в конец
+	if( $fields )
+		foreach( $fields as $key => $val )
+			$new_fields[ $key ] = $val;
+
+	return $new_fields;
+}
+
+// Save the comment meta data along with comment
+
+add_action( 'comment_post', 'save_comment_meta_data' );
+function save_comment_meta_data( $comment_id ) {
+	if ( ( isset( $_POST['age'] ) ) && ( $_POST['age'] != '') )
+		$age = wp_filter_nohtml_kses($_POST['age']);
+	add_comment_meta( $comment_id, 'age', $age );
+
+}
+
+
+
+// Add an edit option to comment editing screen
+
+add_action( 'add_meta_boxes_comment', 'extend_comment_add_meta_box' );
+function extend_comment_add_meta_box() {
+	add_meta_box( 'title', __( 'Comment Data' ), 'extend_comment_meta_box', 'comment', 'normal', 'high' );
+}
+
+function extend_comment_meta_box ( $comment ) {
+	$age = get_comment_meta( $comment->comment_ID, 'age', true );
+	wp_nonce_field( 'extend_comment_update', 'extend_comment_update', false );
+	?>
+    <p>
+        <label for="age"><?php _e( 'Age' ); ?></label>
+        <input type="text" name="age" value="<?php echo esc_attr( $age ); ?>" class="widefat" />
+    </p>
+	<?php
+}
+
+
+add_filter( 'comment_post_redirect', 'wp_kama_comment_post_redirect_filter', 10, 2 );
+
+function wp_kama_comment_post_redirect_filter( $location, $comment ){
+
+	setcookie('review_added', true, time()+5);
+	// filter...
+	return $location;
 }
