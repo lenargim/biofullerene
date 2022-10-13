@@ -13,11 +13,20 @@
     display: grid
     grid-template-columns: 552px 592px
     grid-gap: 72px
+    @include between(1024, 1280)
+      grid-template-columns: 1fr 1fr
+      grid-gap: 24px
+    @include max(1023)
+      grid-template-columns: 1fr
+      gap: 20px
     &__img
       position: relative
       img
         overflow: hidden
         border-radius: 12px
+        @include max(1023)
+          max-width: 100% !important
+          height: 100%
     &__label
       position: absolute
       width: 72px

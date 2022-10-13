@@ -243,6 +243,24 @@ $(document).ready(function () {
         $('.modal-question').removeClass('active');
         $('.modal-send').addClass('active');
     }, false);
+
+
+    // Mobile
+
+    $('.burger').on('click', function (){
+        $('.header').addClass('opened')
+        $('html, body').css('overflowY', 'hidden')
+    })
+
+    $('.burger__cross').on('click', function (){
+        $('.header').removeClass('opened');
+        $('html, body').css('overflowY', 'initial')
+    })
+
+    $('.mobile__menu .menu-item-has-children a').on('click', function (e){
+        e.preventDefault();
+        $(this).siblings('.submenu').toggle()
+    })
 });
 
 $(document).scroll(function () {

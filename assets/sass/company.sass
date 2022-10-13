@@ -33,6 +33,9 @@
     display: grid
     grid-template-columns: 1fr 2fr
     grid-gap: 30px
+    @include between(1024, 1280)
+      grid-gap: 24px
+      grid-template-columns: 2fr 5fr
 .block-about
   padding-top: 120px
 .about
@@ -89,8 +92,8 @@
     grid-template-columns: repeat(4, 1fr)
     grid-gap: 32px
   &__img
-    width: 280px
-    height: 320px
+    aspect-ratio: 28/32
+    width: 100%
     border-radius: 12px
     margin-bottom: 20px
   &__name

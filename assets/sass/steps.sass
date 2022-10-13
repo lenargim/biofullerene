@@ -3,25 +3,36 @@
     display: flex
     align-items: flex-start
     gap: 30px
+    @include max(1023)
+      gap: 24px
   &__text
     width: 50%
     padding-right: calc(1/12*100%)
     flex-shrink: 0
+    @include max(1279)
+      padding: 0
+      width: 45%
   &__content
     width: 50%
     display: grid
     grid-template-columns: 1fr 1fr
     grid-gap: 34px 44px
     padding: 0 59px
+    @include max(1279)
+      padding: 0
+      grid-gap: 20px
+      width: 55%
     &-item
       position: relative
       &:nth-of-type(2n)
         top: 40px
     &-img
       width: 220px
-      height: 140px
+      aspect-ratio: 11/7
       border-radius: 12px
       margin-bottom: 12px
+      @include max(1023)
+        width: 100%
   &__main
     span[style*="text-decoration: underline;"]
       position: relative

@@ -110,6 +110,8 @@ h2
   padding-bottom: 32px
   font: 500 14px/20px $mainFont
   color: $accent700
+  @include max(1023)
+    padding-bottom: 16px
   &.center
     text-align: center
 
@@ -183,7 +185,7 @@ svg
   white-space: nowrap
   user-select: none
   padding: 12px
-  box-sizing: content-box
+  box-sizing: border-box
   &.disabled
     pointer-events: none
     cursor: default
@@ -203,8 +205,14 @@ svg
 .main-text
   font: 500 40px/48px $mainFont
   letter-spacing: -0.4px
+  @include between(1024, 1280)
+    font: 500 32px/40px $mainFont
+  @include max(1023)
+    font: 500 24px/32px $mainFont
 .block-title
   font: 500 32px/38px $mainFont
+  @include max(1023)
+    font: 500 24px/32px $mainFont
 
 .socials
   display: flex

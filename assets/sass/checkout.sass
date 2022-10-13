@@ -42,6 +42,10 @@
     display: grid
     grid-template-columns: 7fr 5fr
     grid-gap: 30px
+    @include max(1023)
+      display: flex
+      flex-direction: column-reverse
+      gap: 20px
     h2
       margin-top: 32px
       color: $gray900
@@ -73,6 +77,8 @@
       background: #f6f6f8
       padding: 40px
       border-radius: 16px
+      @include between(1024, 1280)
+        padding: 20px
       &__list
         margin: 0
         display: flex
@@ -127,6 +133,7 @@
           align-items: center
           justify-content: flex-end
           gap: 12px
+          white-space: nowrap
           .regular
             color: $gray300
             text-decoration: line-through
@@ -136,6 +143,7 @@
     display: flex
     flex-direction: column
     gap: 16px
+    margin-top: 32px
     &__box
       padding: 16px 24px
       border-radius: 12px

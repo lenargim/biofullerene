@@ -5,15 +5,22 @@
     align-items: flex-start
     gap: 30px
     width: 100%
+    @include max(1023)
+      flex-direction: column
   &__img-box
     width: 50%
     position: relative
+    @include max(1023)
+      width: 100%
   &__img
     border-radius: 12px
     &.big
       max-width: 384px
       position: relative
       left: 50px
+      @include max(1023)
+        left: 0
+        margin: 0 auto
     &.small
       width: 136px
       height: 120px
@@ -21,11 +28,15 @@
       &:nth-of-type(2)
         bottom: 46px
         left: -14px
+        @include max(1023)
+          left: 10%
       &:nth-of-type(3)
         bottom: -58px
         right: 128px
   &__text
     width: 50%
+    @include max(1023)
+      width: 100%
   &__list
     margin-top: 60px
     counter-reset: item

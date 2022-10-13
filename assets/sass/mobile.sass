@@ -1,0 +1,60 @@
+.burger
+  width: 24px
+  height: 24px
+  svg
+    stroke: #fff
+  &__menu
+    position: relative
+    top: 0
+    left: 0
+    right: 0
+    background: #fff
+    z-index: 0
+    height: 100%
+    display: none
+    &-wrap
+      display: flex
+      flex-direction: column
+      gap: 40px
+      max-height: calc(100vh - 200px)
+  &__buttons
+    display: flex
+    flex-direction: column
+    gap: 8px
+  &__cross
+    display: none
+.mobile
+  &__menu
+    padding-top: 40px
+    .menu-item
+      padding: 8px 0
+      font: 500 18px/28px $mainFont
+      a
+        display: block
+    .sub-menu-toggle
+      display: none
+    .submenu
+      display: none
+      padding: 0 1em
+      a
+        color: $gray900
+    .menu-item-has-children
+      position: relative
+      padding-right: 20px
+      &::after
+        content: ''
+        width: 16px
+        height: 16px
+        position: absolute
+        background: url("./assets/images/svg/arrow-right.svg") center/cover no-repeat
+        right: 0
+        top: 22px
+        transform: translateY(-50%)
+  &__support
+    display: flex
+    flex-direction: column
+    gap: 8px
+    flex: 1 0 auto
+    a
+      color: $gray400
+      font: 500 16px/24px $mainFont

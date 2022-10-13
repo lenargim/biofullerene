@@ -2,6 +2,7 @@
   height: 100vh
   width: 100%
   background-size: cover
+  background-position: 64% center
   padding-top: 120px
   &__text
     display: flex
@@ -10,10 +11,15 @@
     flex-direction: column
     height: 100%
     color: #fff
+    @include max(1023)
+      align-items: center
+      text-align: center
   h1
     font: 500 78px/1 $mainFont
     margin-bottom: 44px
     position: relative
+    @include max(1023)
+      font: 500 50px/60px $mainFont
     &::before
       content: ''
       position: absolute

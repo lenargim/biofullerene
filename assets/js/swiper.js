@@ -15,13 +15,22 @@ $(document).ready(function () {
     a11y: {
       enabled: false,
     },
+    breakpoints: {
+      // when window width is >= 320px
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 24,
+      },
+      },
+      1280: {
+        slidesPerView: 2,
+        spaceBetween: 32,
+      }
   });
 
   const reviews = new Swiper('.reviews__slider', {
-    slidesPerView: 3,
     allowTouchMove: false,
     speed: 200,
-    spaceBetween: 32,
     navigation: {
       nextEl: '.reviews-next',
       prevEl: '.reviews-prev',
@@ -30,6 +39,22 @@ $(document).ready(function () {
     scrollbar: {
       el: '.custom-scrollbar',
     },
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 'auto',
+        spaceBetween: 24
+      },
+      // when window width is >= 480px
+      1024: {
+        slidesPerView: 2,
+        spaceBetween: 24
+      },
+      1280: {
+        slidesPerView: 3,
+        spaceBetween: 32,
+      }
+    }
   });
 
   const products = new Swiper('.mainpage-multiple__slider', {
@@ -45,6 +70,11 @@ $(document).ready(function () {
     scrollbar: {
       el: '.custom-scrollbar',
     },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+    }
   });
 
   const productThumbs = new Swiper('.product-page__thumbs', {

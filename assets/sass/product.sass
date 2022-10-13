@@ -10,9 +10,18 @@
     grid-template-columns: 1fr 1fr
     grid-gap: 30px
     width: 100%
+    @include between(1024, 1280)
+      grid-template-columns: 33vw 1fr
+    @include max(1023)
+      grid-template-columns: 1fr
   &__images
     width: 552px
     position: relative
+    @include between(1024,1280)
+      width: 33vw
+    @include between(768,1024)
+      width: 50vw
+      margin: 0 auto
   &__slider
     overflow: hidden
   &__img
@@ -375,12 +384,20 @@
       color: $gray300
       font: 500 14px/20px $mainFont
 .product-reviews
+  &__sidebar
+    @include max(1023)
+      max-width: 300px
+      margin: 0 auto
   &__title
     margin-bottom: 44px
   &__wrap
     display: grid
-    grid-template-columns: 9fr 3fr
+    grid-template-columns: 3fr 1fr
     grid-gap: 30px
+    @include max(1023)
+      display: flex
+      gap: 32px
+      flex-direction: column-reverse
   &__list
     display: flex
     flex-direction: column
@@ -394,6 +411,8 @@
     width: 100%
     padding-bottom: 40px
     gap: 30px
+    @include max(1023)
+      flex-direction: column
     &:not(:last-of-type)
       border-bottom: 1px solid $gray100
     &:nth-child(4n+1) .logo
@@ -410,6 +429,8 @@
       justify-content: flex-start
       gap: 16px
       width: 33%
+      @include max(1023)
+        width: 100%
     &-img
       width: 60px
       height: 60px
@@ -426,6 +447,8 @@
       flex-shrink: 0
     &-content
       width: 55%
+      @include max(1023)
+        width: 100%
     &-info
       width: 280px
       flex-shrink: 0

@@ -5,8 +5,17 @@
     justify-content: space-between
     gap: 32px
     margin-top: 80px
+    @include max(1280)
+      width: 100vw
+      padding: 0 40px
+      position: relative
+      justify-content: normal
+      left: -40px
+      overflow-x: auto
+      gap: 24px
   &__item
-    max-width: 176px
+    flex-shrink: 0
+    width: 176px
   &__img
     width: 92px
     height: 92px

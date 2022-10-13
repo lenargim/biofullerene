@@ -4,6 +4,9 @@
     display: grid
     grid-gap: 30px
     grid-template-columns: 1fr 2fr
+    @include max(1023)
+      grid-template-columns: 1fr
+      grid-gap: 24px
   &__item
     cursor: pointer
     &:not(:last-child)

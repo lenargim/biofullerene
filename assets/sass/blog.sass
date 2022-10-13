@@ -33,6 +33,7 @@
       justify-content: flex-start
       gap: 12px
       margin-top: 60px
+      flex-wrap: wrap
     &__tag
       cursor: pointer
       padding: 8px 10px
@@ -62,6 +63,8 @@
       display: grid
       grid-template-columns: repeat(3, 1fr)
       grid-gap: 80px 32px
+      @include between(1024, 1280)
+        grid-gap: 60px 24px
     &__button
       margin-top: 80px
       width: 100%

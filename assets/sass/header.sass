@@ -4,9 +4,12 @@
   top: 0
   background: transparent
   z-index: 3
+  border-bottom: 1px solid $gray50
   &.blue
     .header__row, .submenu-wrap
       background: #f5f9ff
+    .burger svg, .header__cart svg
+      stroke: $gray900
   &.transparent
     position: fixed
     .header
@@ -21,6 +24,8 @@
         opacity: 0.2
       &__cart
         color: #fff
+        svg
+          stroke: #fff
         .amount
           border-color: #fff
     .submenu-wrap
@@ -42,8 +47,27 @@
       color: $gray900
       .amount
         border-color: $gray900
+    .burger svg, .header__cart svg
+      stroke: $gray900
+  &.opened
+    height: 100vh
+    .header__row
+      background: #fff
+      border-bottom: 1px solid $gray50
+    .header__logo
+      fill: $accent700
+    .header__cart svg
+      stroke: $gray900
+    .burger__cross
+      display: block
+    .burger
+      display: none
+    .burger__menu
+      display: block
   &__row
     background: #fff
+    position: relative
+    z-index: 1
   &__shipping
     background: $accent700
     color: #fff
@@ -54,6 +78,7 @@
     padding: 10px
     height: 40px
     position: relative
+    z-index: 1
     overflow: hidden
     &.closed
       padding: 0
@@ -99,6 +124,21 @@
       height: 28px
       border-radius: 50%
       border: 1.6px solid $gray900
+      @include max(1024)
+        position: relative
+        z-index: 1
+        border: none
+        background: $accent600
+        color: #fff
+        width: 24px
+        height: 24px
+        font: 400 12px/16px $mainFont
+    .label
+      @include max(1024)
+        display: none
+    svg
+      position: relative
+      left: 12px
   &__menu
     display: flex
     align-items: center
