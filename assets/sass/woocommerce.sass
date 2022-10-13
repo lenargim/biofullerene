@@ -3,7 +3,19 @@
   align-items: center
   gap: 12px
   font: 500 14px/20px $mainFont
+  @include max(767)
+    font: 500 12px/16px $mainFont
+    gap: 4px
   svg
     width: 16px
     height: 16px
     stroke: $gray300
+  a
+    color: $gray500
+  @include max(767)
+    padding: 12px 0
+    a:first-child
+      width: 16px
+      height: 16px
+      background: url("./assets/images/svg/home.svg") center/cover no-repeat
+      display: block

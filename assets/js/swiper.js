@@ -97,11 +97,22 @@ $(document).ready(function () {
 
     const product = new Swiper('.product-page__slider', {
         slidesPerView: 1,
-        allowTouchMove: false,
         speed: 200,
         spaceBetween: 32,
+        pagination: {
+            el: '.product-page__thumbs-mobile',
+            type: 'bullets',
+        },
         thumbs: {
-            swiper: productThumbs,
+            swiper: productThumbs && false,
+        },
+        breakpoints: {
+            320: {
+                allowTouchMove: true,
+            },
+            1280: {
+                allowTouchMove: false,
+            }
         }
     });
 

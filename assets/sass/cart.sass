@@ -1,5 +1,7 @@
 .cart-page
   padding-top: 60px
+  @include max(767)
+    padding-top: 0
   &__title
     padding: 32px 0
     border-bottom: 1px solid $gray50
@@ -8,12 +10,29 @@
     align-items: flex-end
     gap: 1em
     margin-bottom: 32px
+    @include max(767)
+      border: none
+      flex-direction: column
+      justify-content: flex-start
+      align-items: flex-start
+      gap: 16px
+      margin: 0
+      &>span
+        width: 100%
+        display: flex
+        align-items: flex-end
+        justify-content: space-between
+        padding-bottom: 16px
+        border-bottom: 1px solid $gray50
     sup
       color: $gray300
       font: 500 16px/24px $mainFont
   &__clear
     font: 500 16px/24px $mainFont
     color: $gray400
+    display: flex
+    align-items: center
+    gap: 4px
   &__wrap
     display: grid
     grid-template-columns: 7fr 5fr
@@ -21,6 +40,9 @@
     margin: 40px 0 80px
     @include max(1023)
       grid-gap: 24px
+    @include max(767)
+      margin: 20px 0
+      grid-template-columns: 1fr
   &__list
     display: flex
     flex-direction: column
@@ -31,6 +53,9 @@
     border-radius: 12px
     @include max(1023)
       padding: 20px
+    @include max(767)
+      padding: 0
+      border: none
   &__total
     margin-top: 32px
   &__checkout
@@ -49,6 +74,9 @@
       gap: 28px
       @include max(1023)
         gap: 10px
+      @include max(767)
+        flex-direction: column
+        gap: 8px
       span
         white-space: nowrap
         font: 400 14px/20px $mainFont
@@ -63,6 +91,8 @@
           background: $gray200
           left: calc(100% + 12px)
           top: calc(50% - 2px)
+          @include max(767)
+            content: none
     .icons
       display: flex
       align-items: center

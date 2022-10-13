@@ -1,10 +1,14 @@
 .steps
+  @include max(767)
+    padding-bottom: 80px
   &__wrap
     display: flex
     align-items: flex-start
     gap: 30px
     @include max(1023)
       gap: 24px
+    @include max(767)
+      flex-direction: column
   &__text
     width: 50%
     padding-right: calc(1/12*100%)
@@ -12,6 +16,8 @@
     @include max(1279)
       padding: 0
       width: 45%
+    @include max(767)
+      width: 100%
   &__content
     width: 50%
     display: grid
@@ -22,8 +28,12 @@
       padding: 0
       grid-gap: 20px
       width: 55%
+    @include max(767)
+      width: 100%
+      grid-gap: 44px 24px
     &-item
       position: relative
+      counter-increment: index
       &:nth-of-type(2n)
         top: 40px
     &-img
@@ -31,8 +41,25 @@
       aspect-ratio: 11/7
       border-radius: 12px
       margin-bottom: 12px
+      position: relative
+      &::before
+        content: counter(index)
+        position: absolute
+        width: 32px
+        height: 20px
+        background: #fff
+        border-radius: 200px
+        left: 8px
+        top: 8px
+        display: flex
+        align-items: center
+        justify-content: center
+        font: 500 12px/16px $mainFont
       @include max(1023)
         width: 100%
+    &-text
+      @include max(767)
+        font: 500 14px/20px $mainFont
   &__main
     span[style*="text-decoration: underline;"]
       position: relative

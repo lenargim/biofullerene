@@ -232,17 +232,19 @@ $(document).ready(function () {
     });
 
     const questionForm = document.querySelector('.modal-question__form');
-    questionForm.addEventListener('wpcf7mailsent', function (event) {
-        var inputs = event.detail.inputs;
-        for (let i = 0; i < inputs.length; i++) {
-            if ('question-email' == inputs[i].name) {
-                $('.thx-email').text(inputs[i].value)
-                break;
+    if (questionForm) {
+        questionForm.addEventListener('wpcf7mailsent', function (event) {
+            var inputs = event.detail.inputs;
+            for (let i = 0; i < inputs.length; i++) {
+                if ('question-email' == inputs[i].name) {
+                    $('.thx-email').text(inputs[i].value)
+                    break;
+                }
             }
-        }
-        $('.modal-question').removeClass('active');
-        $('.modal-send').addClass('active');
-    }, false);
+            $('.modal-question').removeClass('active');
+            $('.modal-send').addClass('active');
+        }, false);
+    }
 
 
     // Mobile
@@ -261,6 +263,17 @@ $(document).ready(function () {
         e.preventDefault();
         $(this).siblings('.submenu').toggle()
     })
+
+    $('.share').on('click', function (){
+        $(this).toggleClass('active');
+    })
+    $(document).mouseup( function(e){ // событие клика по веб-документу
+        var div = $( ".share" ); // тут указываем ID элемента
+        if ( !div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0 ) { // и не по его дочерним элементам
+            div.removeClass('active');
+        }
+    });
 });
 
 $(document).scroll(function () {
@@ -285,12 +298,6 @@ closeShippingPopup = () => {
 };
 const copyToClipboard = () => {
     window.navigator.clipboard.writeText(window.location.href);
-    // let $temp = $("<input>");
-    // $("body").append($temp);
-    // $temp.val(window.location.href).select();
-    // document.execCommand("copy");
-    // $temp.remove();
-    // $('.copy-link span').text('Copied');
 }
 
 const singleAddToCart = (id, price) => {

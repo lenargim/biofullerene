@@ -3,15 +3,27 @@
     display: flex
     gap: 30px
     align-items: center
+    @include max(767)
+      flex-direction: column-reverse
   &__text
     width: 50%
+    @include max(767)
+      width: 100%
   &__graph
     width: 50%
+    @include max(767)
+      width: 100%
   &__img
     margin-right: calc(1/12*100%)
+    @include max(767)
+      margin: 0
   &__desc
     margin-top: 32px
     color: $gray700
+    @include max(767)
+      margin-top: 16px
   &__link
     width: 170px
     margin-top: 32px
+    @include max(767)
+      width: 100%

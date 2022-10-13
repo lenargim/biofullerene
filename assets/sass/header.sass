@@ -5,6 +5,8 @@
   background: transparent
   z-index: 3
   border-bottom: 1px solid $gray50
+  .burger svg, .header__cart svg
+    stroke: $gray900
   &.blue
     .header__row, .submenu-wrap
       background: #f5f9ff
@@ -28,6 +30,8 @@
           stroke: #fff
         .amount
           border-color: #fff
+    .burger svg
+      stroke: #fff
     .submenu-wrap
       background: transparent
       .menu-item a
@@ -64,6 +68,8 @@
       display: none
     .burger__menu
       display: block
+    .burger svg, .header__cart svg
+      stroke: $gray900
   &__row
     background: #fff
     position: relative
@@ -107,6 +113,8 @@
     max-height: 20px
     fill: $accent700
     display: block
+    @include max(767)
+      max-width: 120px
   &__part
     width: calc(100%/3)
   &__cart

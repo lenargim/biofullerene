@@ -108,7 +108,6 @@ function get_cart() {
 function quanity_update_buttons(el) {
   let ajax_url = window.ajaxVar.ajaxurl || false;
   if (el.hasClass('disabled')) return;
-  console.log('qwe')
   if (is_cart_update) {
     $('.list-loader').addClass('loading');
     is_cart_update = false;
@@ -241,8 +240,8 @@ function remove_item(key, item) {
         cancel.addClass('cancel').text('Cancel');
         const qty = item.find('.mini-cart__quantity').val();
         const name = item.find('.mini-cart__name');
+        name.append(`<span class="deleted">was deleted</span>`)
         name.prepend(`<span class="pseudo">${qty}</span>`);
-        name.append(`<span class="deleted">&ensp;was deleted</span>`);
 
         if (!$('.mini-cart__item:not(.removing)').length) {
           $('.mini-cart__buttons .button').addClass('disabled');
@@ -279,7 +278,13 @@ function cancel_item(key, block) {
         id: prodId,
       },
       success: function (data) {
-        cancel.removeClass('cancel').text('Remove');
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          cancel.removeClass('cancel').html('<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n' +
+              '    <path d="M2 3.99967H3.33333M3.33333 3.99967H14M3.33333 3.99967V13.333C3.33333 13.6866 3.47381 14.0258 3.72386 14.2758C3.97391 14.5259 4.31304 14.6663 4.66667 14.6663H11.3333C11.687 14.6663 12.0261 14.5259 12.2761 14.2758C12.5262 14.0258 12.6667 13.6866 12.6667 13.333V3.99967H3.33333ZM5.33333 3.99967V2.66634C5.33333 2.31272 5.47381 1.97358 5.72386 1.72353C5.97391 1.47348 6.31304 1.33301 6.66667 1.33301H9.33333C9.68696 1.33301 10.0261 1.47348 10.2761 1.72353C10.5262 1.97358 10.6667 2.31272 10.6667 2.66634V3.99967M6.66667 7.33301V11.333M9.33333 7.33301V11.333" stroke="#8791A1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>\n' +
+              '</svg>\n');
+        } else {
+          cancel.removeClass('cancel').text('Remove');
+        }
         name.find('.pseudo, .deleted').remove();
 
         if ($('.mini-cart__item:not(.removing)').length) {
