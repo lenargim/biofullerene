@@ -1,10 +1,14 @@
 .solution
   text-align: center
   background: $beige25
+  @include max(767)
+    text-align: left
   &__desc
     margin: 32px 0 60px
     color: $gray700
     font: 400 18px/28px $mainFont
+    @include max(767)
+      margin: 16px 0 32px
   &__info
     border-top: 1px solid $gray100
     display: flex
@@ -17,6 +21,10 @@
     flex-direction: column
     gap: 12px
     color: $gray700
+    @include max(767)
+      padding: 32px 12px 20px
+      font-size: 14px
+      width: 50%
     &:not(:last-of-type)
       border-right: 1px solid $gray100
     & .big
@@ -25,13 +33,18 @@
       font: 500 60px/68px $mainFont
       position: relative
       z-index: 1
+      @include max(767)
+        font: 500 32px/38px $mainFont
       &::before
         content: ''
         width: 183px
-        height: 17px
+        aspect-ratio: 183/17
         background: url("./assets/images/svg/underline3.svg") center/contain no-repeat
         position: absolute
         left: 50%
-        margin-left: -91px
+        transform: translateX(-50%)
         top: 75%
         z-index: -1
+        @include max(767)
+          width: 100px
+          top: 0

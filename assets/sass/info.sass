@@ -21,18 +21,27 @@
       @include max(1023)
         left: 0
         margin: 0 auto
+      @include max(767)
+        max-width: 205px
     &.small
       width: 136px
-      height: 120px
+      aspect-ratio: 136/120
       position: absolute
+      @include max(767)
+        width: 72px
       &:nth-of-type(2)
         bottom: 46px
         left: -14px
         @include max(1023)
           left: 10%
+        @include max(767)
+          bottom: 23px
       &:nth-of-type(3)
         bottom: -58px
         right: 128px
+        @include max(767)
+          right: 10%
+          bottom: -33px
   &__text
     width: 50%
     @include max(1023)
@@ -63,3 +72,4 @@
         font: 600 14px/16px $mainFont
         position: relative
         top: -4px
+        flex-shrink: 0

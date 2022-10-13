@@ -1,4 +1,7 @@
 .benefits
+  @include min(1280)
+    .block-title
+      width: 50%
   &__row
     display: flex
     align-items: flex-start
@@ -7,12 +10,15 @@
     margin-top: 80px
     @include max(1280)
       width: 100vw
-      padding: 0 40px
+      padding: 0 40px 24px
       position: relative
       justify-content: normal
       left: -40px
       overflow-x: auto
       gap: 24px
+    @include max(767)
+      padding: 0 16px 24px
+      left: -16px
   &__item
     flex-shrink: 0
     width: 176px

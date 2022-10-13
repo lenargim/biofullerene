@@ -4,6 +4,8 @@
   align-items: center
   justify-content: space-between
   gap: 8px
+  @include max(767)
+    display: none
   &-button
     width: 40px
     height: 40px
@@ -26,6 +28,8 @@
 .scrollbar-wrap
   position: relative
   margin-top: 56px
+  @include max(767)
+    display: none
   .custom-scrollbar
     background: $gray50
     height: 2px

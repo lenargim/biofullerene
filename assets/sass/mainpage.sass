@@ -9,6 +9,8 @@
         background: $gray100
         top: -120px
         position: absolute
+        @include max(767)
+          content: none
   &-product
     display: grid
     grid-template-columns: 552px 592px
@@ -24,9 +26,10 @@
       img
         overflow: hidden
         border-radius: 12px
+        display: block
         @include max(1023)
           max-width: 100% !important
-          height: 100%
+          height: 100% !important
     &__label
       position: absolute
       width: 72px
@@ -44,6 +47,9 @@
       font: 600 10px/1.2 $mainFont
       padding: 16px
       z-index: 2
+      @include max(767)
+        right: -12px
+        top: -12px
       &.multiple
         right: -12px
         top: -12px
@@ -78,6 +84,9 @@
       align-items: center
       gap: 20px
       margin-bottom: 20px
+      @include max(767)
+        margin-bottom: 12px
+        gap: 12px
     &__tag
       font: 600 12px/20px $mainFont
       padding: 4px 16px
@@ -89,14 +98,21 @@
     &__title
       font: 500 32px/38px $mainFont
       margin-bottom: 20px
+      @include max(767)
+        font: 500 24px/32px $mainFont
+        margin-bottom: 12px
     &__serving
       font: 500 14px/20px $mainFont
       color: $gray500
       margin-bottom: 20px
+      @include max(767)
+        margin-bottom: 12px
     &__excerpt
       color: $gray700
       padding: 24px 0
       border-top: 1px solid $gray50
+      @include max(767)
+        padding: 20px 0
     &__advantage
       display: flex
       align-items: center
@@ -111,6 +127,8 @@
     &__button
       margin-top: 52px
       width: 100%
+      @include max(767)
+        margin-top: 40px
   &-multiple
     position: relative
     &:hover
@@ -119,6 +137,9 @@
         z-index: 1
     &__slider
       margin-top: 44px
+      .swiper-slide.product
+        @include max(767)
+          width: 80vw
     &__img
       position: relative
       display: block

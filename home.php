@@ -7,7 +7,7 @@
         <section class="banner" style="background-image: url(<?php the_field( 'img' ) ?>)">
             <div class="container">
                 <div class="banner__text">
-                    <h1 class="banner__title"><?php the_field( 'title' ) ?></h1>
+                    <h1 class="banner__title"><span><?php the_field( 'title' ) ?></span></h1>
                     <p class="banner__annotation"><?php the_field( 'annotation' ) ?></p>
 					<?php $button = get_field( 'button' ); ?>
 					<?php if ( $button ): ?>
@@ -89,7 +89,7 @@
         </section>
         <section class="solution block">
             <div class="container">
-                <h2 class="center"><?php the_field( 'solution-title' ) ?></h2>
+                <h2 class="solution__title"><?php the_field( 'solution-title' ) ?></h2>
                 <div class="main-text"><?php the_field( 'solution-main' ) ?></div>
                 <div class="solution__desc"><?php the_field( 'solution-desc' ) ?></div>
                 <div class="solution__info">

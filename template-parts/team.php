@@ -1,10 +1,10 @@
 <section class="team block">
   <div class="container">
     <div class="team__row">
-      <h3 class="team__title block-title"><?php echo get_field('experts_title', 'experts'); ?></h3>
+      <h3 class="team__title block-title"><?php echo get_field('title', 'experts'); ?></h3>
       <div class="team__info">
         <?php if (is_page_template('home.php')) : ?>
-          <div class="team__desc"><?php echo get_field('experts_description', 'experts'); ?></div>
+          <div class="team__desc"><?php echo get_field('description', 'experts'); ?></div>
         <?php endif; ?>
         <div class="navigation">
           <span class="navigation-button navigation-prev team-prev">

@@ -45,9 +45,13 @@ button
   padding: 0 40px
   margin: 0 auto
   max-width: 1296px
+  @include max(767)
+    padding: 0 16px
   &_big
     max-width: 1440px
     padding: 0 44px
+    @include max(767)
+      padding: 0 16px
 
 
 input:-webkit-autofill,
@@ -112,8 +116,6 @@ h2
   color: $accent700
   @include max(1023)
     padding-bottom: 16px
-  &.center
-    text-align: center
 
 table
   width: 100%
@@ -174,6 +176,8 @@ svg
 .block
   position: relative
   padding: 120px 0
+  @include max(767)
+    padding: 40px 0
 .button
   display: flex
   align-items: center
@@ -186,6 +190,8 @@ svg
   user-select: none
   padding: 12px
   box-sizing: border-box
+  @include max(767)
+    width: 100%
   &.disabled
     pointer-events: none
     cursor: default

@@ -4,6 +4,10 @@
     grid-template-columns: 1fr 1fr
     grid-gap: 30px
     margin-bottom: 64px
+    @include max(1023)
+      grid-template-columns: 1fr
+      grid-gap: 16px
+      margin-bottom: 44px
   &__info
     display: flex
     justify-content: flex-end
@@ -13,6 +17,8 @@
   &__desc
     color: $gray700
     font: 400 18px/28px $mainFont
+    @include max(767)
+      font: 400 16px/24px $mainFont
   &__slider
     position: relative
     &::after
@@ -23,6 +29,8 @@
       left: 0
       right: 0
       bottom: -120px
+      @include max(767)
+        content: none
   &__expert.swiper-slide
     height: auto
     background: $gray25
@@ -32,6 +40,9 @@
     flex-direction: column
     @include max(1023)
       padding: 20px
+    @include max(767)
+      width: 80vw
+      padding: 0 20px 28px
   &__img
     border: 4px solid #fff
     box-shadow: 0 12px 12px -4px rgba(13, 18, 30, 0.06), 0px 4px 8px -2px rgba(13, 18, 30, 0.02)
@@ -42,6 +53,9 @@
     position: relative
     top: -20px
     margin-bottom: 12px
+    @include max(767)
+      width: 72px
+      height: 72px
   &__brand
     color: $accent800
     margin-bottom: 8px
@@ -49,10 +63,14 @@
   &__name
     font: 500 18px/28px $mainFont
     margin-bottom: 20px
+    @include max(767)
+      margin-bottom: 12px
   &__text
     color: $gray700
     padding-bottom: 20px
     flex: 1 0 auto
+    @include max(767)
+      padding-bottom: 12px
     span
       text-decoration: none !important
   &__job
@@ -61,3 +79,6 @@
     color: $gray300
     font: 500 14px/20px $mainFont
     height: 80px
+    @include max(767)
+      padding-top: 12px
+      height: auto

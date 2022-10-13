@@ -14,27 +14,42 @@
     @include max(1023)
       align-items: center
       text-align: center
+    @include max(767)
+      align-items: stretch
   h1
-    font: 500 78px/1 $mainFont
     margin-bottom: 44px
-    position: relative
-    @include max(1023)
-      font: 500 50px/60px $mainFont
-    &::before
-      content: ''
-      position: absolute
-      left: -21px
-      top: calc(100% - 6px)
-      width: 194px
-      height: 30px
-      background: url("./assets/images/svg/underline.svg") no-repeat center
+    @include max(767)
+      margin-bottom: 24px
+    span
+      font: 500 78px/1 $mainFont
+      position: relative
+      @include max(1023)
+        font: 500 50px/60px $mainFont
+      @include max(767)
+        font: 500 40px/50px $mainFont
+      &::before
+        content: ''
+        position: absolute
+        left: -21px
+        top: calc(100% - 6px)
+        width: 194px
+        aspect-ratio: 194/30
+        background: url("./assets/images/svg/underline.svg") no-repeat center/cover
+        @include max(767)
+          width: 90px
+          left: -5px
   &__annotation
     max-width: 520px
     margin-bottom: 60px
+    @include max(767)
+      margin-bottom: 32px
   &__button
     margin-bottom: 8px
     width: 100%
   &__after
     text-align: center
+    @include max(767)
+      font-size: 14px
   &__box
-    width: 280px
+    @include min(768)
+      width: 280px
