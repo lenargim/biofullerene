@@ -118,8 +118,6 @@ $(document).ready(function () {
 
 
     const related = new Swiper('.single-post__slider', {
-        slidesPerView: 3,
-        allowTouchMove: false,
         speed: 200,
         spaceBetween: 32,
         navigation: {
@@ -130,6 +128,20 @@ $(document).ready(function () {
         scrollbar: {
             el: '.custom-scrollbar',
         },
+        breakpoints: {
+            320: {
+                slidesPerView: 'auto',
+                allowTouchMove: true,
+            },
+            768: {
+                slidesPerView: 2,
+                allowTouchMove: false,
+            },
+            1024: {
+                slidesPerView: 3,
+                allowTouchMove: false,
+            },
+        }
     })
 
     const about = new Swiper('.about__slider', {
@@ -142,6 +154,14 @@ $(document).ready(function () {
             prevEl: '.about-prev',
             disabledClass: 'navigation-disabled',
         },
+        breakpoints: {
+            320: {
+                slidesPerView: 'auto',
+            },
+            768: {
+                slidesPerView: 2,
+            }
+        }
     })
 
     const modalReviews = new Swiper('.modal-reviews', {

@@ -1,10 +1,15 @@
 .locations
   padding-bottom: 120px
+  @include max(767)
+    padding-bottom: 20px
   &__banner
     height: 630px
     background-size: cover
     background-repeat: repeat
     background-position: center
+    @include max(767)
+      height: unset
+      padding-bottom: 20px
     &-desc
       max-width: 422px
       margin-top: 24px
@@ -16,6 +21,18 @@
     justify-content: flex-start
     gap: 12px
     margin: 60px 0 80px
+    @include max(767)
+      margin: 20px 0
+      gap: 4px
+      position: relative
+      left: -16px
+      padding: 0 16px
+      width: 100vw
+      overflow-x: auto
+      -ms-overflow-style: none
+      scrollbar-width: none
+      &::-webkit-scrollbar
+        display: none
   &__tab
     display: flex
     align-items: center
@@ -27,6 +44,10 @@
     cursor: pointer
     box-sizing: border-box
     font-weight: 500
+    @include max(767)
+      white-space: nowrap
+      padding: 4px 12px
+      font: 500 12px/16px $mainFont
     &.active
       background: $accent700
       color: #fff
@@ -50,9 +71,16 @@
       padding: 20px
       top: 12px
       right: 12px
+    @include max(767)
+      width: unset
+      left: 12px
+      right: 12px
+      top: 12px
     &-title
       font: 500 18px/28px $mainFont
       margin-bottom: 36px
+      @include max(767)
+        margin-bottom: 20px
     &-phone
       display: block
       margin-bottom: 12px
@@ -63,11 +91,18 @@
       font-weight: 500
     &-address
       margin-bottom: 36px
+      @include max(767)
+        margin-bottom: 20px
     &-socials
       padding-top: 36px
       border-top: 1px solid $gray100
+      @include max(767)
+        padding-top: 20px
     &-link
       border-color: $gray100
+      @include max(767)
+        width: 36px
+        height: 36px
       svg
         stroke: $accent700
   .map

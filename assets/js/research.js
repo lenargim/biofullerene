@@ -81,4 +81,10 @@ $(document).ready(function () {
             },
         });
     })
+
+    $('.blog-tags__toggle').on('click', function () {
+        $(this).toggleClass('open');
+        $(this).hasClass('open') ? $(this).text('Hide filters') : $(this).text('Show filters')
+        //$('.blog-tags__wrap').toggle(200)
+    })
 })

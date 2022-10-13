@@ -4,22 +4,34 @@
 
 <?php get_template_part( 'template-parts/header/header' ); ?>
     <main class="blog">
-        <div class="blog-banner" style="background-image: url(<?php echo get_the_post_thumbnail_url(); ?>)">
+        <div class="blog-banner page-banner" style="background-image: url(<?php echo get_the_post_thumbnail_url(); ?>)">
             <div class="container">
-				<?php $bargs = [
-					'delimiter'   => '<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L12.5 10L7.5 5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-					'wrap_before' => '<nav class="breadcrumbs blog__breadcrumbs">',
-				];
-				echo woocommerce_breadcrumb( $bargs ); ?>
-				<?php
-				global $post;
-				$args  = [
+                <div class="blog__breadcrumbs breadcrumbs">
+                    <a href="/" class="home">
+						<?php if ( ! wp_is_mobile() ): ?>
+                            Home
+						<?php else: ?>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 4.5L2 3.87092M2 3.87092L5.58258 1.61718C5.83095 1.46094 6.16905 1.46094 6.41742 1.61718L10 3.87092M2 3.87092V9.95759C2 10.2572 2.23878 10.5 2.53333 10.5H9.46667C9.76122 10.5 10 10.2572 10 9.95759V3.87092M10 3.87092L11 4.5"
+                                      stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>
+                            </svg>
+						<?php endif; ?>
+                    </a>
+                    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke-width="1.6" stroke-linecap="round"
+                              stroke-linejoin="round"/>
+                    </svg>
+                    <span>Research</span>
+                </div>
+				<?php global $post;
+				$args      = [
 					'post_type'      => 'post',
 					'numberposts'    => 12,
 					'posts_per_page' => 12,
 				];
-				$posts = get_posts( $args );
-                $published = wp_count_posts()->publish
+				$posts     = get_posts( $args );
+				$published = wp_count_posts()->publish
 				?>
                 <div class="blog-banner__title">Research references<span
                             class="count"><?php echo wp_count_posts()->publish ?> articles</span></div>
@@ -27,13 +39,13 @@
         </div>
         <div class="blog-tags">
             <div class="container">
-				<?php
-				$tags = get_tags( $args );
-				?>
+                <div class="blog-tags__toggle">Show filters</div>
+				<?php $tags = get_tags( $args ); ?>
                 <div class="blog-tags__wrap">
                     <div class="blog-tags__tag" data-slug="">
                         All articles
-                        <svg class="blog-tags__close" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="blog-tags__close" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 5L5 15M5 5L15 15" stroke="white" stroke-width="1.6" stroke-linecap="round"
                                   stroke-linejoin="round"/>
                         </svg>
@@ -41,7 +53,8 @@
 					<?php foreach ( $tags as $tag ): ?>
                         <div class="blog-tags__tag" data-slug="<?php echo $tag->slug ?>">
 							<?php echo $tag->name; ?>
-                            <svg class="blog-tags__close" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="blog-tags__close" viewBox="0 0 20 20" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 5L5 15M5 5L15 15" stroke="white" stroke-width="1.6" stroke-linecap="round"
                                       stroke-linejoin="round"/>
                             </svg>

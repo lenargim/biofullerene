@@ -3,15 +3,21 @@
   &__breadcrumbs
     padding-top: 180px
     color: rgba(255, 255, 255, 0.6)
+    @include max(767)
+      padding-top: 110px
     svg
       stroke: #fff
     a
       color: #fff
   &-banner
+    width: 100%
     height: 520px
     background-repeat: no-repeat
-    background-position: center
+    background-position: center center
     background-size: cover
+    @include max(767)
+      height: unset
+      aspect-ratio: 320/272
     &__title
       margin-top: 150px
       font: 500 72px/80px $mainFont
@@ -20,8 +26,13 @@
       position: relative
       width: fit-content
       @include between(768, 1024)
-        font: 50px/60px $mainFont
-
+        font: 500 50px/60px $mainFont
+      @include max(767)
+        margin-top: 40px
+        font: 500 32px/38px $mainFont
+        display: flex
+        align-items: flex-end
+        justify-content: space-between
       .count
         font: 500 16px/24px $mainFont
         position: absolute
@@ -29,7 +40,35 @@
         left: calc(100% + 1em)
         white-space: nowrap
         letter-spacing: 0
+        @include max(767)
+          position: initial
+          font: 500 14px/20px $mainFont
   &-tags
+    &__toggle
+      color: $accent600
+      padding: 20px 0
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      gap: 4px
+      @include min(768)
+        display: none
+      &::before, &::after
+        content: ''
+        display: block
+        flex-shrink: 0
+        width: 16px
+        height: 16px
+      &::before
+        background: url("./assets/images/svg/filter.svg") center/cover no-repeat
+      &::after
+        background: url("./assets/images/svg/chevron-down.svg") center/cover no-repeat
+      &.open
+        &:after
+          transform: rotate(180deg)
+        & + .blog-tags__wrap
+          opacity: 1
+          max-height: 100%
     &__wrap
       display: flex
       align-items: center
@@ -37,6 +76,12 @@
       gap: 12px
       margin-top: 60px
       flex-wrap: wrap
+      @include max(767)
+        margin: 0
+        opacity: 0
+        max-height: 0
+        overflow: hidden
+        gap: 12px 4px
     &__tag
       cursor: pointer
       padding: 8px 10px
@@ -49,6 +94,9 @@
       align-items: center
       justify-content: center
       gap: 8px
+      @include max(767)
+        padding: 4px 12px
+        font: 500 12px/16px $mainFont
       &.active
         cursor: initial
         color: #fff
@@ -72,6 +120,11 @@
         grid-template-columns: repeat(2, 1fr)
       @include max(1023)
         grid-gap: 32px
+      @include max(767)
+        margin-top: 20px
+        grid-template-columns: 1fr
+        .research__item
+          margin: 0 auto
     &__button
       margin-top: 80px
       width: 100%

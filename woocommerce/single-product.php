@@ -20,23 +20,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_template_part( 'template-parts/header/header' ); ?>
-<?php $args = [
-	'delimiter'   => '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 15L12.5 10L7.5 5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-	'wrap_before' => '<nav class="breadcrumbs">',
-];
 
-if ( ! wp_is_mobile() ):
-	$args['home'] = 'Home';
-else:
-	$args['home'] = '<div class="home"></div>';
-endif;
-
-?>
 <main class="product-page">
 	<?php while ( have_posts() ) :the_post();
 		global $product; ?>
         <div class="container">
-			<?php echo woocommerce_breadcrumb( $args ); ?>
+            <div class="breadcrumbs">
+                <a href="/" class="home">
+					<?php if ( ! wp_is_mobile() ): ?>
+                        Home
+					<?php else: ?>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 4.5L2 3.87092M2 3.87092L5.58258 1.61718C5.83095 1.46094 6.16905 1.46094 6.41742 1.61718L10 3.87092M2 3.87092V9.95759C2 10.2572 2.23878 10.5 2.53333 10.5H9.46667C9.76122 10.5 10 10.2572 10 9.95759V3.87092M10 3.87092L11 4.5"
+                                  stroke="#657181" stroke-width="1.2" stroke-linecap="round"/>
+                        </svg>
+					<?php endif; ?>
+                </a>
+                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke-width="1.6" stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+                <span><?php echo $product->get_name(); ?></span>
+            </div>
             <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
                 <div class="product-page__wrap">
                     <div class="product-page__images">
@@ -156,9 +162,9 @@ endif;
 						<?php if ( $product->get_attribute( 'serving' ) ): ?>
                             <div class="product-page__serving"><?php echo $product->get_attribute( 'serving' ); ?></div>
 						<?php endif; ?>
-                        <?php if (!wp_is_mobile()): ?>
+						<?php if ( ! wp_is_mobile() ): ?>
                             <div class="product-page__desc"><?php echo $product->get_description(); ?></div>
-                        <?php endif; ?>
+						<?php endif; ?>
 						<?php if ( $product->is_type( 'variable' ) ): ?>
                         <form class="variations_form cart"
                               action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>"
@@ -272,9 +278,9 @@ endif;
                                    value="<?php echo $product->get_children()[0]; ?>"/>
                             <div href="#info" class="button white product-page__how">How it works?</div>
                         </form>
-	                    <?php if (wp_is_mobile()): ?>
+						<?php if ( wp_is_mobile() ): ?>
                             <div class="product-page__desc"><?php echo $product->get_description(); ?></div>
-	                    <?php endif; ?>
+						<?php endif; ?>
                         <div class="product-page__advantages">
 							<?php if ( get_field( 'advantages-title' ) ): ?>
                                 <div class="product-page__advantages-title"><?php the_field( 'advantages-title' ); ?></div>
@@ -459,84 +465,10 @@ endif;
                                 </select>
                             </div>
                         </div>
-                        <!--            --><?php //if (get_option('woocommerce_review_rating_verification_required') === 'no' || wc_customer_bought_product('', get_current_user_id(), $product->get_id())) : ?>
-                        <!--              <div id="review_form_wrapper">-->
-                        <!--                <div id="review_form">-->
-                        <!--                  --><?php
-						//                  $commenter = wp_get_current_commenter();
-						//                  $comment_form = array(
-						//                    /* translators: %s is product title */
-						//                      'title_reply' => have_comments() ? esc_html__('Add a review', 'woocommerce') : sprintf(esc_html__('Be the first to review &ldquo;%s&rdquo;', 'woocommerce'), get_the_title()),
-						//                    /* translators: %s is product title */
-						//                      'title_reply_to' => esc_html__('Leave a Reply to %s', 'woocommerce'),
-						//                      'title_reply_before' => '<span id="reply-title" class="comment-reply-title">',
-						//                      'title_reply_after' => '</span>',
-						//                      'comment_notes_after' => '',
-						//                      'label_submit' => esc_html__('Submit', 'woocommerce'),
-						//                      'logged_in_as' => '',
-						//                      'comment_field' => '',
-						//                  );
-						//
-						//                  $name_email_required = (bool)get_option('require_name_email', 1);
-						//                  $fields = array(
-						//                      'author' => array(
-						//                          'label' => __('Name', 'woocommerce'),
-						//                          'type' => 'text',
-						//                          'value' => $commenter['comment_author'],
-						//                          'required' => $name_email_required,
-						//                      ),
-						//                      'email' => array(
-						//                          'label' => __('Email', 'woocommerce'),
-						//                          'type' => 'email',
-						//                          'value' => $commenter['comment_author_email'],
-						//                          'required' => $name_email_required,
-						//                      ),
-						//                  );
-						//
-						//                  $comment_form['fields'] = array();
-						//
-						//                  foreach ($fields as $key => $field) {
-						//                    $field_html = '<p class="comment-form-' . esc_attr($key) . '">';
-						//                    $field_html .= '<label for="' . esc_attr($key) . '">' . esc_html($field['label']);
-						//
-						//                    if ($field['required']) {
-						//                      $field_html .= '&nbsp;<span class="required">*</span>';
-						//                    }
-						//
-						//                    $field_html .= '</label><input id="' . esc_attr($key) . '" name="' . esc_attr($key) . '" type="' . esc_attr($field['type']) . '" value="' . esc_attr($field['value']) . '" size="30" ' . ($field['required'] ? 'required' : '') . ' /></p>';
-						//
-						//                    $comment_form['fields'][$key] = $field_html;
-						//                  }
-						//
-						//                  $account_page_url = wc_get_page_permalink('myaccount');
-						//                  if ($account_page_url) {
-						//                    /* translators: %s opening and closing link tags respectively */
-						//                    $comment_form['must_log_in'] = '<p class="must-log-in">' . sprintf(esc_html__('You must be %1$slogged in%2$s to post a review.', 'woocommerce'), '<a href="' . esc_url($account_page_url) . '">', '</a>') . '</p>';
-						//                  }
-						//
-						//                  if (wc_review_ratings_enabled()) {
-						//                    $comment_form['comment_field'] = '<div class="comment-form-rating"><label for="rating">' . esc_html__('Your rating', 'woocommerce') . (wc_review_ratings_required() ? '&nbsp;<span class="required">*</span>' : '') . '</label><select name="rating" id="rating" required>
-						//						<option value="">' . esc_html__('Rate&hellip;', 'woocommerce') . '</option>
-						//						<option value="5">' . esc_html__('Perfect', 'woocommerce') . '</option>
-						//						<option value="4">' . esc_html__('Good', 'woocommerce') . '</option>
-						//						<option value="3">' . esc_html__('Average', 'woocommerce') . '</option>
-						//						<option value="2">' . esc_html__('Not that bad', 'woocommerce') . '</option>
-						//						<option value="1">' . esc_html__('Very poor', 'woocommerce') . '</option>
-						//					</select></div>';
-						//                  }
-						//
-						//                  $comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . esc_html__('Your review', 'woocommerce') . '&nbsp;<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" required></textarea></p>';
-						//
-						//                  comment_form(apply_filters('woocommerce_product_review_comment_form_args', $comment_form));
-						//                  ?>
-                        <!--                </div>-->
-                        <!--              </div>-->
-                        <!--            --><?php //endif; ?>
                     </div>
                 </div>
             </div>
         </div>
-
 		<?php get_template_part( 'template-parts/team' ); ?>
 		<?php get_template_part( 'template-parts/research' ); ?>
 		<?php get_template_part( 'template-parts/faq' ); ?>
