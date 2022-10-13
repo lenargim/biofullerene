@@ -19,6 +19,9 @@
       letter-spacing: -1.6px
       position: relative
       width: fit-content
+      @include between(768, 1024)
+        font: 50px/60px $mainFont
+
       .count
         font: 500 16px/24px $mainFont
         position: absolute
@@ -65,6 +68,10 @@
       grid-gap: 80px 32px
       @include between(1024, 1280)
         grid-gap: 60px 24px
+      @include between(768, 1024)
+        grid-template-columns: repeat(2, 1fr)
+      @include max(1023)
+        grid-gap: 32px
     &__button
       margin-top: 80px
       width: 100%

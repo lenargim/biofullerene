@@ -257,7 +257,7 @@ $(document).ready(function () {
         $('html, body').css('overflowY', 'initial')
     })
 
-    $('.mobile__menu .menu-item-has-children a').on('click', function (e){
+    $('.mobile__menu .menu-item-has-children > a').on('click', function (e){
         e.preventDefault();
         $(this).siblings('.submenu').toggle()
     })

@@ -128,7 +128,7 @@
 	                ?>
                     <div class="burger__buttons">
                         <a href="<?php echo $prod_link ?>" class="button blue burger__buy">Buy water now</a>
-                        <a href="#" class="burger__help button white">Need help?</a>
+                        <button class="open-modal-help burger__help button white">Need help?</button>
                     </div>
                 </div>
             </div>

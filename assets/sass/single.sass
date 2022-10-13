@@ -5,6 +5,8 @@
     h1
       font: 500 40px/48px $mainFont
       letter-spacing: -0.4px
+      @include between(768, 1024)
+        font: 500 32px/42px $mainFont
     &-desc
       margin-top: 24px
       color: $gray500
@@ -16,11 +18,11 @@
   &__main
     padding-top: 80px
     display: grid
-    grid-template-columns: 1fr 2fr
+    grid-template-columns: 2fr 5fr
     grid-gap: 30px
     padding-bottom: 120px
     border-bottom: 1px solid $gray50
-    @include between(1024, 1280)
+    @include between(768, 1280)
       grid-gap: 24px
   &__socials
     p

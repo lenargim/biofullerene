@@ -33,7 +33,7 @@
     display: grid
     grid-template-columns: 1fr 2fr
     grid-gap: 30px
-    @include between(1024, 1280)
+    @include between(768, 1280)
       grid-gap: 24px
       grid-template-columns: 2fr 5fr
 .block-about
@@ -60,6 +60,8 @@
     display: grid
     grid-template-columns: repeat(2, 1fr)
     gap: 32px
+    @include between(768, 1024)
+      gap: 24px
     &-item
       display: flex
       flex-direction: column

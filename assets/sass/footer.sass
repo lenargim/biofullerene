@@ -8,6 +8,9 @@
     color: #fff
     padding-bottom: 60px
     border-bottom: 1px solid $gray700
+    @include between(768, 1024)
+      grid-gap: 24px
+      grid-template-columns: 7fr 5fr
     &-title
       margin-bottom: 4px
       font: 500 18px/28px $mainFont
@@ -55,6 +58,8 @@
     display: grid
     grid-gap: 30px
     grid-template-columns: repeat(4, 1fr)
+    @include between(768, 1024)
+      grid-gap: 24px
   &__logo
     fill: #fff
     max-width: 150px
