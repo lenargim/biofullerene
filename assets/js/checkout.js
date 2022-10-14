@@ -100,4 +100,9 @@ $(document).ready(function () {
             })
         }
     })
+
+    $('.checkout__summary').on('click', function (){
+       $(this).toggleClass('open');
+       $('.checkout__data').slideToggle();
+    });
 })

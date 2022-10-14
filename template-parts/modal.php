@@ -44,7 +44,7 @@
             <a href="#" class="modal-help__item">Shipping</a>
         </div>
         <div class="modal-help__more">
-            <div class="modal-help__more-title">Can not find your answer? Please contact us</div>
+            <div class="modal-help__more-title">Can not find your answer? Please&nbsp;contact&nbsp;us</div>
             <button class="modal-help__more-link open-modal-question" type="button">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22 2.00024L11 13.0002M22 2.00024L15 22.0002L11 13.0002M22 2.00024L2 9.00024L11 13.0002"
@@ -54,8 +54,7 @@
             </button>
         </div>
         <div class="modal-help__footer">
-            Or contact us by email anytime and we’ll get back<br>
-            to you within 48 hours:
+            Or contact us by email anytime and we’ll get back to&nbsp;you within 48 hours:
             <a href="mailto:<?php echo the_field( 'email', 159 ); ?>">
 				<?php echo the_field( 'email', 159 ); ?></a>
         </div>

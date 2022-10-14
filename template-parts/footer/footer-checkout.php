@@ -63,9 +63,6 @@
     </div>
 </div>
 
-<?php if ( ( is_cart() || is_checkout() ) ):
-	return; ?>
-<?php endif; ?>
 <?php wp_footer(); ?>
 </body>
 </html>

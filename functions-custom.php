@@ -65,7 +65,7 @@ add_action( 'init', 'custom_posts' );
 function custom_posts() {
 	register_post_type( 'faq', array(
 		'labels'             => array(
-			'name'               => 'FAQ', // Основное название типа записи
+			'name'               => 'Frequently asked questions', // Основное название типа записи
 			'singular_name'      => 'faq', // отдельное название записи типа Book
 			'add_new'            => 'Add question',
 			'add_new_item'       => 'Add new question',

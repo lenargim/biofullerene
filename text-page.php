@@ -1,6 +1,6 @@
 <?php
 /**
- * Template name: Terms
+ * Template name: Text page
  **/
 ?>
 
@@ -30,7 +30,6 @@
             </div>
 
             <h1><?php the_title(); ?></h1>
-            <div class="single-post__banner-desc">Last Updated: <?php echo get_the_modified_time('F j, Y') ?></div>
         </div>
     </div>
     <div class="container">

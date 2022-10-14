@@ -1,7 +1,11 @@
 .checkout
   padding: 60px 0 80px
+  @include max(767)
+    padding: 0 0 40px
   h1
     font: 500 40px/48px $mainFont
+    @include max(767)
+      font: 500 24px/32px $mainFont
   &__back
     color: $gray400
     display: flex
@@ -11,6 +15,10 @@
     font: 500 14px/20px $mainFont
     margin-bottom: 32px
     width: fit-content
+    @include max(767)
+      padding: 12px 0
+      width: 100%
+      margin: 0
     svg
       flex-shrink: 0
       width: 16px
@@ -22,9 +30,18 @@
     align-items: center
     justify-content: flex-start
     gap: 40px
-    margin-top: 24px
-    padding-bottom: 24px
+    padding: 24px 0
     border-bottom: 1px solid $gray50
+    @include max(767)
+      padding: 20px 16px
+      width: 100vw
+      position: relative
+      left: -16px
+      overflow-x: auto
+      -ms-overflow-style: none
+      scrollbar-width: none
+      &::-webkit-scrollbar
+        display: none
     span
       white-space: nowrap
       position: relative
@@ -38,6 +55,30 @@
       position: absolute
       left: calc(100% + 12px)
       top: 2px
+  &__summary
+    order: 0
+    padding: 12px 16px
+    background: $gray25
+    font-weight: 500
+    color: $accent600
+    display: flex
+    align-items: center
+    justify-content: space-between
+    gap: 4px
+    &.open
+      &::after
+        transform: rotate(180deg)
+    @include min(768)
+      display: none
+    &::after
+      content: ''
+      width: 16px
+      height: 16px
+      background: url("./assets/images/svg/chevron-down.svg") no-repeat center/cover
+  &__main
+    @include max(767)
+      order: 2
+      padding: 20px 16px 0
   &__wrap
     display: grid
     grid-template-columns: 7fr 5fr
@@ -46,19 +87,35 @@
       display: flex
       flex-direction: column-reverse
       gap: 20px
+    @include max(767)
+      flex-direction: column
+      position: relative
+      left: -16px
+      width: 100vw
+      gap: 0
     h2
       margin-top: 32px
       color: $gray900
       font: 500 24px/32px $mainFont
+      @include max(767)
+        margin-top: 20px
+        font: 500 18px/28px $mainFont
   &__field-wrapper
     display: grid
     grid-template-columns: repeat(2, 1fr)
     grid-gap: 48px 16px
+    @include max(767)
+      grid-template-columns: 1fr
+      grid-gap: 48px
   &__last-row
     display: flex
     align-items: center
     justify-content: space-between
     margin-top: 40px
+    @include max(767)
+      margin-top: 36px
+      flex-direction: column-reverse
+      gap: 16px
     .back
       display: flex
       align-items: center
@@ -73,21 +130,38 @@
     .button
       padding: 12px 24px
   &__data
+    @include max(767)
+      order: 1
+      display: none
+      background: $gray25
+      .cart-page__payments
+        display: none
     .info
       background: #f6f6f8
       padding: 40px
       border-radius: 16px
       @include between(1024, 1280)
         padding: 20px
+      @include max(767)
+        background: transparent
+        padding: 20px 16px
       &__list
         margin: 0
         display: flex
         flex-direction: column
         gap: 12px
+        @include max(767)
+          gap: 20px
       &__item
         display: flex
         align-items: center
         gap: 16px
+        @include max(767)
+          flex-direction: column
+          gap: 8px
+          align-items: flex-start
+          border-bottom: 1px solid $gray50
+          padding-bottom: 20px
         &:not(:last-child)
           border-bottom: 1px solid $gray50
           padding-bottom: 12px
@@ -97,6 +171,10 @@
           border: 2px solid #fff
           border-radius: 12px
           position: relative
+          @include max(767)
+            width: 64px
+            height: 64px
+            border: none
           .count
             position: absolute
             color: #fff
@@ -124,6 +202,10 @@
         &-name
           font: 500 14px/20px $mainFont
           margin-bottom: 4px
+          @include max(767)
+            font: 500 16px/24px $mainFont
+            color: $accent600
+            margin-bottom: 8px
         &-desc
           color: $gray500
           font: 400 14px/20px $mainFont
@@ -134,6 +216,9 @@
           justify-content: flex-end
           gap: 12px
           white-space: nowrap
+          @include max(767)
+            justify-content: flex-start
+            margin: 0
           .regular
             color: $gray300
             text-decoration: line-through
@@ -149,6 +234,8 @@
       border-radius: 12px
       border: 1px solid $gray100
       display: none
+      @include max(767)
+        padding: 16px 20px
       &.active
         display: block
       &-title
@@ -158,6 +245,9 @@
         gap: 1em
         padding-bottom: 16px
         border-bottom: 1px solid $gray50
+        @include max(767)
+          padding-bottom: 12px
+          font: 500 14px/20px $mainFont
         span
           font-weight: 500
         .edit
@@ -167,6 +257,8 @@
       &-info
         font: 400 14px/20px $mainFont
         padding-top: 16px
+        @include max(767)
+          padding-top: 12px
       &-table
         display: grid
         grid-template-columns: 68px 1fr

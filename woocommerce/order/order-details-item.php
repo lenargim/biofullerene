@@ -34,6 +34,7 @@ if ( ! apply_filters( 'woocommerce_order_item_visible', true, $item ) ) {
 		?>
         <a href="<?php echo $product_permalink; ?>" class="mini-cart__img img">
 			<?php echo $product->get_image(); ?>
+            <span class="qty"><?php echo $qty ?></span>
         </a>
         <div class="thankyou__order-info">
             <div class="thankyou__order-name"><?php echo $product->get_title(); ?></div>

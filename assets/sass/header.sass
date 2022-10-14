@@ -220,6 +220,9 @@
         height: 16px
         stroke: $success400
         flex-shrink: 0
+      @include max(767)
+        span
+          display: none
     &__help
       display: flex
       align-items: center
@@ -233,6 +236,9 @@
         height: 16px
         stroke: $accent600
         flex-shrink: 0
+      @include max(767)
+        span
+          display: none
   &__cookies
     position: fixed
     left: 12px
@@ -245,6 +251,15 @@
     align-items: center
     justify-content: space-between
     gap: 32px
+    a
+      color: $accent600
+      text-decoration: underline
+    @include max(767)
+      flex-direction: column
+      font: 400 14px/16px $mainFont
+      gap: 12px
+      a
+        font: 400 14px/16px $mainFont
     p
       font-size: 14px
     &-buttonbox
@@ -255,6 +270,8 @@
       .button
         padding: 8px 12px
         font-size: 14px
+        @include max(767)
+          padding: 8px 30px
 .sub-menu-toggle
   display: none
 

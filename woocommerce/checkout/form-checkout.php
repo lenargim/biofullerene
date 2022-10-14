@@ -40,6 +40,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                 <span>Back to cart</span>
             </a>
             <div class="checkout__wrap">
+                <div class="checkout__summary">Order summary (<?php echo WC()->cart->get_cart_contents_count(); ?>)</div>
                 <div class="checkout__main" id="customer_details">
 					<?php if ( $checkout->get_checkout_fields() ) : ?>
                         <h1>Checkout</h1>

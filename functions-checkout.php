@@ -1,33 +1,58 @@
 <?php
 
-    // add fields
-    add_action( 'woocommerce_after_checkout_billing_form', 'subscribe_checkbox' );
 
-    // save fields to order meta
-    add_action( 'woocommerce_checkout_update_order_meta', 'save_what_we_added' );
 
-// checkbox
-function subscribe_checkbox( $checkout ) {
 
-	woocommerce_form_field(
-		'subscribed',
-		array(
-			'type'     => 'checkbox',
-			'class'    => array( 'checkbox-row' ),
-			'label'    => ' Email me with news and offers',
-			'required' => true,
-		),
-		$checkout->get_value( 'subscribed' )
-	);
+add_action( 'woocommerce_after_checkout_billing_form', 'my_custom_checkout_field' );
 
+function my_custom_checkout_field( $checkout ) {
+
+	woocommerce_form_field( 'send_emails', array(
+		'type'        => 'checkbox',
+		'class'       => array( 'checkbox-row' ),
+		'label'       => ' Email me with news and offers',
+		'required'    => true,
+        'priority' => 120
+	), $checkout->get_value( 'send_emails' ) );
 }
 
-// save field values
-function save_what_we_added( $order_id ) {
-	if ( ! empty( $_POST['subscribed'] ) && 1 === $_POST['subscribed'] ) {
-		update_post_meta( $order_id, 'subscribed', 1 );
+add_action( 'woocommerce_checkout_update_order_meta', 'bbloomer_save_new_checkout_field' );
+
+function bbloomer_save_new_checkout_field( $order_id ) {
+	if ( $_POST['send_emails'] ) update_post_meta( $order_id, '_send_emails', esc_attr( $_POST['send_emails'] ) );
+}
+
+//add_action( 'woocommerce_thankyou', 'bbloomer_show_new_checkout_field_thankyou' );
+//
+//function bbloomer_show_new_checkout_field_thankyou( $order_id ) {
+//	if ( get_post_meta( $order_id, '_send_emails', true ) ) echo '<p><strong>License Number:</strong> ' . get_post_meta( $order_id, '_send_emails', true ) . '</p>';
+//}
+
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'bbloomer_show_new_checkout_field_order' );
+
+function bbloomer_show_new_checkout_field_order( $order ) {
+	$order_id = $order->get_id();
+    echo '<p><strong>Send emails:</strong> ';
+    if (get_post_meta( $order_id, '_send_emails', true ) ) {
+        echo 'yes';
+    } else {
+        echo 'no';
+    }
+}
+
+add_action( 'woocommerce_email_after_order_table', 'bbloomer_show_new_checkout_field_emails', 20, 4 );
+
+function bbloomer_show_new_checkout_field_emails( $order, $sent_to_admin, $plain_text, $email ) {
+	$order_id = $order->get_id();
+	echo '<p><strong>Send emails:</strong> ';
+	if (get_post_meta( $order_id, '_send_emails', true ) ) {
+		echo 'yes';
+	} else {
+		echo 'no';
 	}
 }
+
+
 
 add_filter( 'default_checkout_billing_country', 'change_default_checkout_country_and_state' );
 add_filter( 'default_checkout_shipping_country', 'change_default_checkout_country_and_state' );
@@ -211,32 +236,31 @@ function checkout_fields_edit( $fields ) {
 	return $fields;
 }
 
-add_filter('woocommerce_default_address_fields', 'custom_woocommerce_default_address_fields', 9999);
-function custom_woocommerce_default_address_fields($fields)
-{
-	$fields['state']['class'][0] = 'form-row-first';
-	$fields['postcode']['class'][0] = 'form-row-last';
-	$fields['state']['class'][1] = 'second-validation';
-	$fields['postcode']['class'][1] = 'second-validation';
+add_filter( 'woocommerce_default_address_fields', 'custom_woocommerce_default_address_fields', 9999 );
+function custom_woocommerce_default_address_fields( $fields ) {
+	$fields['state']['class'][0]     = 'form-row-first';
+	$fields['postcode']['class'][0]  = 'form-row-last';
+	$fields['state']['class'][1]     = 'second-validation';
+	$fields['postcode']['class'][1]  = 'second-validation';
 	$fields['address_1']['class'][0] = 'second-validation';
 	$fields['address_2']['class'][0] = 'second-validation';
-	$fields['city']['class'][0] = 'second-validation';
-	$fields['city']['class'][1] = 'form-row-wide';
+	$fields['city']['class'][0]      = 'second-validation';
+	$fields['city']['class'][1]      = 'form-row-wide';
 	$fields['address_1']['class'][1] = 'form-row-wide';
 	$fields['address_2']['class'][1] = 'form-row-wide';
 
 
-	$fields['address_1']['label'] = 'Address';
-	$fields['address_2']['label'] = 'Apartment, suite, etc.';
-	$fields['address_2']['label_class'] = [''];
+	$fields['address_1']['label']       = 'Address';
+	$fields['address_2']['label']       = 'Apartment, suite, etc.';
+	$fields['address_2']['label_class'] = [ '' ];
 	$fields['address_1']['placeholder'] = 'Enter your address';
 	$fields['address_2']['placeholder'] = 'Enter your apartment, suite, etc.';
-	$fields['postcode']['placeholder'] = 'Enter zip code';
+	$fields['postcode']['placeholder']  = 'Enter zip code';
 	$fields['address_1']['description'] = 'Please, enter your address';
-	$fields['city']['description'] = 'Please, enter your town/city';
+	$fields['city']['description']      = 'Please, enter your town/city';
 	$fields['address_2']['description'] = 'Please, enter your apartment, suite, etc.';
-	$fields['state']['description'] = 'Please, choose state';
-	$fields['postcode']['description'] = 'Please, enter zip code';
+	$fields['state']['description']     = 'Please, choose state';
+	$fields['postcode']['description']  = 'Please, enter zip code';
 
 	$fields['address_2']['required'] = true;
 

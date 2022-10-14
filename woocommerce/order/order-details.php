@@ -90,6 +90,5 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
  */
 do_action( 'woocommerce_after_order_details', $order );
 
-if ( $show_customer_details ) {
-	wc_get_template( 'order/order-details-customer.php', array( 'order' => $order ) );
-}
+
+wc_get_template( 'order/order-details-customer.php', array( 'order' => $order ) );

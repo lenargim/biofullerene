@@ -22,11 +22,11 @@ $count = $cart->get_cart_contents_count(); ?>
                     </svg>
 			    <?php endif; ?>
             </a>
-            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="separator" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.5 15L12.5 10L7.5 5" stroke-width="1.6" stroke-linecap="round"
                       stroke-linejoin="round"/>
             </svg>
-            <span>Research</span>
+            <span><?php wp_title('') ?></span>
         </div>
         <h1 class="cart-page__title">
       <span>Your Cart
