@@ -266,3 +266,5 @@ function custom_woocommerce_default_address_fields( $fields ) {
 
 	return $fields;
 }
+
+remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );

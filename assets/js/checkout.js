@@ -101,6 +101,13 @@ $(document).ready(function () {
         }
     })
 
+    $('.open-payment-part').on('click', function () {
+       $('.method-part').hide();
+       $('.saved-part').hide();
+       $('.payment-part').show();
+        $('.checkout__breadcrumbs span').addClass('active');
+    });
+
     $('.checkout__summary').on('click', function (){
        $(this).toggleClass('open');
        $('.checkout__data').slideToggle();

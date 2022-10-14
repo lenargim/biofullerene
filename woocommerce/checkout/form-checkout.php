@@ -202,21 +202,23 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                 </button>
 								<?php do_action( 'woocommerce_review_order_before_submit' ); ?>
 
-								<?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button blue alt" name="woocommerce_checkout_place_order" id="place_order" value="Continue to payment" data-value="Continue to payment">Continue to payment</button>' ); // @codingStandardsIgnoreLine ?>
+								<button type="button" class="button blue alt open-payment-part" value="Continue to payment" >Continue to payment</button>
 
 								<?php do_action( 'woocommerce_review_order_after_submit' ); ?>
 
                             </div>
                         </div>
+                    <div class="checkout-part payment-part">
+                        <?php woocommerce_checkout_payment(); ?>
+	                    <?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button blue alt checkout__pay-button" name="woocommerce_checkout_place_order" id="place_order" value="Pay" data-value="Submit Payment">Pay</button>' ); // @codingStandardsIgnoreLine ?>
+                    </div>
 
 						<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
 
 					<?php endif; ?>
                 </div>
                 <div class="checkout__data">
-
 					<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
-
                     <div id="order_review" class="woocommerce-checkout-review-order">
 						<?php do_action( 'woocommerce_checkout_order_review' ); ?>
                     </div>
@@ -241,6 +243,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     </div>
 
 					<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
+
                 </div>
             </div>
         </div>

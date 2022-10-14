@@ -2,6 +2,9 @@
   padding: 60px 0 80px
   @include max(767)
     padding: 0 0 40px
+  &__pay-button
+    margin-top: 10px
+    padding: 12px 24px
   h1
     font: 500 40px/48px $mainFont
     @include max(767)
@@ -406,8 +409,25 @@
       transform: rotate(-135deg)
 
 .payment_methods
-  display: none
-#billing_country_field, .shipping-part, .method-part, .saved-part
+  //display: none
+#billing_country_field, .shipping-part, .method-part, .saved-part, .payment-part
   display: none
 #ship-to-different-address
   display: none
+
+.woocommerce-checkout-payment
+  margin-top: 30px
+  .wc_payment_method
+    label
+      font: 500 16px/24px $mainFont
+      padding-bottom: 10px
+    p
+      margin: 1em 0
+    fieldset
+      margin: 0
+      padding: 0
+      border: none
+    .wc-payment-form
+      display: flex
+      flex-direction: column
+      gap: 5px
