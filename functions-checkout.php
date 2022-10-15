@@ -56,7 +56,7 @@ function bbloomer_show_new_checkout_field_emails( $order, $sent_to_admin, $plain
 
 add_filter( 'default_checkout_billing_country', 'change_default_checkout_country_and_state' );
 add_filter( 'default_checkout_shipping_country', 'change_default_checkout_country_and_state' );
-function change_default_checkout_country_and_state( $default ) {
+function change_default_checkout_country_and_state( ) {
 	return 'US';
 }
 

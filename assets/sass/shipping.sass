@@ -1,0 +1,28 @@
+.shipping
+  margin-top: 32px
+  &__title
+    margin-bottom: 12px
+    display: flex
+    align-items: center
+    gap: 8px
+    font-weight: 500
+  &__selection
+    background: $accent25
+    border: 1px solid $accent100
+    padding: 12px 16px
+    border-radius: 8px
+    justify-content: flex-start
+    gap: 4px
+    &::before
+      content: ''
+      width: 24px
+      height: 24px
+      flex-shrink: 0
+      margin-right: 8px
+      background: url("./assets/images/svg/package.svg") center/cover no-repeat
+    .select2-selection__arrow
+      width: 16px
+      height: 16px
+      background: url("./assets/images/svg/chevron-down.svg") center/cover no-repeat
+  .select2-search
+    border: 1px solid $gray50

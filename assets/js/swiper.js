@@ -95,26 +95,28 @@ $(document).ready(function () {
     });
 
 
-    const product = new Swiper('.product-page__slider', {
-        slidesPerView: 1,
-        speed: 200,
-        spaceBetween: 32,
-        pagination: {
-            el: '.product-page__thumbs-mobile',
-            type: 'bullets',
-        },
-        thumbs: {
-            swiper: productThumbs && false,
-        },
-        breakpoints: {
-            320: {
-                allowTouchMove: true,
+    if (productThumbs) {
+        const product = new Swiper('.product-page__slider', {
+            slidesPerView: 1,
+            speed: 200,
+            spaceBetween: 32,
+            pagination: {
+                el: '.product-page__thumbs-mobile',
+                type: 'bullets',
             },
-            1280: {
-                allowTouchMove: false,
+            thumbs: {
+                swiper: productThumbs,
+            },
+            breakpoints: {
+                320: {
+                    allowTouchMove: true,
+                },
+                1280: {
+                    allowTouchMove: false,
+                }
             }
-        }
-    });
+        });
+    }
 
 
     const related = new Swiper('.single-post__slider', {

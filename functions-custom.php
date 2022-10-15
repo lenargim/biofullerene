@@ -614,3 +614,20 @@ function wp_kama_comment_post_redirect_filter( $location, $comment ){
 	// filter...
 	return $location;
 }
+
+add_action('woocommerce_checkout_update_order_review', 'checkout_update_refresh_shipping_methods', 10, 1);
+function checkout_update_refresh_shipping_methods( $post_data ) {
+	$packages = WC()->cart->get_shipping_packages();
+	foreach ($packages as $package_key => $package ) {
+		WC()->session->set( 'shipping_for_package_' . $package_key, false ); // Or true
+	}
+}
+
+add_action( 'wp_ajax_update_shipping_method', 'update_shipping_method_ajax' );
+add_action( 'wp_ajax_nopriv_update_shipping_method', 'update_shipping_method_ajax' );
+
+function update_shipping_method_ajax() {
+    WC()->cart->calculate_totals();
+	wc_cart_totals_shipping_html();
+	wp_die();
+}

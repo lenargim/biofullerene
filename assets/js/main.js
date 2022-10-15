@@ -6,7 +6,6 @@ $(document).ready(function () {
     $('input[name="question-order"]').mask('000-000-000');
     $('#age').mask('ZZZ', {translation: {'Z': {pattern: /[0-9]/}}});
 
-
     $('.cross').on('click', closeShippingPopup);
 
     $('.faq__item').on('click', function () {
@@ -274,6 +273,13 @@ $(document).ready(function () {
             div.removeClass('active');
         }
     });
+
+
+    $('#shipping__list').select2({
+        dropdownParent: $('#shipping'),
+        selectionCssClass: 'shipping__selection',
+        dropdownCssClass: 'shipping__dropdown',
+    })
 });
 
 $(document).scroll(function () {

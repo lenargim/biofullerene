@@ -68,7 +68,9 @@ defined('ABSPATH') || exit; ?>
     </div>
     <div>
       <div class="cart-page__info">
-        <div class="cart-page__shipping">shipping</div>
+        <div class="cart-page__shipping">
+            <?php get_template_part('template-parts/shipping'); ?>
+        </div>
         <div class="mini-cart__total cart-page__total">
           <div class="mini-cart__total-row">
             <span>Subtotal:</span><span>$<span class="subtotal"><?php echo $cart->subtotal; ?></span> </span>

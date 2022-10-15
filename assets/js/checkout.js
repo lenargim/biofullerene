@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('body').on('blur change', '#billing_first_name, #billing_last_name, #shipping_city', function () {
+    $('body').on('blur change', '#billing_first_name, #billing_last_name, #shipping_city, #shipping_state', function () {
         const wrapper = $(this).closest('.validate-required');
         // you do not have to removeClass() because Woo do it in checkout.js
         if (/\d/.test($(this).val()) || !$(this).val()) { // check if contains numbers
@@ -30,6 +30,8 @@ $(document).ready(function () {
             wrapper.addClass('validated').removeClass('invalid'); // success
         }
     });
+
+
 
     function validateEmail(val) {
         const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -102,14 +104,51 @@ $(document).ready(function () {
     })
 
     $('.open-payment-part').on('click', function () {
-       $('.method-part').hide();
-       $('.saved-part').hide();
-       $('.payment-part').show();
+        $('.method-part').hide();
+        $('.saved-part').hide();
+        $('.payment-part').show();
         $('.checkout__breadcrumbs span').addClass('active');
     });
 
-    $('.checkout__summary').on('click', function (){
-       $(this).toggleClass('open');
-       $('.checkout__data').slideToggle();
+    $('.checkout__summary').on('click', function () {
+        $(this).toggleClass('open');
+        $('.checkout__data').slideToggle();
     });
+
+    $('#shipping_country').select2({
+        dropdownParent: $('#shipping_country_field')
+    });
+    $('#shipping_state').select2({
+        dropdownParent: $('#shipping_state_field')
+    });
+
+
+    $('#shipping_state, #shipping_country').on('select2:select', function (e) {
+        $(this).parents('.validate-required').addClass('validated').removeClass('invalid');
+
+        const ajax_url = window.ajaxVar.ajaxurl || false;
+        $.ajax({
+            type: 'POST',
+            url: ajax_url,
+            data: {
+                action: 'update_shipping_method',
+            },
+            success: function (data) {
+                $('.checkout__method').html(data);
+                $( 'body' ).trigger( 'update_checkout' );
+            },
+            error: function (error) {
+                console.log(error)
+            },
+        });
+    });
+
+    $('#shipping_country').on('select2:select', function (e) {
+        if ($('#shipping_state').find('option').length) {
+            $('#shipping_state').select2({
+                dropdownParent: $('#shipping_country_field')
+            })
+        };
+    });
+
 })
