@@ -23,6 +23,7 @@
         <section class="caring block">
             <div class="container">
                 <div class="caring__wrap">
+                    <div class="caring__img"></div>
                     <div class="caring__text">
                         <h2><?php the_field( 'caring-title' ) ?></h2>
                         <div class="caring__desc main-text"><?php the_field( 'caring-text' ) ?></div>
@@ -36,6 +37,9 @@
 					<?php endif; ?>
                 </div>
             </div>
+            <svg class="line" width="379" height="241" viewBox="0 0 379 241" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M372.512 94.73C262 169.718 256.14 -12.7875 170 0.717624C60.3392 17.9103 178.551 190.194 3 230.718" stroke="#FBCEB1" stroke-width="20" stroke-dasharray="4 24"/>
+            </svg>
         </section>
 		<?php get_template_part( 'template-parts/benefits' ); ?>
         <section class="mainpage-products block">
@@ -102,8 +106,16 @@
 					<?php endwhile; ?>
                 </div>
             </div>
+            <svg class="line" width="578" height="264" viewBox="0 0 578 264" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 68.3914C26.0541 45.6681 128.637 -15.9897 194.409 22.1901C274 68.3915 173.443 193.42 290.418 240.921C439 301.256 563.164 124.779 568 17.0535" stroke="#FBCEB1" stroke-width="20" stroke-dasharray="4 24"/>
+            </svg>
         </section>
-		<?php get_template_part( 'template-parts/info' ); ?>
+        <div class="info-desktop">
+	        <?php get_template_part( 'template-parts/info' ); ?>
+            <svg class="line" width="379" height="241" viewBox="0 0 379 241" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M372.512 94.73C262 169.718 256.14 -12.7875 170 0.717624C60.3392 17.9103 178.551 190.194 3 230.718" stroke="#FBCEB1" stroke-width="20" stroke-dasharray="4 24"/>
+            </svg>
+        </div>
 		<?php get_template_part( 'template-parts/team' ); ?>
 		<?php get_template_part( 'template-parts/research' ); ?>
         <section class="reviews block">

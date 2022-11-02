@@ -19,7 +19,9 @@ $posts = get_posts($args);
           <div class="faq__item <?php if ($faq_count == 1) echo 'opened'; ?>">
             <div class="faq__item-title">
               <span><?php the_title(); ?></span>
-              <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#arrow"></use></svg>
+                <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 15L12.5 10L7.5 5" stroke="#3D434C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
             <div class="faq__item-content"><?php the_content(); ?></div>
           </div>

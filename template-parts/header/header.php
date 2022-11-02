@@ -9,8 +9,7 @@
 		                                is_page_template( 'locations.php' ) ||
 		                                is_page_template( 'company.php' ) ) {
 			echo 'transparent ';
-		} else if ( is_single() ||
-		            is_post_type_archive( 'faq' ) ||
+		} else if ( is_post_type_archive( 'faq' ) ||
 		            is_page_template( 'terms.php' )
 		) {
 			echo 'blue';

@@ -4,7 +4,6 @@
   top: 0
   background: transparent
   z-index: 3
-  border-bottom: 1px solid $gray50
   .burger svg, .header__cart svg
     stroke: $gray900
   &.blue
@@ -86,6 +85,8 @@
     position: relative
     z-index: 1
     overflow: hidden
+    &:hover
+      background: $accent800
     &.closed
       padding: 0
       height: 0
@@ -125,6 +126,14 @@
     gap: 8px
     font-weight: 500
     cursor: pointer
+    &:hover
+      color: $gray600
+      .amount
+        border-color: $gray600
+    &:active
+      color: $gray400
+      .amount
+        border-color: $gray400
     .amount
       flex-shrink: 0
       display: flex

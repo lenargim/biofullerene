@@ -160,6 +160,12 @@
     justify-content: center
     flex-shrink: 0
     cursor: pointer
+    &:not(.disabled):hover, &:focus
+      background: $accent25
+      border-color: $accent100
+    &:not(.disabled):active
+      background: $accent50
+      border-color: $accent100
     &.disabled
       cursor: initial
       border-color: $gray50

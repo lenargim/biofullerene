@@ -102,6 +102,11 @@
     a
       font-weight: 500
       color: #fff
+      &:hover
+        text-decoration: underline
+      &:active
+        text-decoration: unset
+        color: $gray400
   &__help
     display: inline-block
     white-space: nowrap
@@ -113,6 +118,7 @@
     filter: drop-shadow(0px 1px 2px rgba(13, 18, 30, 0.04))
     border-radius: 200px
     font-weight: 500
+
     @include max(767)
       width: 100%
       text-align: center
@@ -156,4 +162,14 @@
       gap: 16px
       justify-content: center
       text-align: center
-      font: 500 14px/20px $mainFont
+      font: 500 16px/24px $mainFont
+    &-menu
+      display: flex
+      gap: 32px
+      @include max(767)
+        flex-direction: column
+        gap: 12px
+        font: 500 16px/24px $mainFont
+      a
+        font-weight: 500
+        color: $gray400

@@ -1,7 +1,7 @@
 <?php if ( ( is_cart() ) ):
 	return; ?>
 <?php endif; ?>
-<div class="overlay <?php if ( isset($_COOKIE['review_added']) ): echo 'active'; endif; ?> ">
+<div class="overlay <?php if ( isset( $_COOKIE['review_added'] ) ): echo 'active'; endif; ?> ">
     <div class="modal mini-cart">
 		<?php woocommerce_mini_cart() ?>
     </div>
@@ -157,17 +157,15 @@
 <input id="email" name="email" type="email" value="" size="30" aria-describedby="email-notes" placeholder="example@gmail.com" />
 <span class="description">Please, enter your email</span>
 </p>',
-									'cookies' => '',
+//									'cookies' => '',
 								],
 								'comment_field'        => '<p class="form-row validate-required"><label for="comment">Your review</label><textarea id="comment" name="comment" aria-required="true" placeholder="Enter a review..."></textarea><span class="description">Please, share your shopping experience</span></p>',
 								'submit_button'        => '<input type="submit" class="submit button blue modal-review__submit" value="Leave a review" name="submit" />'
 							];
-
 							comment_form( $args );
 							?>
                         </div>
                     </div>
-
                     <div class="clear"></div>
                     <div class="modal-question__footer">By clicking on the "Leave a review" button, I agree to the<br>
                         <a href="<?php echo get_privacy_policy_url(); ?>" class="policy">privacy policy</a> and use of
@@ -177,7 +175,7 @@
                 </div>
             </div>
         </div>
-		<?php if ( isset($_COOKIE['review_added']) ): ?>
+		<?php if ( isset( $_COOKIE['review_added'] ) ): ?>
             <div class="modal modal-review-send active">
                 <div class="close closed remove-cookie">
                     <svg>

@@ -199,13 +199,23 @@ svg
   &.blue
     background: $accent700
     color: #fff
-    &.disabled
+    &:hover
+      background: $accent600
+    &:active
+      background: $accent800
+    &.disabled, &:disabled
       background: $accent50
   &.white
     background: #fff
     border: 1px solid $gray100
     box-shadow: 0 1px 2px rgba(13, 18, 30, 0.04)
     color: $accent700
+    &:hover
+      background: $accent25
+      border-color: $accent100
+    &:active
+      background: $accent50
+      border-color: $accent100
     &.disabled
       border-color: $gray50
       color: $gray50
@@ -242,5 +252,6 @@ svg
 .sup
   color: $gray300
   font: 500 14px/20px $mainFont
-.page-banner
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 0 4px 4px rgba(0, 0, 0, 0.25)
+.line
+  position: absolute
+  z-index: 1

@@ -280,6 +280,15 @@ $(document).ready(function () {
         selectionCssClass: 'shipping__selection',
         dropdownCssClass: 'shipping__dropdown',
     })
+
+    $(document).mouseup( function(e){
+        const div = $( ".modal" );
+        if ( !div.is(e.target)
+            && div.has(e.target).length === 0 ) {
+            div.removeClass('active')
+            $('.overlay').removeClass('active')
+        }
+    });
 });
 
 $(document).scroll(function () {

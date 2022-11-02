@@ -9,6 +9,8 @@
       grid-gap: 24px
   &__item
     cursor: pointer
+    &:hover svg
+      background: $accent50
     &:not(:last-child)
       border-bottom: 1px solid $gray100
     &.opened
@@ -35,6 +37,7 @@
         stroke: $accent700
         transform: rotate(90deg)
         flex-shrink: 0
+        border-radius: 50%
     &-content
       max-height: 0
       overflow: hidden

@@ -19,7 +19,7 @@
       <?php wp_nav_menu([
           'menu' => 34,
           'container' => false,
-          'menu_class' => 'footer__policy-menu',
+          'menu_class' => 'footer-checkout__policy-menu',
           'depth' => 1,
       ]) ?>
     </div>

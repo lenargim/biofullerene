@@ -8,6 +8,13 @@
     font: 500 14px/20px $mainFont
     gap: 8px
     color: $gray500
+  a
+    &:hover
+      color: $gray600
+      text-decoration: underline
+    &:active
+      color: $gray700
+      text-decoration: unset
   @include max(767)
     gap: 4px
     padding: 12px 0

@@ -11,6 +11,7 @@ $(document).ready(function () {
         },
         scrollbar: {
             el: '.custom-scrollbar',
+            draggable: true,
         },
         a11y: {
             enabled: false,
@@ -42,6 +43,7 @@ $(document).ready(function () {
         },
         scrollbar: {
             el: '.custom-scrollbar',
+            draggable: true,
         },
         breakpoints: {
             // when window width is >= 320px
@@ -64,7 +66,6 @@ $(document).ready(function () {
     });
 
     const products = new Swiper('.mainpage-multiple__slider', {
-        slidesPerView: 3,
         allowTouchMove: false,
         speed: 200,
         spaceBetween: 32,
@@ -75,6 +76,7 @@ $(document).ready(function () {
         },
         scrollbar: {
             el: '.custom-scrollbar',
+            draggable: true,
         },
         breakpoints: {
             320: {
@@ -84,6 +86,9 @@ $(document).ready(function () {
             768: {
                 slidesPerView: 2,
             },
+            1280: {
+                slidesPerView: 3,
+            }
         }
     });
 
@@ -129,6 +134,7 @@ $(document).ready(function () {
         },
         scrollbar: {
             el: '.custom-scrollbar',
+            draggable: true,
         },
         breakpoints: {
             320: {
@@ -162,7 +168,8 @@ $(document).ready(function () {
             },
             768: {
                 slidesPerView: 2,
-            }
+            },
+
         }
     })
 

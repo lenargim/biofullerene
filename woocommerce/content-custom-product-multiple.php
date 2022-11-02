@@ -42,7 +42,9 @@ if (empty($product) || !$product->is_visible()) {
       </div>
     <?php endif; ?>
     <div class="mainpage-multiple__box">
-      <?php woocommerce_template_loop_add_to_cart() ?>
+        <?php if ( !$product->is_type( 'variable' ) ): ?>
+	        <?php woocommerce_template_loop_add_to_cart(); ?>
+        <?php endif; ?>
       <a href="<?php echo get_permalink( $product->ID ); ?>" class="mainpage-multiple__link button white">Explore</a>
     </div>
   </div>

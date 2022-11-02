@@ -1,18 +1,35 @@
 .caring
+  position: relative
   width: 100%
   z-index: 0
-  background: $accent25 url("./assets/images/caring.png") left 10% no-repeat
-  background-blend-mode: multiply
-  overflow: hidden
+  background: $accent25
+  .line
+    right: -50px
+    top: calc(100% - 50px)
   @include max(1023)
     background-position: top center
     background-size: contain
   &__img
     position: absolute
-    left: 0
+    right: 50vw
     top: 0
-    max-width: 50vw
-    z-index: 0
+    height: 600px
+    background-blend-mode: multiply
+    background: $accent25 url("./assets/images/caring.png") top right/cover no-repeat
+    aspect-ratio: 10/6
+    z-index: -1
+    @include max(1023)
+      position: relative
+      height: unset
+      aspect-ratio: 320/236
+    @include between(768, 1023)
+      background: $accent25 url("./assets/images/caring-crop.png") center/cover no-repeat
+      left: -40px
+      width: calc(100% + 80px)
+    @include max(767)
+      background:  #fff url("./assets/images/caring-mobile.png") top right/cover no-repeat
+      left: -16px
+      width: calc(100% + 32px)
   &__text
     position: relative
     z-index: 1
@@ -20,7 +37,7 @@
     margin-left: auto
     @include max(1023)
       width: 100%
-      margin: 70vw 0 0
+      margin: 30px 0 0
   &__desc
     span[style*="text-decoration: underline;"]
       position: relative

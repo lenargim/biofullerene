@@ -32,6 +32,9 @@
             <h1><?php the_title(); ?></h1>
             <div class="single-post__banner-desc">Last Updated: <?php echo get_the_modified_time('F j, Y') ?></div>
         </div>
+        <svg class="line" width="494" height="479" viewBox="0 0 494 479" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M461.708 46.458C461.708 46.458 539.829 219.404 404.905 233.837C280.993 247.092 270.949 -26.7582 101.18 14.5959C-98.636 63.269 198.489 410.475 4.10157 476.021" stroke="#FBCEB1" stroke-width="20" stroke-dasharray="4 24"/>
+        </svg>
     </div>
     <div class="container">
         <div class="single-post__main">

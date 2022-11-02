@@ -25,20 +25,27 @@
     font-weight: 500
     display: block
     white-space: nowrap
+    position: relative
+    &::after
+      content: ''
+      left: 0
+      right: 0
+      height: 1px
+      bottom: -1px
+      background: $gray100
+      position: absolute
+    &:hover
+      color: $gray700
+      &:after
+        height: 2px
     @include max(767)
       padding: 12px 8px
       font: 500 14px/20px $mainFont
     &.active
       color: $accent700
-      position: relative
       &::after
-        content: ''
-        left: 0
-        right: 0
         height: 2px
-        bottom: -1px
         background: $accent700
-        position: absolute
   &__wrap
     display: grid
     grid-template-columns: 1fr 2fr
@@ -57,6 +64,8 @@
   &__slider
     @include max(767)
       margin-top: 30px
+      .swiper-slide
+        max-width: 260px
     &-img
       border-radius: 12px
       overflow: hidden
@@ -72,8 +81,6 @@
       margin-top: 24px
       @include max(767)
         display: flex
-    .swiper-slide
-      max-width: 260px
 .block-mission
   padding-top: 120px
   @include max(767)

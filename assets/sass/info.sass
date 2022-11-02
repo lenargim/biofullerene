@@ -10,8 +10,13 @@
   &__img-box
     width: 50%
     position: relative
+    z-index: 1
     @include max(1023)
       width: 100%
+    .line
+      top: 70px
+      left: 0
+      z-index: -1
   &__img
     border-radius: 12px
     &.big
@@ -73,3 +78,8 @@
         position: relative
         top: -4px
         flex-shrink: 0
+.info-desktop
+  position: relative
+  &>.line
+    right: -50px
+    top: -100px
