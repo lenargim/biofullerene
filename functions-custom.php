@@ -491,35 +491,6 @@ function customizing_cart_item_data( $cart_data, $cart_item ) {
 }
 
 
-add_action( 'wp_ajax_cancel_delete', 'cancel_product_delete' );
-add_action( 'wp_ajax_nopriv_cancel_delete', 'cancel_product_delete' );
-
-function cancel_product_delete() {
-	$key          = sanitize_text_field( $_POST['key'] );
-	$qty          = intval( sanitize_text_field( $_POST['qty'] ) );
-	$variation_id = intval( sanitize_text_field( $_POST['id'] ) );
-
-	$variation = wc_get_product( $variation_id );
-
-	if ( $key ) {
-		$cart = WC()->cart;
-
-		$cart->add_to_cart( $variation->get_parent_id(), $qty, $variation_id );
-		$items                  = $cart->get_cart();
-		$data['count']          = WC()->cart->cart_contents_count;
-		$data['total']          = WC()->cart->total;
-		$data['subtotal']       = $cart->subtotal;
-		$data['variation_id']   = $variation_id;
-		$data['item_total']     = $items[ $key ]['line_total'];
-		$data['item_quantity']  = $items[ $key ]['quantity'];
-		$data['item_reg_price'] = wc_get_product( $variation_id )->get_regular_price();
-		$data['item_price']     = wc_get_product( $variation_id )->get_price();
-	}
-	echo json_encode( $data );
-	wp_die();
-}
-
-
 add_action( 'init', 'woocommerce_clear_cart_url' );
 function woocommerce_clear_cart_url() {
 	global $woocommerce;

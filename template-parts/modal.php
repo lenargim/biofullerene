@@ -11,8 +11,7 @@
                 <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#close"></use>
             </svg>
         </div>
-        <div class="swiper-wrapper">
-        </div>
+        <div class="swiper-wrapper"></div>
         <div class="navigation">
           <span class="navigation-button navigation-prev modal-prev">
             <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#arrow"></use></svg>
@@ -133,32 +132,25 @@
 								'title_reply_before'   => '',
 								'title_reply_after'    => '',
 								'logged_in_as'         => '',
-								'fields'               => [
-									'rating'  => '<div class="comment-form-rating form-row validate-required"><label for="rating">Rate your purchase:</label><select name="rating" id="rating">
-						<option value="">' . esc_html__( 'Rate&hellip;', 'woocommerce' ) . '</option>
-						<option value="5">' . esc_html__( 'Perfect', 'woocommerce' ) . '</option>
-						<option value="4">' . esc_html__( 'Good', 'woocommerce' ) . '</option>
-						<option value="3">' . esc_html__( 'Average', 'woocommerce' ) . '</option>
-						<option value="2">' . esc_html__( 'Not that bad', 'woocommerce' ) . '</option>
-						<option value="1">' . esc_html__( 'Very poor', 'woocommerce' ) . '</option>
-					</select><span class="description">Please, rate your purchase</span></div>',
-									'author'  => '<p class="comment-form-author form-row validate-required">
+								'fields'               => array(
+									'rating' => '<div class="comment-form-rating form-row validate-required"><label for="rating">Rate your purchase:</label><select name="rating" id="rating"><option value="">' . esc_html__( 'Rate&hellip;', 'woocommerce' ) . '</option><option value="5">' . esc_html__( 'Perfect', 'woocommerce' ) . '</option><option value="4">' . esc_html__( 'Good', 'woocommerce' ) . '</option><option value="3">' . esc_html__( 'Average', 'woocommerce' ) . '</option><option value="2">' . esc_html__( 'Not that bad', 'woocommerce' ) . '</option><option value="1">' . esc_html__( 'Very poor', 'woocommerce' ) . '</option></select><span class="description">Please, rate your purchase</span></div>',
+									'author' => '<p class="comment-form-author form-row validate-required">
 <label for="author">Name</label>
 <input id="author" name="author" type="text" value="" placeholder="Enter your name" />
 <span class="description">Please, enter your name</span>
 </p>',
-									'age'     => '<p class="comment-form-age form-row validate-required">
+									'age'    => '<p class="comment-form-age form-row validate-required">
 <label for="age">Your age</label>
 <input id="age" name="age" type="number" value="" placeholder="Enter age" />
 <span class="description">Please, enter your age</span>
 </p>',
-									'email'   => '<p class="comment-form-email form-row validate-required">
+									'email'  => '<p class="comment-form-email form-row validate-required">
 <label for="email">Email</label>
 <input id="email" name="email" type="email" value="" size="30" aria-describedby="email-notes" placeholder="example@gmail.com" />
 <span class="description">Please, enter your email</span>
 </p>',
-//									'cookies' => '',
-								],
+									'cookies' => '',
+								),
 								'comment_field'        => '<p class="form-row validate-required"><label for="comment">Your review</label><textarea id="comment" name="comment" aria-required="true" placeholder="Enter a review..."></textarea><span class="description">Please, share your shopping experience</span></p>',
 								'submit_button'        => '<input type="submit" class="submit button blue modal-review__submit" value="Leave a review" name="submit" />'
 							];

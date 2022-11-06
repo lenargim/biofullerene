@@ -45,9 +45,16 @@
       height: 20px
       stroke: $accent700
 .modal-reviews
+  overflow: hidden
+  @include max(767)
+    padding-bottom: 100px
   &__item
     position: relative
     padding-bottom: 50px
+    @include max(767)
+      height: 100%
+      overflow-y: auto
+      padding: 0
   &__row
     display: flex
     align-items: center
@@ -56,9 +63,11 @@
     margin-bottom: 24px
   .navigation
     position: absolute
-    z-index: 1
+    z-index: 2
     bottom: 44px
     left: 44px
+    @include max(767)
+      display: flex
   .reviews__item-rating
     position: relative
     margin-bottom: 24px

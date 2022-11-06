@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
   </div>
   <div class="product-reviews__item-content">
     <?php $rating = get_comment_meta(get_comment_ID(), 'rating', true);
-    $rating_width = $rating / 5 * 100;
+    $rating_width = (int)$rating / 5 * 100;
     if ($rating): ?>
       <div class="product-reviews__item-rating">
         <div class="product-reviews__item-rating-fill" style="width: <?php echo $rating_width ?>%"></div>

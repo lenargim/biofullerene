@@ -10,7 +10,7 @@
 				<svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-found.svg#billing"></use></svg>
 				<div class="not-find__name">Billing and Payment</div>
 			</a>
-			<a href="#" class="not-find__item">
+			<a href="<?php echo get_page_link(65) ?>" class="not-find__item">
 				<svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-found.svg#return"></use></svg>
 				<div class="not-find__name">Return Policy</div>
 			</a>

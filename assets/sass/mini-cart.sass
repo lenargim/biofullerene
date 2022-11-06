@@ -53,7 +53,7 @@
     padding-bottom: 20px
     &:not(:last-child)
       border-bottom: 1px solid $gray50
-    .pseudo, .deleted
+    .timer, .deleted
       display: none
       transition: color 0s ease
     &.removing
@@ -74,21 +74,71 @@
         padding-left: 50px
         @include max(767)
           padding-left: 44px
-      .pseudo
+      .timer
         position: absolute
         left: 0
         top: 0
         display: flex
         align-items: center
         justify-content: center
-        width: 26px
-        height: 26px
+        width: 28px
+        height: 28px
         border-radius: 50%
-        font: 500 14px/20px $mainFont
-        border: 2px solid $destructive500
-        color: $destructive500
-        padding: 3px
         flex-shrink: 0
+        overflow: hidden
+        background: #fff
+        &:before, &:after
+          content: ''
+          position: absolute
+          width: 50%
+          height: 100%
+          z-index: 3
+          top: 0
+        &:before
+          left: 0
+          animation: mask_left 5s steps(1, end) forwards
+          background: $destructive500
+        &:after
+          right: 0
+          animation: mask_right 5s steps(1, end) forwards
+          background: #fff
+        &__body
+          text-align: center
+          width: 24px
+          height: 24px
+          border-radius: 50%
+          overflow: hidden
+          position: relative
+          z-index: 4
+          background-color: #fff
+        &__line
+          position: absolute
+          left: 0
+          top: 0
+          width: 100%
+          height: 100%
+          animation: rotate 5s linear forwards
+          z-index: 2
+          overflow: hidden
+          border-radius: 50%
+          background: $destructive500
+          &:after
+            content: ''
+            position: absolute
+            left: 0
+            top: 0
+            width: 50%
+            height: 100%
+            background: #fff
+        &__counter
+          animation: counter 5s steps(4, end) forwards
+          span
+            display: flex
+            align-items: center
+            justify-content: center
+            font: 500 14px/24px $mainFont
+            color: $destructive500
+            height: 24px
       .deleted
         display: inline-block
     &-mobile
@@ -272,3 +322,21 @@
     transform: rotate(0deg)
   100%
     transform: rotate(360deg)
+
+@keyframes counter
+  0%
+    transform: translateY(0px)
+  100%
+    transform: translateY(-96px)
+
+@keyframes mask_left
+  0%
+    visibility: visible
+  50%, 100%
+    visibility: hidden
+
+@keyframes mask_right
+  0%
+    visibility: hidden
+  50%, 100%
+    visibility: visible

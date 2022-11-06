@@ -413,7 +413,7 @@ get_template_part( 'template-parts/header/header' ); ?>
                         </ul>
 						<?php if ( $total > 4 ): ?>
                             <button class="product-reviews__more button white"
-                                    data-offset="4"
+                                    data-offset="5"
                                     data-product="<?php echo $product->get_id(); ?>"
                                     data-total="<?php echo $total ?>"
                                     data-order="comment_date_gmt"
@@ -452,7 +452,8 @@ get_template_part( 'template-parts/header/header' ); ?>
 							$rating_arr   = [ 0, 0, 0, 0, 0 ];
 							?>
 							<?php foreach ( $all_comments as $comment ): ?>
-								<?php $user_rate              = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
+
+								<?php $user_rate = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 								$rating_arr[ $user_rate - 1 ] += 1;
 								?>
 							<?php endforeach; ?>
