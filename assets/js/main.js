@@ -248,45 +248,77 @@ $(document).ready(function () {
 
     // Mobile
 
-    $('.burger').on('click', function (){
+    $('.burger').on('click', function () {
         $('.header').addClass('opened')
         $('html, body').css('overflowY', 'hidden')
     })
 
-    $('.burger__cross').on('click', function (){
+    $('.burger__cross').on('click', function () {
         $('.header').removeClass('opened');
         $('html, body').css('overflowY', 'initial')
     })
 
-    $('.mobile__menu .menu-item-has-children > a').on('click', function (e){
+    $('.mobile__menu .menu-item-has-children > a').on('click', function (e) {
         e.preventDefault();
         $(this).siblings('.submenu').toggle()
     })
 
-    $('.share').on('click', function (){
+    $('.share').on('click', function () {
         $(this).toggleClass('active');
     })
-    $(document).mouseup( function(e){ // событие клика по веб-документу
-        var div = $( ".share" ); // тут указываем ID элемента
-        if ( !div.is(e.target) // если клик был не по нашему блоку
-            && div.has(e.target).length === 0 ) { // и не по его дочерним элементам
+    $(document).mouseup(function (e) { // событие клика по веб-документу
+        var div = $(".share"); // тут указываем ID элемента
+        if (!div.is(e.target) // если клик был не по нашему блоку
+            && div.has(e.target).length === 0) { // и не по его дочерним элементам
             div.removeClass('active');
         }
     });
 
 
-    $('#shipping__list').select2({
-        dropdownParent: $('#shipping'),
-        selectionCssClass: 'shipping__selection',
-        dropdownCssClass: 'shipping__dropdown',
+    // $('#shipping__list').select2({
+    //     theme: "classic",
+    //     dropdownParent: $('#shipping'),
+    //     selectionCssClass: 'shipping__selection',
+    //     dropdownCssClass: 'shipping__dropdown',
+    //     // templateResult: formatState,
+    // })
+
+    const shipList = $('.shipping__list');
+    const shipItem = shipList.find('.shipping__item');
+    const name = shipItem.first().find('.name').text()
+    const price = shipItem.first().find('.price').text()
+    const current = shipList.siblings('.shipping__selection')
+    current.find('.name').text(name)
+    current.find('.price').text(price)
+    current.on('click', function () {
+        $(this).parent().toggleClass('open')
     })
 
-    $(document).mouseup( function(e){
-        const div = $( ".modal" );
-        if ( !div.is(e.target)
-            && div.has(e.target).length === 0 ) {
-            div.removeClass('active')
+    shipItem.on('click', function () {
+        const name = $(this).find('.name').text()
+        const price = $(this).find('.price').text()
+        current.find('.name').text(name)
+        current.find('.price').text(price)
+        $(this).parents('.shipping__wrap').removeClass('open')
+    })
+
+
+
+
+    $(document).mouseup(function (e) {
+        const modal = $(".modal");
+        const shippingWrap = $('.shipping__wrap');
+        if (!modal.is(e.target)
+            && modal.has(e.target).length === 0) {
+            modal.removeClass('active')
             $('.overlay').removeClass('active')
+        }
+
+        if (shippingWrap.length) {
+            if (!shippingWrap.is(e.target)
+                && shippingWrap.has(e.target).length === 0) {
+                shippingWrap.removeClass('open')
+            }
         }
     });
 });

@@ -18,11 +18,37 @@
 			<?php endif; ?>
         </div>
     </div>
-    <select class="shipping__list" id="shipping__list">
-		<?php foreach ( (array) $delivery_zones as $key => $the_zone ): ?>
-            <!--			--><?php //echo var_dump($the_zone) ?>
-            <option value="<?php echo $the_zone['zone_name']; ?>"
-                    class="shipping__item"><?php echo $the_zone['zone_name']; ?></option>
-		<?php endforeach; ?>
-    </select>
+    <div class="shipping__wrap">
+        <div class="shipping__selection">
+            <span class="name"></span>
+            <div class="arrow"></div>
+            <span class="price"></span>
+        </div>
+        <div class="shipping__list" id="shipping__list">
+			<?php foreach ( (array) $delivery_zones as $key => $the_zone ): ?>
+                <div value="<?php echo $the_zone['zone_name']; ?>" class="shipping__item">
+                    <span class="name"><?php echo $the_zone['zone_name']; ?></span>
+                    <span class="price">
+					<?php $minCost = array();
+					$count         = 0;
+					foreach ( $the_zone['shipping_methods'] as $value ):
+						if ( isset( $value->cost ) ):
+							array_push( $minCost, intval( $value->cost ) );
+						else:
+							array_push( $minCost, 'Free' );
+						endif;
+
+						$count ++;
+					endforeach;
+					if ( in_array( 'Free', $minCost ) ) {
+						echo 'Free';
+					} else {
+						echo min( $minCost ) . get_woocommerce_currency_symbol();
+					}
+					?>
+                </span>
+                </div>
+			<?php endforeach; ?>
+        </div>
+    </div>
 </div>
