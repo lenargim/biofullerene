@@ -44,15 +44,17 @@
       display: flex
       width: 100%
       align-items: center
-      gap: 16px
+      //gap: 16px
       margin-bottom: 32px
+      @include _flex-gap(16px)
     &-rating
       position: absolute
       top: 0
       right: 0
       display: flex
       align-items: center
-      gap: 4px
+      //gap: 4px
+      @include _flex-gap(4px)
       .star
         width: 12px
         height: 12px

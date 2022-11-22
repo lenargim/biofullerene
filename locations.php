@@ -35,7 +35,7 @@
 			$countries = get_posts( $args );
 			?>
             <div class="blog-banner__title">
-				<?php the_title(); ?>
+				<span><?php the_title(); ?></span>
                 <span class="count"><?php echo $published; ?>
                     countries</span>
             </div>

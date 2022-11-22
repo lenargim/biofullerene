@@ -39,11 +39,11 @@
         </div>
         <div class="blog-tags">
             <div class="container">
-                <div class="blog-tags__toggle">Show filters</div>
+                <div class="blog-tags__toggle"><span>Show filters</span></div>
 				<?php $tags = get_tags( $args ); ?>
                 <div class="blog-tags__wrap">
                     <div class="blog-tags__tag" data-slug="">
-                        All articles
+                        <span>All articles</span>
                         <svg class="blog-tags__close" width="20" height="20" viewBox="0 0 20 20" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 5L5 15M5 5L15 15" stroke="white" stroke-width="1.6" stroke-linecap="round"
@@ -52,7 +52,7 @@
                     </div>
 					<?php foreach ( $tags as $tag ): ?>
                         <div class="blog-tags__tag" data-slug="<?php echo $tag->slug ?>">
-							<?php echo $tag->name; ?>
+							<span><?php echo $tag->name; ?></span>
                             <svg class="blog-tags__close" viewBox="0 0 20 20" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15 5L5 15M5 5L15 15" stroke="white" stroke-width="1.6" stroke-linecap="round"

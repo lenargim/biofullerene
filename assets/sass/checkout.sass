@@ -14,10 +14,11 @@
     display: flex
     align-items: center
     justify-content: flex-start
-    gap: 2px
+    //gap: 2px
     font: 500 14px/20px $mainFont
     margin-bottom: 32px
     width: fit-content
+    @include _flex-gap(2px)
     @include max(767)
       padding: 12px 0
       width: 100%
@@ -32,7 +33,7 @@
     display: flex
     align-items: center
     justify-content: flex-start
-    gap: 40px
+    //gap: 40px
     padding: 24px 0
     border-bottom: 1px solid $gray50
     @include max(767)
@@ -50,6 +51,8 @@
       position: relative
       color: $gray200
       font: 500 14px/20px $mainFont
+      &:not(:last-of-type)
+        margin-right: 40px
       &.active
         color: $gray900
     svg
@@ -67,7 +70,8 @@
     display: flex
     align-items: center
     justify-content: space-between
-    gap: 4px
+    //gap: 4px
+    @include _flex-gap(4px)
     &.open
       &::after
         transform: rotate(180deg)
@@ -89,13 +93,15 @@
     @include max(1023)
       display: flex
       flex-direction: column-reverse
-      gap: 20px
+      //gap: 20px
+      @include _flex-gap(20px)
     @include max(767)
       flex-direction: column
       position: relative
       left: -16px
       width: 100vw
-      gap: 0
+      //gap: 0
+      @include _flex-gap(0px)
     h2
       margin-top: 32px
       color: $gray900
@@ -116,14 +122,16 @@
     justify-content: space-between
     margin-top: 40px
     @include max(767)
-      margin-top: 36px
       flex-direction: column-reverse
-      gap: 16px
+      //gap: 16px
+      @include flex-gap(16px, 'column-reverse nowrap')
+      margin-top: 36px
     .back
       display: flex
       align-items: center
-      gap: 4px
+      //gap: 4px
       color: $gray400
+      @include _flex-gap(4px)
       svg
         width: 16px
         height: 16px
@@ -152,22 +160,24 @@
         margin: 0
         display: flex
         flex-direction: column
-        gap: 12px
-        @include max(767)
-          gap: 20px
       &__item
         display: flex
         align-items: center
-        gap: 16px
+        //gap: 16px
+        @include _flex-gap(16px)
         @include max(767)
           flex-direction: column
-          gap: 8px
+          //gap: 8px
           align-items: flex-start
           border-bottom: 1px solid $gray50
           padding-bottom: 20px
+          @include flex-gap(8px, 'column nowrap')
         &:not(:last-child)
           border-bottom: 1px solid $gray50
           padding-bottom: 12px
+          margin-bottom: 12px
+          @include max(767)
+            margin-bottom: 20px
         &-img
           width: 60px
           height: 60px
@@ -217,20 +227,22 @@
           display: flex
           align-items: center
           justify-content: flex-end
-          gap: 12px
+          //gap: 12px
           white-space: nowrap
           @include max(767)
             justify-content: flex-start
-            margin: 0
+            margin: 0 4px
           .regular
             color: $gray300
             text-decoration: line-through
           .price
             font-weight: 500
+            margin-left: 12px
   .saved
     display: flex
     flex-direction: column
-    gap: 16px
+    //gap: 16px
+    @include flex-gap(16px, 'column nowrap')
     margin-top: 32px
     &__box
       padding: 16px 24px
@@ -245,9 +257,10 @@
         display: flex
         align-items: center
         justify-content: space-between
-        gap: 1em
+        //gap: 1em
         padding-bottom: 16px
         border-bottom: 1px solid $gray50
+        @include _flex-gap(1em)
         @include max(767)
           padding-bottom: 12px
           font: 500 14px/20px $mainFont
@@ -276,8 +289,8 @@
     .woocommerce-shipping-methods
       display: flex
       flex-direction: column
-      gap: 12px
-
+      //gap: 12px
+      @include flex-gap(12px, 'column nowrap')
     li
       position: relative
       &:not(:last-child)
@@ -294,11 +307,12 @@
       cursor: pointer
       position: relative
       display: flex
-      gap: 12px
+      //gap: 12px
       align-items: flex-start
       font: 500 14px/20px $mainFont
       color: $gray800
       padding-bottom: 20px
+      //@include _flex-gap(12px)
       &::before, &::after
         content: ''
         width: 16px
@@ -309,6 +323,7 @@
       &::before
         position: relative
         border: 1px solid $gray200
+        margin-right: 12px
       &::after
         display: none
         position: absolute
@@ -373,7 +388,8 @@
     display: flex
     align-items: center
     justify-content: flex-start
-    gap: 8px
+    //gap: 8px
+    @include _flex-gap(8px)
     .input-checkbox
       width: 16px
       height: 16px
@@ -432,7 +448,8 @@
     .wc-payment-form
       display: flex
       flex-direction: column
-      gap: 5px
+      //gap: 5px
+      @include flex-gap(5px, 'column nowrap')
 .select2-hidden-accessible
   border: 0
   clip: rect(0 0 0 0)

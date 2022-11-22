@@ -3,10 +3,13 @@
   &__wrap
     display: flex
     align-items: flex-start
-    gap: 30px
+    //gap: 30px
     width: 100%
+    @include min(1024)
+      @include _flex-gap(30px)
     @include max(1023)
       flex-direction: column
+      @include flex-gap(30px, 'column nowrap')
   &__img-box
     width: 50%
     position: relative
@@ -32,6 +35,8 @@
       width: 136px
       aspect-ratio: 136/120
       position: absolute
+      @include min(1280)
+        height: 120px
       @include max(767)
         width: 72px
       &:nth-of-type(2)
@@ -58,7 +63,6 @@
     &-item
       display: flex
       align-items: flex-start
-      gap: 24px
       padding-bottom: 16px
       &:not(:last-of-type)
         border-bottom: 1px solid $gray50
@@ -78,6 +82,7 @@
         position: relative
         top: -4px
         flex-shrink: 0
+        margin-right: 24px
 .info-desktop
   position: relative
   &>.line

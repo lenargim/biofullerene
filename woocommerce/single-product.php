@@ -46,11 +46,13 @@ get_template_part( 'template-parts/header/header' ); ?>
             <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
                 <div class="product-page__wrap">
                     <div class="product-page__images">
-                        <svg class="line" width="494" height="479" viewBox="0 0 494 479" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M461.708 46.458C461.708 46.458 539.829 219.404 404.905 233.837C280.993 247.092 270.949 -26.7582 101.18 14.5959C-98.636 63.269 198.489 410.475 4.10157 476.021" stroke="#FBCEB1" stroke-width="20" stroke-dasharray="4 24"/>
+                        <svg class="line" width="494" height="479" viewBox="0 0 494 479" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M461.708 46.458C461.708 46.458 539.829 219.404 404.905 233.837C280.993 247.092 270.949 -26.7582 101.18 14.5959C-98.636 63.269 198.489 410.475 4.10157 476.021"
+                                  stroke="#FBCEB1" stroke-width="20" stroke-dasharray="4 24"/>
                         </svg>
 
-                        <?php $field = get_field( 'label' ); ?>
+						<?php $field = get_field( 'label' ); ?>
 						<?php if ( $field ): ?>
                             <span class="mainpage-product__label <?php echo $field['value'] ?>"><?php echo $field['label'] ?></span>
 						<?php endif; ?>
@@ -282,14 +284,17 @@ get_template_part( 'template-parts/header/header' ); ?>
                             <input type="hidden" name="variation_id" class="variation_id"
                                    value="<?php echo $product->get_children()[0]; ?>"/>
                             <div href="#info" class="button white product-page__how">How it works?</div>
-                            <?php if (!$product->is_in_stock()): ?>
+							<?php if ( ! $product->is_in_stock() ): ?>
                                 <div class="mission__alert">
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M10.0003 6.66667V10M10.0003 13.3333H10.0087M18.3337 10C18.3337 14.6024 14.6027 18.3333 10.0003 18.3333C5.39795 18.3333 1.66699 14.6024 1.66699 10C1.66699 5.39763 5.39795 1.66667 10.0003 1.66667C14.6027 1.66667 18.3337 5.39763 18.3337 10Z" stroke="#D17D00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0003 6.66667V10M10.0003 13.3333H10.0087M18.3337 10C18.3337 14.6024 14.6027 18.3333 10.0003 18.3333C5.39795 18.3333 1.66699 14.6024 1.66699 10C1.66699 5.39763 5.39795 1.66667 10.0003 1.66667C14.6027 1.66667 18.3337 5.39763 18.3337 10Z"
+                                              stroke="#D17D00" stroke-width="2" stroke-linecap="round"
+                                              stroke-linejoin="round"></path>
                                     </svg>
                                     <span>Temporality out of stock.</span>
                                 </div>
-                            <?php endif; ?>
+							<?php endif; ?>
                         </form>
 						<?php if ( wp_is_mobile() ): ?>
                             <div class="product-page__desc"><?php echo $product->get_description(); ?></div>
@@ -453,7 +458,7 @@ get_template_part( 'template-parts/header/header' ); ?>
 							?>
 							<?php foreach ( $all_comments as $comment ): ?>
 
-								<?php $user_rate = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
+								<?php $user_rate              = intval( get_comment_meta( $comment->comment_ID, 'rating', true ) );
 								$rating_arr[ $user_rate - 1 ] += 1;
 								?>
 							<?php endforeach; ?>

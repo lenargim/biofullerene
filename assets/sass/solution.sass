@@ -22,8 +22,9 @@
     flex: 1 0 auto
     display: flex
     flex-direction: column
-    gap: 12px
+    //gap: 12px
     color: $gray700
+    @include flex-gap(12px, 'column nowrap')
     @include max(767)
       padding: 32px 12px 20px
       font-size: 14px
@@ -41,6 +42,7 @@
       &::before
         content: ''
         width: 183px
+        height: 17px
         aspect-ratio: 183/17
         background: url("./assets/images/svg/underline3.svg") center/contain no-repeat
         position: absolute
@@ -50,4 +52,5 @@
         z-index: -1
         @include max(767)
           width: 100px
+          height: unset
           top: 0

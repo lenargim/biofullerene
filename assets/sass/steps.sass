@@ -4,11 +4,14 @@
   &__wrap
     display: flex
     align-items: flex-start
-    gap: 30px
-    @include max(1023)
-      gap: 24px
+    //gap: 30px
+    @include min(768)
+      @include _flex-gap(30px)
+    @include between(768, 1024)
+      @include _flex-gap(24px)
     @include max(767)
       flex-direction: column
+      @include flex-gap(24px, 'column nowrap')
   &__text
     width: 50%
     padding-right: calc(1/12*100%)
@@ -55,6 +58,8 @@
         align-items: center
         justify-content: center
         font: 500 12px/16px $mainFont
+      @include min(1024)
+        height: 140px
       @include max(1023)
         width: 100%
     &-text
@@ -74,3 +79,5 @@
         top: 66%
         z-index: -1
         background: url("./assets/images/svg/underline2.svg") center/cover no-repeat
+        @include min(1280)
+          height: 18px

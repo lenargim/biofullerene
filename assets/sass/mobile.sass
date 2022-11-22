@@ -15,12 +15,15 @@
     &-wrap
       display: flex
       flex-direction: column
-      gap: 40px
+      //gap: 40px
       max-height: calc(100vh - 200px)
+      @include flex-gap(40px, 'column nowrap')
   &__buttons
     display: flex
     flex-direction: column
-    gap: 8px
+    //gap: 8px
+    @include flex-gap(8px, 'column nowrap')
+    margin-top: auto
   &__cross
     display: none
 .mobile
@@ -55,8 +58,10 @@
   &__support
     display: flex
     flex-direction: column
-    gap: 8px
+    //gap: 8px
     flex: 1 0 auto
+    li:not(:last-child)
+      margin-bottom: 8px
     a
       color: $gray400
       font: 500 16px/24px $mainFont

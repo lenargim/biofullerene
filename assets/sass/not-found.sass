@@ -22,7 +22,7 @@
   &__text
     margin: auto 0
     color: #fff
-    width: 520px
+    max-width: 520px
   &__title
     font: 500 60px/68px $mainFont
     margin-bottom: 44px
@@ -45,3 +45,5 @@
       top: 75%
       z-index: 1
       background: url("./assets/images/svg/underline2.svg") center/cover no-repeat
+      @include min(1280)
+        height: 23px

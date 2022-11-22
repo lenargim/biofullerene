@@ -1,13 +1,15 @@
 .breadcrumbs
   display: flex
   align-items: center
-  gap: 12px
+  //gap: 12px
   font: 500 14px/20px $mainFont
+  @include _flex-gap(12px)
   span, a
     white-space: nowrap
     font: 500 14px/20px $mainFont
-    gap: 8px
+    //gap: 8px
     color: $gray500
+    @include _flex-gap(8px)
   a
     &:hover
       color: $gray600
@@ -16,8 +18,9 @@
       color: $gray700
       text-decoration: unset
   @include max(767)
-    gap: 4px
+    //gap: 4px
     padding: 12px 0
+    @include _flex-gap(4px)
     span, a
       font: 500 12px/16px $mainFont
   .separator

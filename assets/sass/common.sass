@@ -183,7 +183,7 @@ svg
   display: flex
   align-items: center
   justify-content: center
-  gap: 8px
+  //gap: 8px
   border-radius: 200px
   font-weight: 500
   cursor: pointer
@@ -191,6 +191,7 @@ svg
   user-select: none
   padding: 12px
   box-sizing: border-box
+  @include _flex-gap(8px)
   @include max(767)
     width: 100%
   &.disabled
@@ -233,7 +234,8 @@ svg
 
 .socials
   display: flex
-  gap: 8px
+  //gap: 8px
+  @include _flex-gap(8px)
   &__link
     width: 48px
     height: 48px

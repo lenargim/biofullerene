@@ -17,8 +17,9 @@
         font: 500 16px/24px $mainFont
   &__nav
     display: flex
-    gap: 8px
+    //gap: 8px
     border-bottom: 1px solid $gray50
+    @include _flex-gap(8px)
   &__link
     padding: 24px 16px
     color: $gray600
@@ -74,6 +75,8 @@
       justify-content: center
       width: 100%
       aspect-ratio: 592/420
+      @include min(1280)
+        height: 420px
       img
         display: block
         object-fit: contain
@@ -89,16 +92,16 @@
   &__infograthic
     display: grid
     grid-template-columns: repeat(2, 1fr)
-    gap: 32px
+    grid-gap: 32px
     @include between(768, 1024)
-      gap: 24px
+      grid-gap: 24px
     @include max(767)
       grid-template-columns: 1fr
-
     &-item
       display: flex
       flex-direction: column
-      gap: 16px
+      //gap: 16px
+      @include flex-gap(16px, 'column nowrap')
     &-img
       width: 72px
       height: 72px
@@ -112,8 +115,9 @@
     display: flex
     align-items: center
     justify-content: flex-start
-    gap: 16px
+    //gap: 16px
     font: 500 14px/20px $mainFont
+    @include _flex-gap(16px)
     @include max(767)
       margin: 20px 0
     svg
@@ -141,6 +145,8 @@
     width: 100%
     border-radius: 12px
     margin-bottom: 20px
+    @include min(1280)
+      height: 320px
     @include max(767)
       margin-bottom: 12px
   &__name

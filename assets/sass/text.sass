@@ -25,19 +25,21 @@
   ul
     display: flex
     flex-direction: column
-    gap: 4px
+    //gap: 4px
+    @include flex-gap(4px, 'column nowrap')
     margin: 48px 0
     @include max(767)
       margin: 20px 0
     li
       display: flex
       align-items: center
-      gap: 12px
+      //gap: 12px
       &::before
         content: ''
         width: 16px
         height: 16px
         background: url("./assets/images/svg/sber.svg") center/cover no-repeat
+        margin-right: 12px
   hr.wp-block-separator
     border: 0.5px solid $gray100
     padding: 0
@@ -78,9 +80,10 @@
     display: flex
     align-items: center
     justify-content: flex-end
-    gap: 16px
+    //gap: 16px
     color: $gray700
     font: 500 14px/20px $mainFont
+    @include _flex-gap(16px)
     &::before
       content: ''
       width: 24px

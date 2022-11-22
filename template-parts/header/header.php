@@ -1,4 +1,7 @@
-<?php require_once( "head.php" ); ?>
+<?php require_once( "head.php" );
+global $is_safari;
+?>
+
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
@@ -46,7 +49,7 @@
     <div class="header__row">
         <div class="container container_big">
             <div class="header__wrap">
-				<?php if ( ! wp_is_mobile() ): ?>
+				<?php if ( !wp_is_mobile() ): ?>
 					<?php wp_nav_menu( [
 						'theme_location' => 'primary',
 						'menu'           => 'main',

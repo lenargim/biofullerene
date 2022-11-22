@@ -13,7 +13,7 @@
     @include max(1023)
       display: flex
       align-items: stretch
-      gap: 24px
+      //gap: 24px
       position: relative
       padding: 0 40px
       left: -40px
@@ -21,6 +21,7 @@
       overflow-x: auto
       -ms-overflow-style: none
       scrollbar-width: none
+      @include _flex-gap(24px)
       &::-webkit-scrollbar
         display: none
       @include max(767)
@@ -31,7 +32,7 @@
       flex-shrink: 0
       max-width: calc(50vw - 32px)
     @include max(767)
-      max-width: 280px
+      max-width: 320px
 
     &:hover
       .research__item-title
@@ -42,12 +43,17 @@
     &-img
       margin-bottom: 20px
       border-radius: 12px
+      aspect-ratio: 7/5
+      @include min(1280)
+        width: 384px
+        height: 274px
     &-taglist
       display: flex
       flex-wrap: wrap
       align-items: center
       justify-content: flex-start
-      gap: 4px
+      //gap: 4px
+      @include flex-gap(4px)
     &-tag
       display: flex
       align-items: center

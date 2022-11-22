@@ -117,6 +117,7 @@
     @include max(767)
       max-width: 120px
       aspect-ratio: 6/1
+      max-height: 20px
   &__part
     width: calc(100%/3)
   &__cart
@@ -124,9 +125,10 @@
     display: flex
     align-items: center
     justify-content: flex-end
-    gap: 8px
+    //gap: 8px
     font-weight: 500
     cursor: pointer
+    @include _flex-gap(8px, 'row')
     &:hover
       color: $gray600
       .amount
@@ -163,8 +165,9 @@
     display: flex
     align-items: center
     justify-content: flex-start
-    gap: 40px
+    //gap: 40px
     height: 100%
+    @include _flex-gap(40px)
     &:after
       content: ''
       height: 1px
@@ -186,7 +189,7 @@
       &:hover
         .submenu-wrap
           display: block
-          height: 80px
+          //height: 80px
           position: absolute
           left: 0
           right: 0
@@ -195,7 +198,9 @@
         .submenu
           display: flex
           align-items: center
-          gap: 40px
+          height: 80px
+          //gap: 40px
+          @include _flex-gap(40px)
     .submenu-wrap
       background: #fff
       display: none
@@ -223,8 +228,9 @@
       display: flex
       align-items: center
       justify-content: flex-start
-      gap: 12px
+      //gap: 12px
       color: $gray700
+      @include _flex-gap(12px)
       svg
         width: 16px
         height: 16px
@@ -237,10 +243,11 @@
       display: flex
       align-items: center
       justify-content: flex-start
-      gap: 6px
+      //gap: 6px
       color: $accent600
       font-weight: 500
       cursor: pointer
+      @include _flex-gap(6px)
       svg
         width: 16px
         height: 16px
@@ -260,14 +267,16 @@
     display: flex
     align-items: center
     justify-content: space-between
-    gap: 32px
+    //gap: 32px
+    @include _flex-gap(32px)
     a
       color: $accent600
       text-decoration: underline
     @include max(767)
       flex-direction: column
       font: 400 14px/16px $mainFont
-      gap: 12px
+      //gap: 12px
+      @include flex-gap(12px, 'column nowrap')
       a
         font: 400 14px/16px $mainFont
     p
@@ -276,7 +285,8 @@
       display: flex
       align-items: center
       justify-content: flex-end
-      gap: 8px
+      //gap: 8px
+      @include _flex-gap(8px)
       .button
         padding: 8px 12px
         font-size: 14px

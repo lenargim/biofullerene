@@ -28,7 +28,6 @@
         display: flex
         align-items: flex-end
         justify-content: space-between
-        gap: 1em
         width: 100%
       .count
         font: 500 16px/24px $mainFont
@@ -40,6 +39,7 @@
         @include max(767)
           position: initial
           font: 500 14px/20px $mainFont
+          margin-left: 1em
   &-tags
     &__toggle
       color: $accent600
@@ -47,7 +47,7 @@
       display: flex
       align-items: center
       justify-content: flex-start
-      gap: 4px
+      //gap: 4px
       @include min(768)
         display: none
       &::before, &::after
@@ -58,8 +58,10 @@
         height: 16px
       &::before
         background: url("./assets/images/svg/filter.svg") center/cover no-repeat
+        margin-right: 4px
       &::after
         background: url("./assets/images/svg/chevron-down.svg") center/cover no-repeat
+        margin-left: 4px
       &.open
         &:after
           transform: rotate(180deg)
@@ -70,15 +72,16 @@
       display: flex
       align-items: center
       justify-content: flex-start
-      gap: 12px
-      margin-top: 60px
+      //gap: 12px
       flex-wrap: wrap
+      @include flex-gap(12px, 'row wrap')
+      margin-top: 60px
       @include max(767)
         margin: 0
         opacity: 0
         max-height: 0
         overflow: hidden
-        gap: 12px 4px
+        //gap: 12px 4px
     &__tag
       cursor: pointer
       padding: 8px 10px
@@ -90,7 +93,7 @@
       display: flex
       align-items: center
       justify-content: center
-      gap: 8px
+      //gap: 8px
       &:hover
         border-color: $gray700
       &:active
@@ -104,6 +107,7 @@
         border-color: $accent700
         background: $accent700
         svg
+          margin-left: 8px
           display: block
     &__close
       display: none

@@ -8,15 +8,18 @@
     display: flex
     justify-content: space-between
     align-items: flex-end
-    gap: 1em
+    //gap: 1em
     margin-bottom: 32px
+    @include min(768)
+      @include flex-gap(1em)
     @include max(767)
       border: none
       flex-direction: column
       justify-content: flex-start
       align-items: flex-start
-      gap: 16px
+      //gap: 16px
       margin: 0
+      @include flex-gap(16px, 'column nowrap')
       &>span
         width: 100%
         display: flex
@@ -32,7 +35,8 @@
     color: $gray400
     display: flex
     align-items: center
-    gap: 4px
+    //gap: 4px
+    @include _flex-gap(4px)
   &__wrap
     display: grid
     grid-template-columns: 7fr 5fr
@@ -46,7 +50,8 @@
   &__list
     display: flex
     flex-direction: column
-    gap: 20px
+    //gap: 20px
+    @include _flex-gap(20px)
   &__info
     border: 1px solid $gray100
     padding: 40px
@@ -61,22 +66,26 @@
   &__checkout
     margin-top: 24px
   &__payments
-    margin-top: 16px
     display: flex
     flex-direction: column
-    gap: 16px
+    //gap: 16px
     justify-content: flex-start
     align-items: center
+    @include flex-gap(16px, 'column nowrap')
+    margin-top: 16px
     .row
       display: flex
       align-items: center
       justify-content: center
-      gap: 28px
+      //gap: 28px
+      @include flex-gap(28px)
       @include max(1023)
-        gap: 10px
+        //gap: 10px
+        @include flex-gap(10px)
       @include max(767)
         flex-direction: column
-        gap: 8px
+        //gap: 8px
+        @include flex-gap(8px, 'column nowrap')
       span
         white-space: nowrap
         font: 400 14px/20px $mainFont
@@ -97,7 +106,8 @@
       display: flex
       align-items: center
       justify-content: center
-      gap: 8px
+      //gap: 8px
+      @include flex-gap(8px)
       svg
         width: 34px
         height: 24px

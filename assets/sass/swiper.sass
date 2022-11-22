@@ -3,7 +3,8 @@
   display: flex
   align-items: center
   justify-content: space-between
-  gap: 8px
+  //gap: 8px
+  @include flex-gap(8px)
   @include max(767)
     display: none
   &-button
@@ -16,6 +17,7 @@
     border: 1px solid $gray100
     border-radius: 50%
     box-shadow: 0 1px 2px rgba(13, 18, 30, 0.04)
+    flex-shrink: 0
     svg
       width: 20px
       height: 20px

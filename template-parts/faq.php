@@ -1,6 +1,6 @@
 <?php
 $args = [
-    'numberposts' => 5,
+    'numberposts' => -1,
     'post_type' => 'faq',
 
 ];

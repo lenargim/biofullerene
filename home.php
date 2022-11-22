@@ -31,7 +31,7 @@
 					<?php if ( have_rows( 'caring-list' ) ): ?>
                         <ol class="caring__list">
 							<?php while ( have_rows( 'caring-list' ) ) : the_row() ?>
-                                <li class="caring__item"><?php the_sub_field( 'item' ); ?></li>
+                                <li class="caring__item"><span><?php the_sub_field( 'item' ); ?></span></li>
 							<?php endwhile; ?>
                         </ol>
 					<?php endif; ?>

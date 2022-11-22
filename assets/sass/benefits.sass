@@ -6,16 +6,18 @@
     display: flex
     align-items: flex-start
     justify-content: space-between
-    gap: 32px
+    //gap: 32px
     margin-top: 80px
-    @include max(1280)
+    @include flex-gap(32px)
+    @include max(1279)
       width: 100vw
       padding: 0 40px 24px
       position: relative
       justify-content: normal
       left: -40px
-      gap: 24px
+      //gap: 24px
       overflow-x: auto
+      @include flex-gap(24px)
     @include max(767)
       padding: 0 16px 24px
       left: -16px

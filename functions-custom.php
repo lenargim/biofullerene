@@ -216,7 +216,7 @@ function yourtheme_setup() {
 class WPSE_78121_Sublevel_Walker extends Walker_Nav_Menu {
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat( "\t", $depth );
-		$output .= "\n$indent<div class='submenu-wrap'><ul class='submenu container container_big'>\n";
+		$output .= "\n$indent<div class='submenu-wrap container container_big'><ul class='submenu'>\n";
 	}
 
 	function end_lvl( &$output, $depth = 0, $args = array() ) {

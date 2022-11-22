@@ -21,11 +21,12 @@
     display: flex
     align-items: center
     justify-content: flex-start
-    gap: 12px
+    //gap: 12px
     margin: 60px 0 80px
+    @include flex-gap(12px)
     @include max(767)
       margin: 20px 0
-      gap: 4px
+      //gap: 4px
       position: relative
       left: -16px
       padding: 0 16px
@@ -33,19 +34,21 @@
       overflow-x: auto
       -ms-overflow-style: none
       scrollbar-width: none
+      @include flex-gap(4px)
       &::-webkit-scrollbar
         display: none
   &__tab
     display: flex
     align-items: center
     justify-content: center
-    gap: 8px
+    //gap: 8px
     border: 1px solid $gray100
     border-radius: 200px
     padding: 8px 12px
     cursor: pointer
     box-sizing: border-box
     font-weight: 500
+    @include flex-gap(8px)
     &:hover
       border-color: $gray700
     &:active
