@@ -33,7 +33,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		<?php echo woocommerce_get_product_thumbnail( array( 552, 487, 1 ) ); ?>
     </div>
     <div class="mainpage-product__info">
-		<?php $tags = $product->tag_ids; ?>
+		<?php $tags = $product->get_tag_ids(); ?>
 		<?php if ( $tags ) : ?>
             <div class="mainpage-product__tags">
 				<?php foreach ( $tags as $tag ) { ?>
@@ -60,7 +60,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 				<?php endwhile; ?>
             </ul>
 		<?php endif; ?>
-        <a href="<?php echo get_permalink( $product->ID ); ?>"
+        <a href="<?php echo get_permalink( $product->get_id() ); ?>"
            class="mainpage-product__button button blue"
            target="_blank">Buy now from $<?php echo $product->get_price(); ?></a>
     </div>

@@ -72,7 +72,7 @@ get_template_part( 'template-parts/header/header' ); ?>
                         </div>
 
 						<?php if ( wp_is_mobile() ): ?>
-							<?php $tags = $product->tag_ids; ?>
+							<?php $tags = $product->get_tag_ids(); ?>
 							<?php if ( $tags ) : ?>
                                 <div class="mainpage-product__tags">
 									<?php foreach ( $tags as $tag ) { ?>
@@ -108,7 +108,7 @@ get_template_part( 'template-parts/header/header' ); ?>
                     </div>
                     <div class="product-page__info">
 						<?php if ( ! wp_is_mobile() ): ?>
-							<?php $tags = $product->tag_ids; ?>
+							<?php $tags = $product->get_tag_ids(); ?>
 							<?php if ( $tags ) : ?>
                                 <div class="mainpage-product__tags">
 									<?php foreach ( $tags as $tag ) { ?>
