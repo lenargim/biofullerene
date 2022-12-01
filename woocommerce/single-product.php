@@ -141,13 +141,13 @@ get_template_part( 'template-parts/header/header' ); ?>
                                             <img src="<?php echo IMAGES_PATH; ?>/svg/link.svg">
                                             <span>Copy link</span>
                                         </button>
-                                        <a href="#" target="_blank"
-                                           class="share__item share-twitter twitter-share-button">
-                                            <svg>
-                                                <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#tw"></use>
-                                            </svg>
-                                            <span>Twitter</span>
-                                        </a>
+<!--                                        <a href="#" target="_blank"-->
+<!--                                           class="share__item share-twitter twitter-share-button">-->
+<!--                                            <svg>-->
+<!--                                                <use xlink:href="--><?php //echo IMAGES_PATH; ?><!--/sprite-common.svg#tw"></use>-->
+<!--                                            </svg>-->
+<!--                                            <span>Twitter</span>-->
+<!--                                        </a>-->
                                         <a href="#" target="_blank" class="share__item share-telegram">
                                             <img src="<?php echo IMAGES_PATH; ?>/svg/tg.svg">
                                             <span>Telegram</span>

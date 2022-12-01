@@ -78,12 +78,12 @@
                                     <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#inst"></use>
                                 </svg>
                             </a>
-                            <a href="https://twitter.com/<?php the_field('twitter'); ?>" target="_blank"
-                               class="socials__link locations__box-link">
-                                <svg>
-                                    <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#tw"></use>
-                                </svg>
-                            </a>
+<!--                            <a href="https://twitter.com/--><?php //the_field('twitter'); ?><!--" target="_blank"-->
+<!--                               class="socials__link locations__box-link">-->
+<!--                                <svg>-->
+<!--                                    <use xlink:href="--><?php //echo IMAGES_PATH; ?><!--/sprite-common.svg#tw"></use>-->
+<!--                                </svg>-->
+<!--                            </a>-->
                         </div>
                     </div>
                 </div>
