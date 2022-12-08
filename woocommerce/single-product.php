@@ -141,13 +141,14 @@ get_template_part( 'template-parts/header/header' ); ?>
                                             <img src="<?php echo IMAGES_PATH; ?>/svg/link.svg">
                                             <span>Copy link</span>
                                         </button>
-<!--                                        <a href="#" target="_blank"-->
-<!--                                           class="share__item share-twitter twitter-share-button">-->
-<!--                                            <svg>-->
-<!--                                                <use xlink:href="--><?php //echo IMAGES_PATH; ?><!--/sprite-common.svg#tw"></use>-->
-<!--                                            </svg>-->
-<!--                                            <span>Twitter</span>-->
-<!--                                        </a>-->
+                                        <!--                                        <a href="#" target="_blank"-->
+                                        <!--                                           class="share__item share-twitter twitter-share-button">-->
+                                        <!--                                            <svg>-->
+                                        <!--                                                <use xlink:href="-->
+										<?php //echo IMAGES_PATH; ?><!--/sprite-common.svg#tw"></use>-->
+                                        <!--                                            </svg>-->
+                                        <!--                                            <span>Twitter</span>-->
+                                        <!--                                        </a>-->
                                         <a href="#" target="_blank" class="share__item share-telegram">
                                             <img src="<?php echo IMAGES_PATH; ?>/svg/tg.svg">
                                             <span>Telegram</span>
@@ -465,16 +466,18 @@ get_template_part( 'template-parts/header/header' ); ?>
 							<?php $count = count( $rating_arr );
 							$i           = $count;
 							?>
-							<?php foreach ( array_reverse( $rating_arr ) as $myArrayElement ): ?>
-                                <div class="product-reviews__table-row">
-                                    <span class="number"><?php echo $i -- ?></span>
-                                    <div class="row">
-										<?php $width = $myArrayElement / $total * 100; ?>
-                                        <span class="fill" style="width: <?php echo $width . '%'; ?>"></span>
+							<?php if ( $total > 0 ): ?>
+								<?php foreach ( array_reverse( $rating_arr ) as $myArrayElement ): ?>
+                                    <div class="product-reviews__table-row">
+                                        <span class="number"><?php echo $i -- ?></span>
+                                        <div class="row">
+											<?php $width = $myArrayElement / $total * 100; ?>
+                                            <span class="fill" style="width: <?php echo $width . '%'; ?>"></span>
+                                        </div>
+                                        <span><?php echo $myArrayElement ?></span>
                                     </div>
-                                    <span><?php echo $myArrayElement ?></span>
-                                </div>
-							<?php endforeach; ?>
+								<?php endforeach; ?>
+							<?php endif; ?>
                             <div class="product-reviews__sort">
                                 <select name="review-sort" id="review-sort" class="select-type-1"
                                         data-product="<?php the_ID(); ?>">

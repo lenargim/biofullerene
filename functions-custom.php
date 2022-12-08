@@ -177,7 +177,9 @@ if ( function_exists( 'add_theme_support' ) ) {
 add_theme_support( 'woocommerce', array(
 	'thumbnail_image_width'         => 420,
 	'gallery_thumbnail_image_width' => 68,
-	'single_image_width'            => 552,
+//	'single_image_width'            => 552,
+	'single_image_width'            => 1280,
+
 ) );
 
 
