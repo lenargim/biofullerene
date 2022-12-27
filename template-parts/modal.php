@@ -35,13 +35,12 @@
             here, or
             connect with us when needed.
         </div>
-        <div class="modal-help__list">
-            <a href="<?php echo get_post_type_archive_link( 'faq' ); ?>" class="modal-help__item">Frequently asked
-                questions</a>
-            <a href="#" class="modal-help__item">Subscribtion</a>
-            <a href="<?php echo get_page_link( 65 ); ?>" class="modal-help__item">Return Policy</a>
-            <a href="#" class="modal-help__item">Shipping</a>
-        </div>
+	    <?php wp_nav_menu( [
+		    'menu'       => 'help',
+		    'container'  => false,
+		    'menu_class' => 'modal-help__list',
+		    'depth'      => 1,
+	    ] ) ?>
         <div class="modal-help__more">
             <div class="modal-help__more-title">Can not find your answer? Please&nbsp;contact&nbsp;us</div>
             <button class="modal-help__more-link open-modal-question" type="button">

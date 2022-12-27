@@ -70,7 +70,7 @@
 					<?php foreach ( $posts as $post ):
 						setup_postdata( $post ); ?>
                         <div class="research__item">
-                            <a href="<?php echo get_post_permalink(); ?>" class="research__item-img img">
+                            <a href="<?php echo get_post_permalink(); ?>" class="research__item-img img" target="_blank">
                                 <img src="<?php the_post_thumbnail_url( 'research_thumbnail' ) ?>"
                                      alt="<?php the_title() ?>">
                             </a>

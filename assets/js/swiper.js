@@ -1,7 +1,7 @@
 $(document).ready(function () {
     const team = new Swiper('.team__slider', {
         slidesPerView: 2,
-        allowTouchMove: false,
+        // allowTouchMove: false,
         speed: 200,
         spaceBetween: 32,
         navigation: {
@@ -34,7 +34,7 @@ $(document).ready(function () {
     });
 
     const reviews = new Swiper('.reviews__slider', {
-        allowTouchMove: false,
+        // allowTouchMove: false,
         speed: 200,
         navigation: {
             nextEl: '.reviews-next',
@@ -66,7 +66,7 @@ $(document).ready(function () {
     });
 
     const products = new Swiper('.mainpage-multiple__slider', {
-        allowTouchMove: false,
+        // allowTouchMove: false,
         speed: 200,
         spaceBetween: 32,
         navigation: {
@@ -105,6 +105,7 @@ $(document).ready(function () {
             slidesPerView: 1,
             speed: 200,
             spaceBetween: 32,
+            allowTouchMove: true,
             pagination: {
                 el: '.product-page__thumbs-mobile',
                 type: 'bullets',
@@ -112,14 +113,14 @@ $(document).ready(function () {
             thumbs: {
                 swiper: productThumbs,
             },
-            breakpoints: {
-                320: {
-                    allowTouchMove: true,
-                },
-                1280: {
-                    allowTouchMove: false,
-                }
-            }
+            // breakpoints: {
+            //     320: {
+            //         allowTouchMove: true,
+            //     },
+            //     1280: {
+            //         allowTouchMove: false,
+            //     }
+            // }
         });
     }
 
@@ -143,18 +144,18 @@ $(document).ready(function () {
             },
             768: {
                 slidesPerView: 2,
-                allowTouchMove: false,
+                // allowTouchMove: false,
             },
             1024: {
                 slidesPerView: 3,
-                allowTouchMove: false,
+                // allowTouchMove: false,
             },
         }
     })
 
     const about = new Swiper('.about__slider', {
         slidesPerView: 2,
-        allowTouchMove: false,
+        //allowTouchMove: false,
         speed: 200,
         spaceBetween: 32,
         navigation: {

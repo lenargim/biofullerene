@@ -12,7 +12,9 @@ $(document).ready(function () {
         $(this).toggleClass('opened');
     })
 
-    $('.copy-link').on('click', copyToClipboard);
+    $('.copy-link').on('click', function () {
+        copyToClipboard($(this));
+    });
     $('.copy-text').on('click', function () {
         const text = $(this).text();
         if (!navigator.clipboard) {
@@ -343,7 +345,8 @@ closeShippingPopup = () => {
     $('.header__shipping').addClass('closed');
     document.cookie = "shipping_popup=close"
 };
-const copyToClipboard = () => {
+const copyToClipboard = (el) => {
+    el.find('span').text('Copied!')
     window.navigator.clipboard.writeText(window.location.href);
 }
 

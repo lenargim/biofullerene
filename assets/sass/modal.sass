@@ -136,21 +136,21 @@
     @include flex-gap(1px, 'column nowrap')
     margin-bottom: 36px
 
-  &__item
-    color: $accent600
-    padding: 12px 0
-    display: flex
-    align-items: center
-    justify-content: space-between
+    a
+      color: $accent600
+      padding: 12px 0
+      display: flex
+      align-items: center
+      justify-content: space-between
 
-    &:not(:last-of-type)
-      border-bottom: 1px solid $gray50
+      &:not(:last-of-type)
+        border-bottom: 1px solid $gray50
 
-    &::after
-      content: ''
-      background: url("./assets/images/svg/arrow-modal.svg") center/contain no-repeat
-      width: 10px
-      height: 10px
+      &::after
+        content: ''
+        background: url("./assets/images/svg/arrow-modal.svg") center/contain no-repeat
+        width: 10px
+        height: 10px
 
   &__more
     height: 100%
