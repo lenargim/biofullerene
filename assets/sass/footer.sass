@@ -67,9 +67,11 @@
     @include between(768, 1024)
       grid-gap: 24px
     @include max(767)
-      margin-top: 32px
+      //margin-top: 32px
+      grid-gap: 0
       display: flex
       flex-direction: column
+      @include flex-gap(32px, 'column nowrap')
       //gap: 32px
   &__logo
     fill: #fff

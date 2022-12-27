@@ -34,12 +34,17 @@
       display: flex
       align-items: center
       &::before
+        display: block
         content: ''
         flex-shrink: 0
         width: 16px
         height: 16px
         background: url("./assets/images/svg/sber.svg") center/cover no-repeat
         margin-right: 12px
+      @include max(767)
+        align-items: flex-start
+        &::before
+          margin-top: 4px
   hr.wp-block-separator
     border: 0.5px solid $gray100
     padding: 0

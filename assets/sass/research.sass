@@ -34,12 +34,13 @@
     @include max(767)
       max-width: 320px
 
-    &:hover
-      .research__item-title
-        color: $gray400
-      img
-        transition: all 0.4s ease
-        transform: scale(1.25)
+    @include min(1024)
+      &:hover
+        .research__item-title
+          color: $gray400
+        img
+          transition: all 0.4s ease
+          transform: scale(1.25)
     &-img
       margin-bottom: 20px
       border-radius: 12px
