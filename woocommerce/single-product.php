@@ -274,7 +274,7 @@ get_template_part( 'template-parts/header/header' ); ?>
                                     </div>
 								<?php endif; ?>
                             </div>
-							<?php get_template_part( 'template-parts/shipping' ); ?>
+<!--							--><?php //get_template_part( 'template-parts/shipping' ); ?>
 							<?php endif; ?>
                             <button type="submit" class="single_add_to_cart_button button alt blue product-page__add">
                                 Add to cart
