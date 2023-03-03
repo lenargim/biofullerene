@@ -216,6 +216,20 @@ function quanity_update(input) {
     }
 }
 
+const update_cart_count = () => {
+    let ajax_url = window.ajaxVar.ajaxurl || false;
+    $.ajax({
+        type: 'POST',
+        url: ajax_url,
+        data: {
+            action: 'get_new_cart_count',
+        },
+        success: function (count) {
+            $('.count').html(count);
+        },
+    })
+}
+
 const ajaxRemoveRequest = (key) => {
     let ajax_url = window.ajaxVar.ajaxurl || false;
     $.ajax({
@@ -226,7 +240,8 @@ const ajaxRemoveRequest = (key) => {
             key: key,
         },
         success: function (response) {
-            $('.modal.mini-cart').html(response)
+            $('.modal.mini-cart').html(response);
+            update_cart_count()
         },
         error: function (error) {
             console.log(error);

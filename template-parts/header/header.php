@@ -8,9 +8,9 @@ global $is_safari;
 
 <header
         class="header <?php if ( is_page_template( 'home.php' ) ||
-		                                is_page_template( 'research.php' ) ||
-		                                is_page_template( 'locations.php' ) ||
-		                                is_page_template( 'company.php' ) ) {
+		                         is_page_template( 'research.php' ) ||
+		                         is_page_template( 'locations.php' ) ||
+		                         is_page_template( 'company.php' ) ) {
 			echo 'transparent ';
 		} else if ( is_post_type_archive( 'faq' ) ||
 		            is_page_template( 'terms.php' )
@@ -49,7 +49,7 @@ global $is_safari;
     <div class="header__row">
         <div class="container container_big">
             <div class="header__wrap">
-				<?php if ( !wp_is_mobile() ): ?>
+				<?php if ( ! wp_is_mobile() ): ?>
 					<?php wp_nav_menu( [
 						'theme_location' => 'primary',
 						'menu'           => 'main',
@@ -88,6 +88,9 @@ global $is_safari;
                     </a>
 					<?php
 				} ?>
+				<?php
+				$cart  = WC()->cart;
+				$count = $cart->get_cart_contents_count(); ?>
                 <div class="header__cart header__part">
                     <span class="label">Cart</span>
 					<?php if ( wp_is_mobile() ): ?>
@@ -97,7 +100,7 @@ global $is_safari;
                         </svg>
 					<?php endif; ?>
                     <span class="count amount amount-ajax">
-                        <?php echo WC()->cart->get_cart_contents_count(); ?>
+                        <?php echo $count; ?>
                     </span>
                 </div>
             </div>
@@ -107,27 +110,30 @@ global $is_safari;
         <div class="burger__menu">
             <div class="container">
                 <div class="burger__menu-wrap">
-	                <?php wp_nav_menu( [
-		                'theme_location' => 'primary',
-		                'menu'           => 'main',
-		                'container'      => '',
-		                'menu_class'     => 'mobile__menu',
-		                //'walker'         => new WPSE_78121_Sublevel_Walker
-	                ] ); ?>
-	                <?php wp_nav_menu( [
-		                'menu'       => 33,
-		                'container'  => false,
-		                'menu_class' => 'mobile__support',
-		                'depth'      => 1,
-	                ] ) ?>
-	                <?php
-	                $count_posts = wp_count_posts('product')->publish;
-	                if (intval($count_posts) === 1) :
-		                $prod_link = wc_get_products(['numberposts' => 1, 'post_status' => 'publish'])[0]->get_permalink();
-	                else:
-		                $prod_link = get_permalink(wc_get_page_id('cart'));
-	                endif;
-	                ?>
+					<?php wp_nav_menu( [
+						'theme_location' => 'primary',
+						'menu'           => 'main',
+						'container'      => '',
+						'menu_class'     => 'mobile__menu',
+						//'walker'         => new WPSE_78121_Sublevel_Walker
+					] ); ?>
+					<?php wp_nav_menu( [
+						'menu'       => 33,
+						'container'  => false,
+						'menu_class' => 'mobile__support',
+						'depth'      => 1,
+					] ) ?>
+					<?php
+					$count_posts = wp_count_posts( 'product' )->publish;
+					if ( intval( $count_posts ) === 1 ) :
+						$prod_link = wc_get_products( [
+							'numberposts' => 1,
+							'post_status' => 'publish'
+						] )[0]->get_permalink();
+					else:
+						$prod_link = get_permalink( wc_get_page_id( 'cart' ) );
+					endif;
+					?>
                     <div class="burger__buttons">
                         <a href="<?php echo $prod_link ?>" class="button blue burger__buy">Buy water now</a>
                         <button class="open-modal-help burger__help button white">Need help?</button>

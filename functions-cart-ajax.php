@@ -14,6 +14,17 @@ add_action( 'wp_ajax_nopriv_delete_item', 'delete_cart_item' );
 add_action( 'wp_ajax_add_to_cart', 'add_to_cart_ajax' );
 add_action( 'wp_ajax_nopriv_add_to_cart', 'add_to_cart_ajax' );
 
+add_action( 'wp_ajax_get_new_cart_count', 'get_new_cart_count' );
+add_action( 'wp_ajax_nopriv_get_new_cart_count', 'get_new_cart_count' );
+
+
+
+function get_new_cart_count() {
+	$count = WC()->cart->cart_contents_count;
+	echo json_encode( $count );
+	wp_die();
+}
+
 
 /**
  * Show Cart Items HTML
@@ -43,13 +54,14 @@ function delete_cart_item() {
 		$cart = WC()->cart;
 		$cart->remove_cart_item( $key );
 		$data['count']    = WC()->cart->cart_contents_count;
-		$data['total']    = WC()->cart->total;
-		$data['subtotal'] = WC()->cart->subtotal;
-		//echo json_encode($data);
+//		$data['total']    = WC()->cart->total;
+//		$data['subtotal'] = WC()->cart->subtotal;
+//		$data['html'] = wc_get_template( 'cart/mini-cart.php' );
 		echo wc_get_template( 'cart/mini-cart.php' );
 		wp_die();
 	}
 }
+
 
 /**
  * Quanity update
