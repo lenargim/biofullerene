@@ -188,5 +188,14 @@
                 <button class="closed-bottom button white remove-cookie">Close</button>
             </div>
 		<?php endif; ?>
+
+    <div class="modal modal-subscription">
+        <div class="close">
+            <svg>
+                <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#close"></use>
+            </svg>
+        </div>
+        <div><?php the_field('subscription', 61) ?></div>
+    </div>
 	<?php endif; ?>
 </div>

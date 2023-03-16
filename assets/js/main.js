@@ -1,7 +1,7 @@
 $ = jQuery;
 $(document).ready(function () {
     // Mask
-    $('input[type="tel"]').mask('+1(000)000-0000', {translation: {'Z': {pattern: /[0-79]/}}});
+    $('input[type="tel"]').mask('+0000-000-00-00-00-00-00');
 
     $('input[name="question-order"]').mask('000-000-000');
     $('#age').mask('ZZZ', {translation: {'Z': {pattern: /[0-9]/}}});
@@ -13,10 +13,15 @@ $(document).ready(function () {
     })
 
     $('.copy-link').on('click', function () {
+        $(this).addClass('copied');
+        setTimeout(() => {
+            $(this).removeClass('copied');
+        }, 3000)
         copyToClipboard($(this));
     });
     $('.copy-text').on('click', function () {
-        const text = $(this).text();
+        const text = $(this).find('.text').text();
+        console.log(text)
         if (!navigator.clipboard) {
             fallbackCopyTextToClipboard(text);
             return;
@@ -26,7 +31,12 @@ $(document).ready(function () {
         }, function (err) {
             console.error('Async: Could not copy text: ', err);
         });
-        navigator.clipboard.writeText($(this).text());
+        navigator.clipboard.writeText(text);
+
+        $(this).addClass('copied');
+        setTimeout(() => {
+            $(this).removeClass('copied');
+        }, 3000)
     });
 
     function fallbackCopyTextToClipboard(text) {
@@ -163,6 +173,12 @@ $(document).ready(function () {
         e.preventDefault();
         $('.overlay').addClass('active');
         $('.modal-help').addClass('active');
+    });
+
+    $('.open-subscription').on('click', function (e) {
+        e.preventDefault();
+        $('.overlay').addClass('active');
+        $('.modal-subscription').addClass('active');
     });
 
     $('.open-modal-question').on('click', function (e) {
@@ -303,8 +319,6 @@ $(document).ready(function () {
         current.find('.price').text(price)
         $(this).parents('.shipping__wrap').removeClass('open')
     })
-
-
 
 
     $(document).mouseup(function (e) {

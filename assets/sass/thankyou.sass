@@ -49,6 +49,22 @@
         width: 16px
         height: 16px
         background: url("./assets/images/svg/link.svg") no-repeat center
+    .alert
+      display: none
+    .copy-text.copied
+      position: relative
+      .alert
+        display: block
+        position: absolute
+        background-color: #fff
+        box-shadow: 0 2px 4px rgba(13, 18, 30, 0.08)
+        font-size: 12px
+        color: #000
+        padding: 5px 10px
+        border-radius: 4px
+        bottom: calc(100% + 15px)
+        left: 20px
+        z-index: 1
   &__help.button
     margin-top: 32px
     width: fit-content

@@ -40,20 +40,21 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                 <span>Back to cart</span>
             </a>
             <div class="checkout__wrap">
-                <div class="checkout__summary">Order summary (<?php echo WC()->cart->get_cart_contents_count(); ?>)</div>
+                <div class="checkout__summary">Order summary (<?php echo WC()->cart->get_cart_contents_count(); ?>)
+                </div>
                 <div class="checkout__main" id="customer_details">
 					<?php if ( $checkout->get_checkout_fields() ) : ?>
                         <h1>Checkout</h1>
                         <div class="checkout__breadcrumbs">
-      <span class="active">Contacts
+      <span class="active open-contacts-part">Contacts
       <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-checkout.svg#arrow"></use></svg>
-      </span><span>Shipping address
-      <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-checkout.svg#arrow"></use></svg>
-      </span>
-                            <span>Shipping method
+      </span><span class="open-shipping-part">Shipping address
       <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-checkout.svg#arrow"></use></svg>
       </span>
-                            <span>Payment</span>
+                            <span class="open-method-part">Shipping method
+      <svg><use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-checkout.svg#arrow"></use></svg>
+      </span>
+                            <span class="open-payment-part">Payment</span>
                         </div>
                         <div class="saved-part checkout-part">
                             <div class="saved">
@@ -86,7 +87,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
                         <div class="col2-set" id="customer_details">
                             <div class="woocommerce-billing-fields">
-
                                 <div class="contacts-part checkout-part">
                                     <h2>Contact information</h2>
 									<?php do_action( 'woocommerce_before_checkout_billing_form', $checkout ); ?>
@@ -113,10 +113,8 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                     </div>
                                 </div>
                             </div>
-
                             <div class="woocommerce-shipping-fields">
 								<?php if ( true === WC()->cart->needs_shipping_address() ) : ?>
-
                                     <h3 id="ship-to-different-address">
                                         <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
                                             <input id="ship-to-different-address-checkbox"
@@ -125,7 +123,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                             <span><?php esc_html_e( 'Ship to a different address?', 'woocommerce' ); ?></span>
                                         </label>
                                     </h3>
-
                                     <div class="shipping-part checkout-part">
                                         <h2>Shipping address</h2>
                                         <h3 id="ship-to-different-address" class="hidden">
@@ -158,7 +155,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                             </button>
                                         </div>
                                     </div>
-
 								<?php endif; ?>
                             </div>
                             <div class="woocommerce-additional-fields">
@@ -182,7 +178,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
 								<?php do_action( 'woocommerce_after_order_notes', $checkout ); ?>
                             </div>
-
                         </div>
                         <div class="method-part checkout-part">
                             <h2>Shipping method</h2>
@@ -202,18 +197,38 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                 </button>
 								<?php do_action( 'woocommerce_review_order_before_submit' ); ?>
 
-								<button type="button" class="button blue alt open-payment-part" value="Continue to payment" >Continue to payment</button>
+                                <button type="button" class="button blue alt open-payment-part"
+                                        value="Continue to payment">Continue to payment
+                                </button>
 
 								<?php do_action( 'woocommerce_review_order_after_submit' ); ?>
 
                             </div>
                         </div>
-                    <div class="checkout-part payment-part">
-                        <?php woocommerce_checkout_payment(); ?>
-	                    <?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" class="button blue alt checkout__pay-button" name="woocommerce_checkout_place_order" id="place_order" value="Pay" data-value="Submit Payment">Pay</button>' ); // @codingStandardsIgnoreLine ?>
-                    </div>
+                        <div class="payment-part checkout-part">
+							<?php woocommerce_checkout_payment(); ?>
 
-						<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+
+
+                            <div class="checkout__last-row">
+                                <button type="button" class="back open-method-part">
+                                    <svg>
+                                        <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#arrow"></use>
+                                    </svg>
+                                    <span>Return to shipping method</span>
+                                </button>
+
+	                            <?php echo apply_filters( 'woocommerce_order_button_html', '<button type="submit" 
+class="button blue alt checkout__pay-button" 
+name="woocommerce_checkout_place_order" 
+id="place_order" 
+value="Pay" 
+data-value="Submit Payment">Pay</button>' ); // @codingStandardsIgnoreLine ?>
+                            </div>
+	                        <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+
+
+                            </div>
 
 					<?php endif; ?>
                 </div>

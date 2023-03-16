@@ -170,8 +170,10 @@ add_action( 'init', function () {
 
 if ( function_exists( 'add_theme_support' ) ) {
 	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'research_thumbnail', 384, 240 );
-	add_image_size( 'about-slider', 592, 420 );
+//	add_image_size( 'research_thumbnail', 384, 240 );
+	add_image_size( 'research_thumbnail', 768, 480 );
+//	add_image_size( 'about-slider', 592, 420 );
+	add_image_size( 'about-slider', 888, 630 );
 }
 
 add_theme_support( 'woocommerce', array(

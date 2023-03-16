@@ -57,8 +57,19 @@
     display: inline
     width: unset
     top: 36px
-  .wpcf7-response-output
-    display: none !important
+  .wpcf7 .wpcf7-form
+    position: relative
+    .wpcf7-response-output
+      font-size: 14px
+      border: none
+      padding: 0
+      margin: 0
+      position: absolute
+      top: calc(100% + 15px)
+    .wpcf7-not-valid-tip
+      position: absolute
+      top: calc(100% + 15px)
+      font-size: 12px
   &__main
     margin-top: 56px
     display: grid

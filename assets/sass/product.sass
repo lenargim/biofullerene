@@ -4,7 +4,7 @@
     padding-top: 0
   .breadcrumbs
     padding-bottom: 32px
-  @include max(767)
+  @include max(1024)
     .mainpage-product
       &__label
         right: 8px
@@ -45,6 +45,17 @@
       padding: 0 16px
   &__slider
     overflow: hidden
+    position: relative
+  &__navigation
+    width: 100%
+    z-index: 2
+    position: absolute
+    top: calc(50% - 20px)
+    margin: 0
+    @include max(767)
+      display: flex
+    .navigation-button
+      background: #fff
   &__img
     overflow: hidden
     height: auto
@@ -391,6 +402,7 @@
       color: $accent600
       font: 500 14px/20px $mainFont
       display: block
+      cursor: pointer
   &__add
     width: 100%
     margin-top: 32px

@@ -66,7 +66,6 @@ $(document).ready(function () {
     });
 
     const products = new Swiper('.mainpage-multiple__slider', {
-        // allowTouchMove: false,
         speed: 200,
         spaceBetween: 32,
         navigation: {
@@ -105,25 +104,29 @@ $(document).ready(function () {
             slidesPerView: 1,
             speed: 200,
             spaceBetween: 32,
-            allowTouchMove: true,
-            pagination: {
-                el: '.product-page__thumbs-mobile',
-                type: 'bullets',
+            allowTouchMove: false,
+
+            navigation: {
+                nextEl: '.product-next',
+                prevEl: '.product-prev',
+                disabledClass: 'navigation-disabled',
             },
-            thumbs: {
-                swiper: productThumbs,
-            },
-            // breakpoints: {
-            //     320: {
-            //         allowTouchMove: true,
-            //     },
-            //     1280: {
-            //         allowTouchMove: false,
-            //     }
-            // }
+
+            breakpoints: {
+                320: {
+                    pagination: {
+                        el: '.product-page__thumbs-mobile',
+                        type: 'bullets',
+                    },
+                },
+                1024: {
+                    thumbs: {
+                        swiper: productThumbs,
+                    },
+                }
+            }
         });
     }
-
 
     const related = new Swiper('.single-post__slider', {
         speed: 200,

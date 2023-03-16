@@ -78,12 +78,14 @@
                                     <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#inst"></use>
                                 </svg>
                             </a>
-<!--                            <a href="https://twitter.com/--><?php //the_field('twitter'); ?><!--" target="_blank"-->
-<!--                               class="socials__link locations__box-link">-->
-<!--                                <svg>-->
-<!--                                    <use xlink:href="--><?php //echo IMAGES_PATH; ?><!--/sprite-common.svg#tw"></use>-->
-<!--                                </svg>-->
-<!--                            </a>-->
+	                        <?php $whatsUp = get_field( 'whatsup', 159 ); ?>
+                            <a href="https://api.whatsapp.com/send?phone=<?php echo trim($whatsUp, '+') ?>" target="_blank"
+                               class="socials__link locations__box-link">
+                                <svg>
+                                    <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#whatsup-blue"></use>
+                                </svg>
+                            </a>
+
                         </div>
                     </div>
                 </div>

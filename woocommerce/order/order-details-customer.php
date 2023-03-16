@@ -49,7 +49,9 @@ $show_shipping = ! wc_ship_to_billing_address_only() && $order->needs_shipping_a
                           stroke="#0059D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <div class="order__details-title">Estimated arrival</div>
-                <div class="order__details-desc">Estimated arrival</div>
+                <div class="order__details-desc">For all Standard Shipping (non-express) methods, please allow 2-10
+                    business days for delivery.
+                </div>
             </div>
         </div>
     </div>

@@ -57,6 +57,18 @@ get_template_part( 'template-parts/header/header' ); ?>
                             <span class="mainpage-product__label <?php echo $field['value'] ?>"><?php echo $field['label'] ?></span>
 						<?php endif; ?>
                         <div class="product-page__slider">
+                            <div class="navigation product-page__navigation">
+                                <div class="navigation-button navigation-prev product-prev">
+                                    <svg>
+                                        <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#arrow"></use>
+                                    </svg>
+                                </div>
+                                <div class="navigation-button navigation-next product-next">
+                                    <svg>
+                                        <use xlink:href="<?php echo IMAGES_PATH; ?>/sprite-common.svg#arrow"></use>
+                                    </svg>
+                                </div>
+                            </div>
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide product-page__img img">
 									<?php echo $product->get_image( 'woocommerce_single', [ 'alt' => $product->get_name() ] ); ?>
@@ -266,15 +278,15 @@ get_template_part( 'template-parts/header/header' ); ?>
                                                         for the 12 month prepayment plan. Plans auto-renew. Change or
                                                         cancel anytime.
                                                     </div>
-                                                    <a class="product-page__subscribe-link" href="#">How do
-                                                        subscribtions work?</a>
+                                                    <div class="product-page__subscribe-link open-subscription">How do
+                                                        subscribtions work?</div>
 												<?php endif; ?>
                                             </div>
 										<?php endforeach; ?>
                                     </div>
 								<?php endif; ?>
                             </div>
-<!--							--><?php //get_template_part( 'template-parts/shipping' ); ?>
+                            <!--							--><?php //get_template_part( 'template-parts/shipping' ); ?>
 							<?php endif; ?>
                             <button type="submit" class="single_add_to_cart_button button alt blue product-page__add">
                                 Add to cart

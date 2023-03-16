@@ -32,18 +32,16 @@ $(document).ready(function () {
     });
 
 
-
     function validateEmail(val) {
         const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
         return emailReg.test(val);
     }
 
     $('.open-contacts-part').on('click', function () {
-        $('.shipping-part').hide();
-        $('.method-part').hide();
-        $('.saved-part').hide();
-        $('.saved__box').removeClass('active');
+        $('.checkout-part').hide();
         $('.contacts-part').show();
+        $('.first-validation').removeClass('invalid')
+        $('.saved__box').removeClass('active');
         $('.checkout__breadcrumbs span').removeClass('active');
         $('.checkout__breadcrumbs span:nth-child(-n+1)').addClass('active');
     });
@@ -53,13 +51,13 @@ $(document).ready(function () {
         $('.first-validation').each(function () {
             checker.push($(this).hasClass('validated'));
         })
+        $('.second-validation').removeClass('invalid')
         if (!checker.includes(false)) {
             $('.checkout-part').hide();
-            $('.method-part').hide();
+            $('.shipping-part').show();
             $('.saved-part').show();
             $('.saved__box:first-child').addClass('active');
             $('.saved__box:last-child').removeClass('active');
-            $('.shipping-part').show();
             const firstName = $('#billing_first_name').val();
             const lastName = $('#billing_last_name').val();
             const phone = $('#billing_phone').val();
@@ -79,11 +77,12 @@ $(document).ready(function () {
 
     $('.open-method-part').on('click', function () {
         let checker = [];
-        $('.second-validation').each(function () {
+        $('.first-validation, .second-validation').each(function () {
             checker.push($(this).hasClass('validated'));
         })
+        $('.third-validation').removeClass('invalid')
         if (!checker.includes(false)) {
-            $('.shipping-part').hide();
+            $('.checkout-part').hide();
             $('.saved-part').show();
             $('.saved__box').addClass('active');
             $('.method-part').show();
@@ -97,17 +96,27 @@ $(document).ready(function () {
             $('.checkout__breadcrumbs span').removeClass('active');
             $('.checkout__breadcrumbs span:nth-child(-n+3)').addClass('active');
         } else {
-            $('.second-validation').each(function () {
+            $('.first-validation, .second-validation').each(function () {
                 $(this).hasClass('validated') ? true : $(this).addClass('invalid')
             })
         }
     })
 
     $('.open-payment-part').on('click', function () {
-        $('.method-part').hide();
-        $('.saved-part').hide();
-        $('.payment-part').show();
-        $('.checkout__breadcrumbs span').addClass('active');
+        let checker = [];
+        $('.first-validation, .second-validation, .third-validation').each(function () {
+            checker.push($(this).hasClass('validated'));
+        })
+        if (!checker.includes(false)) {
+            $('.checkout-part').hide();
+            $('.saved-part').hide();
+            $('.payment-part').show();
+            $('.checkout__breadcrumbs span').addClass('active');
+        } else {
+            $('.first-validation, .second-validation, .third-validation').each(function () {
+                $(this).hasClass('validated') ? true : $(this).addClass('invalid')
+            })
+        }
     });
 
     $('.checkout__summary').on('click', function () {
@@ -135,7 +144,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $('.checkout__method').html(data);
-                $( 'body' ).trigger( 'update_checkout' );
+                $('body').trigger('update_checkout');
             },
             error: function (error) {
                 console.log(error)
@@ -148,7 +157,8 @@ $(document).ready(function () {
             $('#shipping_state').select2({
                 dropdownParent: $('#shipping_country_field')
             })
-        };
+        }
+        ;
     });
 
 })
